@@ -104,7 +104,7 @@ function sendCommand() {
                         </div>
                     </div>
                 </div>
-                <UButton class="rounded-full bg-black hover:bg-gray-700" @click="sendCommand">Commander</UButton>
+                <UButton class="rounded-full" @click="sendCommand">Commander</UButton>
             </template>
         </USlideover>
     </div>

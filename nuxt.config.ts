@@ -1,3 +1,5 @@
+import tailwindcss from "@tailwindcss/vite";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // https://nuxt.com/modules
@@ -9,7 +11,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   // https://devtools.nuxt.com
   devtools: { enabled: true },
-
+  vite: {
+    plugins: [tailwindcss]
+  },
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
   runtimeConfig: {
     public: {
