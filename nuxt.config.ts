@@ -4,8 +4,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxthub/core',
     '@nuxt/eslint',
+    '@nuxt/ui'
   ],
-
+  css: ['~/assets/css/main.css'],
   // https://devtools.nuxt.com
   devtools: { enabled: true },
 
