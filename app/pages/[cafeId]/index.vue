@@ -65,7 +65,7 @@ function sendCommand() {
 </script>
 
 <template>
-    <div class="bg-amber-50 p-8 min-h-screen flex flex-col">
+    <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">{{ cafePromise.name }}</h1>
         <div class="flex flex-col justify-center grow">
             <h2 class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Menu</h2>
@@ -80,7 +80,7 @@ function sendCommand() {
         </div>
         <USlideover
             :open="isOpenOptions"
-            :close="{ onClick: () => isOpenOptions = false }"
+            :close="{ onClick: () => isOpenOptions = false, color: 'primary' }"
             side="bottom" :title="selectedItem?.name">
             <template #body>
                 <div
@@ -88,23 +88,23 @@ function sendCommand() {
                     :key="opt.name"
                     class="mb-4">
                     <div v-if="opt.options === false" class="flex flex-row justify-between">
-                        <div>{{ opt.name }}</div>
-                        <USwitch v-model="opt.value"></USwitch>
+                        <div class="text-(--ui-primary)">{{ opt.name }}</div>
+                        <USwitch color="primary" v-model="opt.value"></USwitch>
                     </div>
                     <div v-else class="flex flex-col">
-                        <div class="flex flex-row justify-between rounded bg-gray-50 p-2">
+                        <div class="flex flex-row justify-between rounded bg-(--ui-bg-soft) p-2">
                             <div
                                 v-for="option of opt.options"
                                 :key="option"
                                 @click="opt.value = option"
-                                :class="{'bg-black': opt.value == option, 'text-white': opt.value == option}"
+                                :class="{'bg-(--ui-primary)': opt.value == option, 'text-(--ui-bg)': opt.value == option}"
                                 class="rounded px-4 cursor-pointer hover:bg-gray-400">
                                     {{ option }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <UButton class="rounded-full" @click="sendCommand">Commander</UButton>
+                <UButton size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
             </template>
         </USlideover>
     </div>

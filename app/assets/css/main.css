@@ -1,2 +1,21 @@
-@import "tailwindcss" theme(static);
+@import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme static {
+    --primary: black;
+}
+
+:root {
+    --ui-primary: black;
+    --ui-bg-accented: lightgray;
+    --ui-bg: white;
+    --ui-bg-soft: #f3f4f6;
+    --ui-radius: var(--radius-lg);
+}
+
+.dark {
+    --ui-primary: white;
+    --ui-bg-accented: gray;
+    --ui-bg: black;
+    --ui-bg-soft: gray;
+}
