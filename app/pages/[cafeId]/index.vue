@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Client, Databases, Query } from 'appwrite'
+import { Client, Databases, Query, ID } from 'appwrite'
 const runtimeConfig = useRuntimeConfig()
 const appconfig = useAppConfig()
 const route = useRoute()
@@ -7,8 +7,8 @@ const items = ref([] as any[])
 const selectedItem = ref(null as any)
 const selectedOptions = ref([])
 const isOpenOptions = ref(false)
-
-console.log(appconfig)
+const isOrderSending = ref(false)
+const isOrderSent = ref(false)
 
 const client = new Client();
 client.setEndpoint('https://cloud.appwrite.io/v1').setProject('micro-cafe');
@@ -21,8 +21,14 @@ let itemsPromise = databases.listDocuments(
         Query.equal('cafeId', 'alix')
     ]
 );
+let cafePromise = null as any
 
-let cafePromise = await databases.getDocument('cafe', 'cafe', route.params.cafeId as string)
+try {
+    cafePromise  = await databases.getDocument('cafe', 'cafe', route.params.cafeId as string)
+} catch (error) {
+    console.log(error)
+    navigateTo('/invalid-cafe')
+}
 
 itemsPromise.then(function (response) {
     items.value = response.documents
@@ -34,6 +40,7 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
     if (!newSelectedItem) {
         console.log('selectedItem is null')
         selectedOptions.value = []
+        return
     }
     selectedOptions.value = newSelectedItem.options.map((element: string) => {
         console.log(element)
@@ -45,7 +52,7 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
             return {
                 name: name,
                 options: options,
-                value: options === false ? false : options[0]
+                value: options === false ? false : '0'
             }
         }
         return undefined
@@ -53,13 +60,28 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
 })
 
 function sendCommand() {
-    console.log({
-        itemId: selectedItem.value.$id,
-        name: selectedItem.value.name,
-        options: selectedOptions.value.map(op => ({
-            name: op.name,
-            value: op.value
-        }))})
+    isOrderSending.value = true
+    const sendOrderPromise = databases.createDocument(
+        "cafe",
+        "order",
+        ID.unique(),
+        {
+            item: selectedItem.value.$id,
+            cafeId: route.params.cafeId as string,
+            status: 'ordered',
+            clientName: 'Anon',
+            options: selectedOptions.value.filter(op => op.value !== false).map(op => `${op.options[op.value]}`),
+        }
+    ).catch(function (error) {
+        console.log(error);
+        isOrderSending.value = false
+    }).then(function (response) {
+        console.log(response);
+        isOrderSending.value = false
+        navigateTo(`/${route.params.cafeId}/order/${response.$id}`)
+        selectedItem.value = null
+        selectedOptions.value = []
+    });
 }
 
 </script>
@@ -92,19 +114,10 @@ function sendCommand() {
                         <USwitch color="primary" v-model="opt.value"></USwitch>
                     </div>
                     <div v-else class="flex flex-col">
-                        <div class="flex flex-row justify-between rounded bg-(--ui-bg-soft) p-2">
-                            <div
-                                v-for="option of opt.options"
-                                :key="option"
-                                @click="opt.value = option"
-                                :class="{'bg-(--ui-primary)': opt.value == option, 'text-(--ui-bg)': opt.value == option}"
-                                class="rounded px-4 cursor-pointer hover:bg-gray-400">
-                                    {{ option }}
-                            </div>
-                        </div>
+                        <UTabs :content="false" :items="opt.options.map(o =>   { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
                     </div>
                 </div>
-                <UButton size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
+                <UButton :loading="isOrderSending" size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
             </template>
         </USlideover>
     </div>
