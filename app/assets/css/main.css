@@ -22,4 +22,6 @@
     --ui-bg-accented: gray;
     --ui-bg: black;
     --ui-bg-soft: gray;
+    --ui-text: white;
+    --ui-text-soft: lightgray;
 }
