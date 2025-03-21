@@ -7,6 +7,10 @@
 
 :root {
     --ui-primary: black;
+    --ui-success: oklch(0.897 0.196 126.665);
+    --ui-error: oklch(0.808 0.114 19.571);
+    --ui-warning: oklch(0.905 0.182 98.111);
+    --ui-info: oklch(0.865 0.127 207.078);
     --ui-bg-accented: lightgray;
     --ui-bg: white;
     --ui-bg-soft: #f3f4f6;

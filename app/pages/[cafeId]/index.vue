@@ -70,7 +70,7 @@ function sendCommand() {
             cafeId: route.params.cafeId as string,
             status: 'ordered',
             clientName: 'Anon',
-            options: selectedOptions.value.filter(op => op.value !== false).map(op => `${op.options[op.value]}`),
+            options: selectedOptions.value.filter(op => op.value !== false).map(op => `${op.options === false ? op.name : op.options[op.value]}`),
         }
     ).catch(function (error) {
         console.log(error);
