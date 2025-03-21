@@ -18,7 +18,7 @@ let itemsPromise = databases.listDocuments(
     "cafe",
     "item",
     [
-        Query.equal('cafeId', 'alix')
+        Query.equal('cafeId', route.params.cafeId as string)
     ]
 );
 let cafePromise = null as any
@@ -43,7 +43,8 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
         return
     }
     selectedOptions.value = newSelectedItem.options.map((element: string) => {
-        console.log(element)
+        //console.log(element)
+        if (!element) return undefined
         const parse1 = element.split(':')
         if (parse1.length === 2) {
             const name = parse1[0]
@@ -56,7 +57,7 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
             }
         }
         return undefined
-    });
+    }).filter((element: any) => element !== undefined).sort((element: any) => element.options === false ? 1 : -1);
 })
 
 function sendCommand() {
@@ -78,6 +79,15 @@ function sendCommand() {
     }).then(function (response) {
         console.log(response);
         isOrderSending.value = false
+        // Sauvegarder la commande dans le local storage avec la liste des commandes passées
+        const orders = localStorage.getItem('orders')
+        if (orders) {
+            const ordersArray = JSON.parse(orders)
+            ordersArray.push(response.$id)
+            localStorage.setItem('orders', JSON.stringify(ordersArray))
+        } else {
+            localStorage.setItem('orders', JSON.stringify([response.$id]))
+        }
         navigateTo(`/${route.params.cafeId}/order/${response.$id}`)
         selectedItem.value = null
         selectedOptions.value = []
@@ -96,7 +106,7 @@ function sendCommand() {
                 :key="item.$id"
                 @click="isOpenOptions = true;selectedItem = item"
                 variant="soft"
-                class="flex flex-row bg-white drop-shadow-xl rounded-2xl hover:cursor-pointer hover:bg-gray-50 active:drop-shadow-md transition-all">
+                class="mb-2 flex flex-row bg-white drop-shadow-xl rounded-2xl hover:cursor-pointer hover:bg-gray-50 active:drop-shadow-md transition-all">
                 <div>{{ item.name }}</div>
             </UCard>
         </div>
@@ -117,7 +127,9 @@ function sendCommand() {
                         <UTabs :content="false" :items="opt.options.map(o =>   { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
                     </div>
                 </div>
-                <UButton :loading="isOrderSending" size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
+                <div class="flex flex-row justify-end mt-4">
+                    <UButton :loading="isOrderSending" size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
+                </div>
             </template>
         </USlideover>
     </div>
