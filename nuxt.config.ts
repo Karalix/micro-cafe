@@ -3,11 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // https://nuxt.com/modules
-  modules: [
-    '@nuxthub/core',
-    '@nuxt/eslint',
-    '@nuxt/ui'
-  ],
+  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@vite-pwa/nuxt'],
   css: ['~/assets/css/main.css'],
   // https://devtools.nuxt.com
   devtools: { enabled: true },
@@ -27,4 +23,11 @@ export default defineNuxtConfig({
 
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {},
+  ssr: false,
+  pwa: {
+    registerType: 'autoUpdate',
+    devOptions: {
+      enabled: false,
+    }
+  },
 })

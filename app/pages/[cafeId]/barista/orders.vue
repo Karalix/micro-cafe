@@ -9,6 +9,30 @@ const databases = new Databases(client);
 const route = useRoute()
 const orders = ref([] as Array<Models.Document>)
 const pastOrders = ref([] as Array<Models.Document>)
+// use custom head for this page
+useHead({
+    title: 'Barista Dashboard',
+    meta: [
+        { name: 'description', content: 'Barista Dashboard' }
+    ],
+    script: [
+        { src: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js', defer: true },
+        {
+            innerHTML: `
+                window.OneSignalDeferred = window.OneSignalDeferred || [];
+                OneSignalDeferred.push(async function(OneSignal) {
+                    await OneSignal.init({
+                    appId: "a03fd055-755b-47ff-b5c8-859532f50534",
+                    safari_web_id: "web.onesignal.auto.1d9d9717-02c9-46fa-a0ca-aedc9bb61733",
+                    notifyButton: {
+                        enable: true,
+                    },
+                    });
+                });`
+        }
+    ],
+})
+
 
 orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => order.status === 'ordered')
 pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => order.status !== 'ordered').slice(0, 3)
@@ -67,10 +91,5 @@ const cancelOrder = async (orderId: string) => {
             </template>
         </UCard>
         <div class="flex flex-col justify-center grow"></div>
-        <UCard
-            variant="soft"
-            class="flex flex-row bg-white drop-shadow-xl rounded-2xl hover:cursor-pointer hover:bg-gray-50 active:drop-shadow-md transition-all">
-            <div>Go back</div>
-        </UCard>
     </div>
 </template>

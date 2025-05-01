@@ -11,6 +11,7 @@ const isOrderSending = ref(false)
 const isOrderSent = ref(false)
 const orders = ref([] as Array<Models.Document>)
 const localSavedOrders = ref([] as Array<Models.Document>)
+const clientName = ref('')
 
 const client = new Client();
 client.setEndpoint('https://cloud.appwrite.io/v1').setProject('micro-cafe');
@@ -76,6 +77,9 @@ onMounted(async () => {
             orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => localSavedOrders.value.includes(order.$id)).reverse()
         }
     })
+    // get the surname of the customer from the localstorage
+    clientName.value = localStorage.getItem('clientName') || ''
+
 })
 
 function orderStatusText (order) {
@@ -93,6 +97,8 @@ function orderStatusText (order) {
 
 function sendCommand() {
     isOrderSending.value = true
+    // Sauvegarder le nom du client dans le local storage
+    localStorage.setItem('clientName', clientName.value)
     const sendOrderPromise = databases.createDocument(
         "cafe",
         "order",
@@ -101,7 +107,7 @@ function sendCommand() {
             item: selectedItem.value.$id,
             cafeId: route.params.cafeId as string,
             status: 'ordered',
-            clientName: 'Anon',
+            clientName: clientName.value || 'Anon',
             options: selectedOptions.value.filter(op => op.value !== false).map(op => `${op.options === false ? op.name : op.options[op.value]}`),
         }
     ).catch(function (error) {
@@ -131,6 +137,12 @@ function sendCommand() {
 <template>
     <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">{{ cafePromise.name }}</h1>
+        <NuxtLink :to="`/${route.params.cafeId}/barista/orders`">
+            <UButton class="fixed top-4 right-4 z-10">
+                Vue barista
+                <UIcon name="i-hugeicons:coffee-02" />
+            </UButton>
+        </NuxtLink>
         <div class="flex flex-col justify-center grow">
             <h2 class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Menu</h2>
             <UCard
@@ -170,6 +182,9 @@ function sendCommand() {
                         <UTabs :content="false" :items="opt.options.map(o =>   { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
                     </div>
                 </div>
+                <UFormField label="Votre nom" class="mt-4">
+                    <UInput v-model="clientName" placeholder="Votre nom"></UInput>
+                </UFormField>
                 <div class="flex flex-row justify-end mt-4">
                     <UButton :loading="isOrderSending" size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
                 </div>
