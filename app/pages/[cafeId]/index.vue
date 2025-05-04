@@ -137,7 +137,7 @@ function sendCommand() {
 <template>
     <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">{{ cafePromise.name }}</h1>
-        <NuxtLink :to="`/${route.params.cafeId}/barista/orders`">
+        <NuxtLink :to="`/${route.params.cafeId}/barista`">
             <UButton class="fixed top-4 right-4 z-10">
                 Vue barista
                 <UIcon name="i-hugeicons:coffee-02" />

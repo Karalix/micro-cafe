@@ -1,37 +1,23 @@
 
 
 <script setup lang="ts">
-import { Client, Databases, Query, ID, type Models } from 'appwrite'
+import { Account, Client, Databases, Query, ID, type Models, Messaging } from 'appwrite'
 
 const client = new Client();
 client.setEndpoint('https://cloud.appwrite.io/v1').setProject('micro-cafe');
 const databases = new Databases(client);
+const account = new Account(client);
 const route = useRoute()
 const orders = ref([] as Array<Models.Document>)
 const pastOrders = ref([] as Array<Models.Document>)
-// use custom head for this page
-useHead({
-    title: 'Barista Dashboard',
-    meta: [
-        { name: 'description', content: 'Barista Dashboard' }
-    ],
-    script: [
-        { src: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js', defer: true },
-        {
-            innerHTML: `
-                window.OneSignalDeferred = window.OneSignalDeferred || [];
-                OneSignalDeferred.push(async function(OneSignal) {
-                    await OneSignal.init({
-                    appId: "a03fd055-755b-47ff-b5c8-859532f50534",
-                    safari_web_id: "web.onesignal.auto.1d9d9717-02c9-46fa-a0ca-aedc9bb61733",
-                    notifyButton: {
-                        enable: true,
-                    },
-                    });
-                });`
-        }
-    ],
-})
+const { add: addToast } = useToast(); // Optional: For success/error notifications
+
+// If user is not logged in, redirect to login page
+try {
+    await account.getSession('current')
+} catch (error) {
+    navigateTo('/login')
+}
 
 
 orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => order.status === 'ordered')
@@ -57,12 +43,19 @@ const cancelOrder = async (orderId: string) => {
         status: 'canceled'
     })
 }
+
+const logout = async () => {
+    await account.deleteSession('current')
+    navigateTo('/')
+    addToast({ title: 'Logged out', description: 'You have been logged out', color: 'green' })
+}
 </script>
 
 
 <template>
     <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">Order</h1>
+        <UButton @click="logout" class="mb-4 ml-4 sm:ml-6">Logout</UButton>
         <div class="flex flex-col justify-center grow"></div>
         <UCard
            variant="soft"
