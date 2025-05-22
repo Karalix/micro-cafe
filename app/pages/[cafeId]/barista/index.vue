@@ -42,7 +42,7 @@ const requestNotificationPermission = async () => {
     if (permission === 'granted') {
         console.log('Notification permission granted.');
         const messaging = getMessaging($firebase);
-        getToken(messaging, {vapidKey: 'BDC1AlTrCJCoxok4zBSOGv_-tUtsHF2upLlBVMIss7Ly_lh-uXgNv43HgMEZnenXMfFeuRmfPwCZQi3uj1riOTY'})
+        getToken(messaging, {vapidKey: 'BH9Kq8XtWbSxZzebYCcU9weUMEXNbH94fj2gtQeSpp2Y9JDIwzGdbKAM8BgZQerB7QLUJqTDsFswGFH01UEFP9k'})
             .then((currentToken) => {
                 if (currentToken) {
                     console.log('Token received: ')
