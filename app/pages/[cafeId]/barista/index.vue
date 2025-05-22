@@ -1,6 +1,7 @@
 
 
 <script setup lang="ts">
+import type { RefSymbol } from '@vue/reactivity';
 import { Account, Client, Databases, Query, ID, type Models, Messaging } from 'appwrite'
 import { getMessaging, getToken } from "firebase/messaging";
 
@@ -12,7 +13,7 @@ const route = useRoute()
 const orders = ref([] as Array<Models.Document>)
 const pastOrders = ref([] as Array<Models.Document>)
 const { add: addToast } = useToast(); // Optional: For success/error notifications
-const showNotificationPrompt = ref(true);
+const showNotificationPrompt = ref(false);
 
 // If user is not logged in, redirect to login page
 try {
@@ -32,6 +33,12 @@ onMounted(async () => {
             pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => order.status !== 'ordered').slice(0, 3)
         }
     })
+
+    if (Notification.permission === 'default') {
+        showNotificationPrompt.value = true
+    } else {
+        showNotificationPrompt.value = false
+    }
 })
 
 const requestNotificationPermission = async () => {
@@ -47,6 +54,7 @@ const requestNotificationPermission = async () => {
                 if (currentToken) {
                     console.log('Token received: ')
                     console.log(currentToken)
+                    account.createPushTarget('unique()', currentToken, 'firebase')
                     showNotificationPrompt.value = false
                 } else {
                     console.log('No registration token available. Request permission to generate one.')
