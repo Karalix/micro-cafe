@@ -2,12 +2,12 @@ importScripts('https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js'
 importScripts('https://www.gstatic.com/firebasejs/11.0.2/firebase-messaging-compat.js');
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB9u-_5jOM-OFkFb921letwI_AWRYEgKlM",
-    authDomain: "hormur-16d24.firebaseapp.com",
-    projectId: "hormur-16d24",
-    storageBucket: "hormur-16d24.firebasestorage.app",
-    messagingSenderId: "1015715775596",
-    appId: "1:1015715775596:web:dea453a7110672edca8449"
+    apiKey: "AIzaSyCKeVR_XLSfxohVm7-GTTGLoDVgU9pQSOU",
+    authDomain: "micro-cafe-26645.firebaseapp.com",
+    projectId: "micro-cafe-26645",
+    storageBucket: "micro-cafe-26645.firebasestorage.app",
+    messagingSenderId: "681426918933",
+    appId: "1:681426918933:web:206967fb9c645e26f6b81c"
   };
 
 // Initialize the Firebase app in the service worker by passing in
