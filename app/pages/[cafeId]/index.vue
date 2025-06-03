@@ -70,11 +70,11 @@ onMounted(async () => {
 
     if (ordersIds) {
         localSavedOrders.value = JSON.parse(ordersIds)
-        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => localSavedOrders.value.includes(order.$id)).reverse()
+        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value.map(order => order.$id))])).documents.reverse()
     }
     client.subscribe(`databases.cafe.collections.order.documents`, async (response) => {
         if (response.payload.cafeId.$id === route.params.cafeId) {
-            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string)])).documents.filter((order) => localSavedOrders.value.includes(order.$id)).reverse()
+            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value.map(order => order.$id))])).documents.reverse()
         }
     })
     // get the surname of the customer from the localstorage
