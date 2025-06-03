@@ -1,7 +1,4 @@
-
-
 <script setup lang="ts">
-import type { RefSymbol } from '@vue/reactivity';
 import { Account, Client, Databases, Query, ID, type Models, Messaging } from 'appwrite'
 import { getMessaging, getToken } from "firebase/messaging";
 
@@ -14,6 +11,18 @@ const orders = ref([] as Array<Models.Document>)
 const pastOrders = ref([] as Array<Models.Document>)
 const { add: addToast } = useToast(); // Optional: For success/error notifications
 const showNotificationPrompt = ref(false);
+
+// Define an interface for the expected structure of response.payload
+// This should match the structure of a document in your 'order' collection
+interface OrderPayload {
+  cafeId: {
+    $id: string;
+    // Add any other properties of the cafeId object if they exist
+  };
+  // Add other properties of the order document that you might need
+  // e.g., status: string;
+  // e.g., items: any[]; // Be more specific if possible
+}
 
 // If user is not logged in, redirect to login page
 try {
@@ -28,12 +37,17 @@ pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal(
 
 onMounted(async () => {
     client.subscribe(`databases.cafe.collections.order.documents`, async (response) => {
-        if (response.payload.cafeId.$id === route.params.cafeId) {
-orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('status', 'ordered')])).documents
-pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.notEqual('status', 'ordered')])).documents.slice(0, 3)
-        }
-    })
+        // Assert the type of response.payload to your defined interface
+        const payload = response.payload as OrderPayload;
 
+        // Now you can safely access properties defined in OrderPayload.
+        // It's also a good practice to check for the existence of nested objects
+        // before accessing their properties, if they can be optional.
+        if (payload && payload.cafeId && payload.cafeId.$id === route.params.cafeId) {
+            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('status', 'ordered')])).documents;
+            pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.notEqual('status', 'ordered')])).documents.slice(0, 3);
+        }
+    });
     if (Notification.permission === 'default') {
         showNotificationPrompt.value = true
     } else {
@@ -85,7 +99,7 @@ const cancelOrder = async (orderId: string) => {
 const logout = async () => {
     await account.deleteSession('current')
     navigateTo('/')
-    addToast({ title: 'Logged out', description: 'You have been logged out', color: 'green' })
+    addToast({ title: 'Logged out', description: 'You have been logged out', color: 'primary' })
 }
 </script>
 
@@ -100,8 +114,8 @@ const logout = async () => {
            variant="soft"
            v-for="order in orders"
            :key="order.$id"
-           class="mb-4 bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-50 active:drop-shadow-md transition-all">
-            <div>{{ order.item.name }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
+           class="mb-4 text-(--ui-text) bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-200 active:drop-shadow-md transition-all">
+            <div>{{ order.item?.name || 'Unknown item' }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
                     <UButton color="error" @click="cancelOrder(order.$id)">Cancel</UButton>
@@ -114,8 +128,8 @@ const logout = async () => {
             variant="soft"
             v-for="order in pastOrders"
             :key="order.$id"
-            class="mb-4 bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-50 active:drop-shadow-md transition-all">
-            <div>{{ order.item.name }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
+            class="mb-4 text-(--ui-text) bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-200 active:drop-shadow-md transition-all">
+            <div>{{ order.item.name || 'Unknown item'  }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
                     <div>{{ order.status  }}</div>

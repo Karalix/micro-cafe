@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { Client, Databases, Query, ID, type Models } from 'appwrite'
-const runtimeConfig = useRuntimeConfig()
-const appconfig = useAppConfig()
 const route = useRoute()
 const items = ref([] as any[])
 const selectedItem = ref(null as any)
-const selectedOptions = ref([])
+const selectedOptions = ref([] as any[])
 const isOpenOptions = ref(false)
 const isOrderSending = ref(false)
 const isOrderSent = ref(false)
 const orders = ref([] as Array<Models.Document>)
-const localSavedOrders = ref([] as Array<Models.Document>)
+const localSavedOrders = ref([] as Array<string>)
 const clientName = ref('')
 
 const client = new Client();
@@ -39,7 +37,7 @@ itemsPromise.then(function (response) {
     console.log(error);
 });
 
-watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
+watch(selectedItem, async (newSelectedItem) => {
     if (!newSelectedItem) {
         console.log('selectedItem is null')
         selectedOptions.value = []
@@ -51,7 +49,8 @@ watch(selectedItem, async (newSelectedItem, oldSelectedItem) => {
         const parse1 = element.split(':')
         if (parse1.length === 2) {
             const name = parse1[0]
-            const options = parse1[1] == 'boolean' ? false : parse1[1].split(';')
+            const tmpOptions = parse1[1] as string
+            const options = tmpOptions == 'boolean' ? false : tmpOptions.split(';')
 
             return {
                 name: name,
@@ -70,11 +69,11 @@ onMounted(async () => {
 
     if (ordersIds) {
         localSavedOrders.value = JSON.parse(ordersIds)
-        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value.map(order => order.$id))])).documents.reverse()
+        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse()
     }
-    client.subscribe(`databases.cafe.collections.order.documents`, async (response) => {
+    client.subscribe(`databases.cafe.collections.order.documents`, async (response: any) => {
         if (response.payload.cafeId.$id === route.params.cafeId) {
-            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value.map(order => order.$id))])).documents.reverse()
+            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse()
         }
     })
     // get the surname of the customer from the localstorage
@@ -82,7 +81,7 @@ onMounted(async () => {
 
 })
 
-function orderStatusText (order) {
+function orderStatusText (order: Models.Document) {
     switch (order.status) {
         case 'ordered':
             return 'Your order is being prepared'
@@ -115,6 +114,7 @@ function sendCommand() {
         isOrderSending.value = false
     }).then(function (response) {
         console.log(response);
+        if (!response || !response.$id) return
         isOrderSending.value = false
         // Sauvegarder la commande dans le local storage avec la liste des commandes passées
         const orders = localStorage.getItem('orders')
@@ -180,7 +180,7 @@ function sendCommand() {
                         <USwitch color="primary" v-model="opt.value"></USwitch>
                     </div>
                     <div v-else class="flex flex-col">
-                        <UTabs :content="false" :items="opt.options.map(o =>   { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
+                        <UTabs :content="false" :items="opt.options.map(o =>  { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
                     </div>
                 </div>
                 <UFormField label="Votre nom" class="mt-4">

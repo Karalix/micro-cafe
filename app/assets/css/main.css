@@ -14,7 +14,6 @@
     --ui-bg-accented: lightgray;
     --ui-bg: white;
     --ui-bg-soft: #f3f4f6;
-    --ui-radius: var(--radius-lg);
 }
 
 .dark {
