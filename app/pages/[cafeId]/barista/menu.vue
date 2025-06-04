@@ -340,5 +340,7 @@ const handleSaveItem = async (): Promise<void> => {
 
         <!-- Toaster for notifications -->
         <UNotifications />
+              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+
     </UContainer>
 </template>
