@@ -5,7 +5,7 @@
       <h2 class="text-xl font-semibold text-center">Login</h2>
     </template>
 
-    <UForm :state="state" :schema="schema" @submit="handleLogin">
+    <UForm :state="state" :schema="schema" @submit="handleLogin" class="flex flex-col space-y-4">
       <UFormGroup label="Email" name="email" class="mb-4">
         <UInput
           v-model="state.email"
@@ -13,7 +13,11 @@
           placeholder="you@example.com"
           icon="i-heroicons-envelope"
           required
-        />
+        >
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Email</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
       <UFormGroup label="Password" name="password" class="mb-6">
@@ -23,7 +27,11 @@
           placeholder="••••••••"
           icon="i-heroicons-lock-closed"
           required
-        />
+        >
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Password</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
       <UAlert
@@ -113,6 +121,13 @@ async function handleLogin(event: FormSubmitEvent<Schema>) {
     await router.push(`/${cafeID}/barista`); // Adjust the redirect path as needed
 
   } catch (error: any) {
+    if (error.type === 'user_session_already_exists') {
+      // Get cafeID from preferences
+      const preferences = await account.getPrefs();
+      const cafeID = preferences.cafeID;
+      // Redirect to a protected page, e.g., dashboard
+      await router.push(`/${cafeID}/barista`); // Adjust the redirect path as needed
+    }
     console.error('Login failed:', error); // Debug log
     errorMessage.value = error.message || 'An unexpected error occurred. Please try again.';
     addToast({ title: 'Login Failed', description: errorMessage.value, color: 'red' });

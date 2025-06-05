@@ -3,8 +3,11 @@
     <UCard class="w-full max-w-md">
       <template #header>
         <h1 class="text-2xl font-bold text-center text-gray-900 dark:text-white">
-          Welcome to Cafe Explorer
+          Welcome to My Tiny Cafe !
         </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          This app is still very much in Beta, please excuse any bugs you may encounter. Reach alix@krlx.fr for any issues and feedback.
+        </p>
       </template>
 
       <div class="space-y-6">
@@ -16,7 +19,7 @@
           <p class="text-sm text-gray-500 dark:text-gray-400">
             Enter the Cafe ID to view its details.
           </p>
-          <UFormGroup label="Cafe ID" name="cafeId">
+          <UFormGroup label="Cafe ID" name="cafeId" class="flex flex-col space-y-4">
             <UInput
               v-model="cafeId"
               placeholder="Enter Cafe ID"
@@ -42,7 +45,7 @@
             Account Access
           </h2>
           <p class="text-sm text-gray-500 dark:text-gray-400">
-            Login to manage your cafes or profile.
+            Login to manage your café or profile.
           </p>
           <UButton
             label="Login"
@@ -53,8 +56,9 @@
             icon="i-heroicons-arrow-right-on-rectangle"
             @click="goToLogin"
           />
-          <!-- Add Register button if needed -->
-          <!--
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Haven't registered yet?
+          </p>
           <UButton
             label="Register"
             color="primary"
@@ -64,15 +68,8 @@
             icon="i-heroicons-user-plus"
             @click="goToRegister"
           />
-          -->
         </div>
       </div>
-
-      <template #footer>
-        <p class="text-xs text-center text-gray-500 dark:text-gray-400">
-          Powered by Nuxt & Appwrite
-        </p>
-      </template>
     </UCard>
   </div>
 </template>
@@ -128,15 +125,15 @@ const goToLogin = async (): Promise<void> => {
  * Navigates to the registration page (optional).
  * @returns {Promise<void>}
  */
-/*
+
 const goToRegister = async (): Promise<void> => {
   try {
-    await router.push('/register') // Assuming your register page route is '/register'
+    await router.push('/signup') 
   } catch (error) {
     console.error('Navigation error:', error)
   }
 }
-*/
+
 
 // Define page meta if needed (e.g., layout)
 // definePageMeta({

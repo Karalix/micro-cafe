@@ -4,22 +4,38 @@
       <h2 class="text-xl font-bold text-center">Create Account</h2>
     </template>
 
-    <UForm :state="state" :schema="schema" @submit="handleSignup">
+    <UForm :state="state" :schema="schema" @submit="handleSignup" class="flex flex-col space-y-4">
       <UFormGroup label="Name" name="name" class="mb-4">
-        <UInput v-model="state.name" placeholder="Your Name" />
+        <UInput v-model="state.name" placeholder="Your Name">
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Your name</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
       <UFormGroup label="Email" name="email" class="mb-4">
-        <UInput v-model="state.email" type="email" placeholder="you@example.com" />
+        <UInput v-model="state.email" type="email" placeholder="you@example.com">
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Email</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
 
-      <UFormGroup label="Identifiant de café" name="cafeId" class="mb-4">
-        <UInput v-model="state.cafeID" placeholder="Identifiant de café" />
+      <UFormGroup label="Café ID" name="cafeId" class="mb-4">
+        <UInput v-model="state.cafeID" placeholder="Café ID">
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Your café ID</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
       <UFormGroup label="Password" name="password" class="mb-6">
-        <UInput v-model="state.password" type="password" placeholder="••••••••" />
+        <UInput v-model="state.password" type="password" placeholder="••••••••">
+          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+            <span class="inline-flex bg-default px-1">Password</span>
+          </label>
+        </UInput> 
       </UFormGroup>
 
       <UButton type="submit" block :loading="loading">
@@ -32,7 +48,7 @@
         <span class="text-sm text-gray-500 dark:text-gray-400">
           Already have an account?
         </span>
-        <NuxtLink to="/login" class="text-sm text-primary-500 hover:underline ml-1">
+        <NuxtLink to="/login" class="text-sm text-primary hover:underline ml-1">
           Log In
         </NuxtLink>
       </div>
