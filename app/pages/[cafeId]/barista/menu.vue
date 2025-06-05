@@ -222,7 +222,7 @@ const handleSaveItem = async (): Promise<void> => {
 
 </script>
 <template>
-    <UContainer class="py-8">
+    <UContainer class="py-8 pb-28">
         <div v-if="isLoadingCafe" class="mb-6">
             <USkeleton class="h-10 w-3/4 mb-2" />
             <USkeleton class="h-6 w-1/4" />

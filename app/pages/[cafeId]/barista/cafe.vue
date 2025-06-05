@@ -1,93 +1,133 @@
 <template>
-  <div>
-      <UContainer class="py-8">
-        <UCard>
-          <template #header>
-            <h1 class="text-xl font-semibold leading-tight">
-              Share Your Page
-            </h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-              Share this page using the URL or QR code below.
-            </p>
-          </template>
+  <div class="pb-16">
+        <UContainer class="py-8">
+            <UCard>
+            <template #header>
+                <h1 class="text-xl font-semibold leading-tight">
+                Share Your Page
+                </h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                Share this page using the URL or QR code below.
+                </p>
+            </template>
 
-          <div class="space-y-6">
-            <UFormGroup
-              label="Page URL"
-              name="pageUrl"
-              help="This is the direct link to your page."
-            >
-              <div class="flex items-center gap-2">
-                <UInput
-                  :model-value="pageUrl"
-                  readonly
-                  class="flex-grow"
-                  placeholder="Generating URL..."
-                  icon="i-heroicons-link"
-                  size="lg"
-                />
-                <UButton
-                  @click="handleCopyUrl"
-                  :icon="copied ? 'i-heroicons-check-circle-20-solid' : 'i-heroicons-clipboard-document-20-solid'"
-                  :color="copied ? 'green' : 'primary'"
-                  variant="solid"
-                  square
-                  size="lg"
-                  :disabled="!pageUrl"
+            <div class="space-y-6">
+                <UFormGroup
+                label="Page URL"
+                name="pageUrl"
+                help="This is the direct link to your page."
                 >
-                  {{ copied ? 'Copied!' : 'Copy' }}
-                </UButton>
-              </div>
-            </UFormGroup>
+                <div class="flex items-center gap-2">
+                    <UInput
+                    :model-value="pageUrl"
+                    readonly
+                    class="flex-grow"
+                    placeholder="Generating URL..."
+                    icon="i-heroicons-link"
+                    size="lg"
+                    />
+                    <UButton
+                    @click="handleCopyUrl"
+                    :icon="copied ? 'i-heroicons-check-circle-20-solid' : 'i-heroicons-clipboard-document-20-solid'"
+                    :color="copied ? 'success' : 'primary'"
+                    variant="solid"
+                    square
+                    size="lg"
+                    :disabled="!pageUrl"
+                    >
+                    {{ copied ? 'Copied!' : 'Copy' }}
+                    </UButton>
+                </div>
+                </UFormGroup>
 
-            <UDivider />
+                <UDivider />
 
-            <div>
-              <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                QR Code
-              </h2>
-              <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                Scan this QR code with a mobile device to open the page.
-              </p>
-              <div v-if="pageUrl" class="flex justify-center items-center p-4 bg-white dark:bg-gray-50 rounded-lg shadow max-w-xs mx-auto">
-                <ClientOnly>
-                  <QrCodeVue
-                    :value="pageUrl"
-                    :size="220"
-                    level="H"
-                    render-as="svg"
-                    :margin="2"
-                  />
-                  <template #fallback>
-                    <USkeleton class="h-[220px] w-[220px" />
-                  </template>
-                </ClientOnly>
-              </div>
-              <div v-else class="text-center text-gray-500 dark:text-gray-400 py-10">
-                <p class="mb-2">Page URL not available, QR code cannot be generated.</p>
-                <USkeleton class="h-[220px] w-[220px mx-auto" />
-              </div>
+                <div>
+                <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                    QR Code
+                </h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    Scan this QR code with a mobile device to open the page.
+                </p>
+                <div v-if="pageUrl" class="flex justify-center items-center p-4 bg-white dark:bg-gray-50 rounded-lg shadow max-w-xs mx-auto">
+                    <ClientOnly>
+                    <QrCodeVue
+                        :value="pageUrl"
+                        :size="220"
+                        level="H"
+                        render-as="svg"
+                        :margin="2"
+                    />
+                    <template #fallback>
+                        <USkeleton class="h-[220px] w-[220px" />
+                    </template>
+                    </ClientOnly>
+                </div>
+                <div v-else class="text-center text-gray-500 dark:text-gray-400 py-10">
+                    <p class="mb-2">Page URL not available, QR code cannot be generated.</p>
+                    <USkeleton class="h-[220px] w-[220px mx-auto" />
+                </div>
+                </div>
             </div>
-          </div>
+            </UCard>
+        </UContainer>
+        <UContainer class="py-8">
+            <UCard>
+                <template #header>
+                    <h1 class="text-xl font-semibold leading-tight">
+                        Update Cafe Details
+                    </h1>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Modify your cafe's information.
+                    </p>
+                </template>
 
-          <template #footer>
-            <p class="text-xs text-gray-500 dark:text-gray-400 text-center">
-              Ensure your device has internet access to open the page.
-            </p>
-          </template>
-        </UCard>
-      </UContainer>
-              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
-
+                <div class="space-y-6">
+                    <UFormGroup
+                        label="Cafe Name"
+                        name="cafeNameUpdate"
+                        help="Enter the new name for your cafe."
+                    >
+                        <div class="flex items-center gap-2">
+                            <UInput
+                                v-model="cafeNameInput"
+                                placeholder="Enter new cafe name"
+                                class="flex-grow"
+                                icon="i-heroicons-identification-20-solid"
+                                size="lg"
+                                :disabled="!currentCafeId || isLoadingUpdateName"
+                            />
+                            <UButton
+                                @click="handleUpdateCafeName"
+                                :loading="isLoadingUpdateName"
+                                :disabled="!cafeNameInput.trim() || !currentCafeId || isLoadingUpdateName"
+                                icon="i-heroicons-arrow-path-20-solid"
+                                variant="solid"
+                                size="lg"
+                            >
+                                {{ isLoadingUpdateName ? 'Updating...' : 'Update' }}
+                            </UButton>
+                        </div>
+                    </UFormGroup>
+                    <!-- Additional cafe settings can be added here -->
+                </div>
+            </UCard>
+        </UContainer>
+        <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
 </template>
 
 <script setup lang="ts">
+import { Client, Databases, Query, ID, type Models } from 'appwrite'
 import { ref, computed, watch } from 'vue'
 import { useRoute } from '#imports' // Nuxt auto-imports route composable
 import { useToast } from '#imports' // Nuxt UI auto-imports toast composable
 import QrCodeVue from 'qrcode.vue' // Import QR Code component
 import { useClipboard } from '@vueuse/core' // For advanced clipboard functionality
+
+const client = new Client();
+client.setEndpoint('https://cloud.appwrite.io/v1').setProject('micro-cafe'); // Replace with your project ID
+const databases = new Databases(client);
 
 // Define types for route parameters for better type safety if needed.
 // interface CafeRouteParams {
@@ -98,6 +138,67 @@ const route = useRoute()
 const toast = useToast()
 
 const currentCafeId = ref<string | undefined>(undefined)
+
+// --- Refs and logic for "Update Cafe Details" ---
+const cafeNameInput = ref<string>('')
+const isLoadingUpdateName = ref<boolean>(false)
+
+/**
+ * Handles the action of updating the cafe's name.
+ * This function would typically call an API to persist the change.
+ * Provides feedback via toast notifications.
+ */
+async function handleUpdateCafeName(): Promise<void> {
+  if (!currentCafeId.value) {
+    toast.add({
+      title: 'Error',
+      description: 'Cafe ID is not available. Cannot update name.',
+      color: 'error',
+      icon: 'i-heroicons-x-circle-20-solid',
+    })
+    return
+  }
+
+  if (!cafeNameInput.value.trim()) {
+    toast.add({
+      title: 'Validation Error',
+      description: 'Cafe name cannot be empty.',
+      color: 'warning',
+      icon: 'i-heroicons-exclamation-circle-20-solid',
+    })
+    return
+  }
+
+  isLoadingUpdateName.value = true
+  try {
+    // Simulate API call to update cafe name
+    // In a real application, you would make a request to your backend (e.g., Appwrite)
+    // e.g., await appwrite.databases.updateDocument('[DATABASE_ID]', '[COLLECTION_ID]', currentCafeId.value, { name: cafeNameInput.value });
+    console.log(`Attempting to update cafe ${currentCafeId.value} name to: ${cafeNameInput.value}`)
+    //await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate network delay
+    await databases.updateDocument('cafe', 'cafe', currentCafeId.value, { name: cafeNameInput.value });
+
+
+    toast.add({
+      title: 'Success!',
+      description: `Cafe name updated to "${cafeNameInput.value}".`,
+      color: 'primary',
+      icon: 'i-heroicons-check-circle-20-solid',
+    })
+    // Optionally, clear the input after successful update
+    // cafeNameInput.value = '';
+  } catch (error) {
+    console.error('Failed to update cafe name:', error)
+    toast.add({
+      title: 'Update Failed',
+      description: 'Could not update cafe name. Please try again.',
+      color: 'error',
+      icon: 'i-heroicons-x-circle-20-solid',
+    })
+  } finally {
+    isLoadingUpdateName.value = false
+  }
+}
 
 /**
  * Watches the route parameter 'cafeId' for changes.
@@ -117,9 +218,8 @@ watch(
         toast.add({
           title: 'Missing Cafe ID',
           description: 'The unique identifier for the cafe is missing from the URL.',
-          color: 'orange',
+          color: 'warning',
           icon: 'i-heroicons-exclamation-triangle-20-solid',
-          timeout: 5000,
         })
       }
     }
@@ -157,7 +257,7 @@ async function handleCopyUrl(): Promise<void> {
     toast.add({
       title: 'URL Not Available',
       description: 'The page URL is not ready to be copied.',
-      color: 'yellow',
+      color: 'warning',
       icon: 'i-heroicons-exclamation-circle-20-solid',
     })
     return
@@ -167,7 +267,7 @@ async function handleCopyUrl(): Promise<void> {
     toast.add({
       title: 'Clipboard Access Denied',
       description: 'Your browser settings prevent clipboard access, or it\'s not supported.',
-      color: 'red',
+      color: 'error',
       icon: 'i-heroicons-no-symbol-20-solid',
     })
     // As a fallback, you could select the text in the input for manual copying
@@ -182,7 +282,7 @@ async function handleCopyUrl(): Promise<void> {
       toast.add({
         title: 'URL Copied!',
         description: 'The page URL has been copied to your clipboard.',
-        color: 'green',
+        color: 'primary',
         icon: 'i-heroicons-check-circle-20-solid',
       })
     } else {
@@ -190,7 +290,7 @@ async function handleCopyUrl(): Promise<void> {
       toast.add({
         title: 'Copy Unconfirmed',
         description: 'Attempted to copy. Please verify your clipboard.',
-        color: 'blue',
+        color: 'primary',
         icon: 'i-heroicons-information-circle-20-solid',
       })
     }
@@ -199,7 +299,7 @@ async function handleCopyUrl(): Promise<void> {
     toast.add({
       title: 'Copy Failed',
       description: 'An error occurred while trying to copy the URL. Please copy it manually.',
-      color: 'red',
+      color: 'error',
       icon: 'i-heroicons-x-circle-20-solid',
     })
   }

@@ -69,11 +69,11 @@ onMounted(async () => {
 
     if (ordersIds) {
         localSavedOrders.value = JSON.parse(ordersIds)
-        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse()
+        orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse().filter((o: Models.Document) => o.item !== null)
     }
     client.subscribe(`databases.cafe.collections.order.documents`, async (response: any) => {
         if (response.payload.cafeId.$id === route.params.cafeId) {
-            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse()
+            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('$id', localSavedOrders.value)])).documents.reverse().filter((o: Models.Document) => o.item !== null)
         }
     })
     // get the surname of the customer from the localstorage
@@ -150,11 +150,11 @@ function sendCommand() {
                 :key="item.$id"
                 @click="isOpenOptions = true;selectedItem = item"
                 variant="soft"
-                class="mb-2 flex flex-row bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-(--ui-bg-accented) active:drop-shadow-md transition-all">
+                class="mb-2 flex flex-row bg-(--ui-bg) drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-(--ui-bg-accented) active:drop-shadow-md transition-all">
                 <div class="text-(--ui-text)">{{ item.name }}</div>
             </UCard>
             <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Past Orders</h2>
-            <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white drop-shadow-xl rounded-2xl">
+            <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white drop-shadow-xl rounded-lg">
                <div class="flex flex-col justify-between">
                     <div class="font-bold text-2xl">{{ order.item.name  }}</div>
                     <div class="font-mono text-stone-500 text-sm">#{{ order.$id }}</div>
@@ -164,7 +164,7 @@ function sendCommand() {
                     </div>
                 </div>
             </UCard>
-            <ULink to="/signup"><UButton>Create an (inoperant) account (for now) to be notified when you can open your own café too</UButton></ULink>
+            <ULink class="mt-4" to="/signup"><UButton>Create an (inoperant) account (for now) to be notified when you can open your own café too</UButton></ULink>
         </div>
         <USlideover
             :open="isOpenOptions"

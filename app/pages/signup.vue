@@ -73,6 +73,19 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
+// Watch the value of name and update cafeID accordingly "Jean Dupont" -> "jeandupont"
+watch(() => state.name, (newName) => {
+  state.cafeID = newName.toLowerCase().replace(/\s+/g, '');
+  // Remove any non-alphanumeric characters
+  state.cafeID = state.cafeID.replace(/[^a-z0-9]/g, '');
+  // Remove any leading or trailing hyphens
+  state.cafeID = state.cafeID.replace(/^-+|-+$/g, '');
+  // Remove any consecutive hyphens
+  state.cafeID = state.cafeID.replace(/-+/g, '-');
+  // Limit to 20 characters
+  state.cafeID = state.cafeID.slice(0, 20);
+});
+
 /**
  * Handles the signup form submission.
  * Creates a new user account using Appwrite.
@@ -82,7 +95,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
   // Before creating a new account, verify that the cafeID does not already exsist in the database
   const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);
   if (alreadyExists.total > 0) {
-    toast.add({ title: 'Cafe ID already exists', description: 'Please choose a different cafe ID.', color: 'red' });
+    toast.add({ title: 'Cafe ID already exists', description: 'Please choose a different cafe ID.', color: 'error' });
     loading.value = false;
     return;
   }
@@ -99,7 +112,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
       name
     );
 
-    toast.add({ title: 'Account Created!', description: 'Please login to continue.', color: 'green' });
+    toast.add({ title: 'Account Created!', description: 'Please login to continue.', color: 'primary' });
 
     // Create a new email session
     await account.createEmailPasswordSession(email, password);
@@ -123,7 +136,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
 
   } catch (error: any) {
     console.error('Signup failed:', error);
-    toast.add({ title: 'Signup Failed', description: error.message || 'An unexpected error occurred.', color: 'red' });
+    toast.add({ title: 'Signup Failed', description: error.message || 'An unexpected error occurred.', color: 'error' });
   } finally {
     loading.value = false;
   }
