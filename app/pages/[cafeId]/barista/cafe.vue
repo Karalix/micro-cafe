@@ -230,12 +230,12 @@ watch(
 /**
  * Computed property for the full page URL.
  * Constructs the URL based on the `currentCafeId`.
- * Example: https://micro-cafe.nuxt.dev/my-cafe-123
+ * Example: https://mytinycafe.com/my-cafe-123
  */
 const pageUrl = computed<string>(() => {
   if (currentCafeId.value) {
     // Ensure cafeId is properly encoded if it might contain special characters
-    return `https://micro-cafe.nuxt.dev/${encodeURIComponent(currentCafeId.value)}`
+    return `https://mytinycafe.com/${encodeURIComponent(currentCafeId.value)}`
   }
   return '' // Return empty string if cafeId is not available
 })

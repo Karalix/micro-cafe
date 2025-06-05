@@ -17,7 +17,7 @@
             Find a Cafe
           </h2>
           <p class="text-sm text-gray-500 dark:text-gray-400">
-            Enter the Cafe ID to view its details.
+            Enter the Cafe ID to view its menu.
           </p>
           <UFormGroup label="Cafe ID" name="cafeId" class="flex flex-col space-y-4">
             <UInput

@@ -164,7 +164,6 @@ function sendCommand() {
                     </div>
                 </div>
             </UCard>
-            <ULink class="mt-4" to="/signup"><UButton>Create an (inoperant) account (for now) to be notified when you can open your own café too</UButton></ULink>
         </div>
         <USlideover
             :open="isOpenOptions"
