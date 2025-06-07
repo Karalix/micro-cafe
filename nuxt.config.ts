@@ -28,6 +28,51 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     devOptions: {
       enabled: false,
+    },
+    manifest: {
+      name: 'My Tiny Café',
+      short_name: 'Tiny Café',
+      description: 'Order your favorite café',
+      theme_color: '#f0e4d2',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any'
+        },
+        {
+          src: 'maskable-icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable'
+        }
+      ]
     }
   },
+  app: {
+    head: {
+      title: 'My Tiny Café',
+      meta: [
+        { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+        { name: 'description', content: `Order your favorite café` },
+        { name: 'theme-color', content: '#f0e4d2' }
+      ],
+      link: [
+          { rel: 'icon', href: '/favicon.ico' },
+          { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' },
+          { rel: 'mask-icon', href: '/maskable-icon-512x512.png', color: '#f0e4d2' }
+      ]
+    }
+  }
 })

@@ -128,6 +128,7 @@ const openEditItemModal = (item: ItemDocument): void => {
     });
     showModal.value = true;
 };
+            
 
 const addNewStructuredOption = (): void => {
     currentStructuredOptions.value.push({id: '', name: '', isBoolean: true, values: false });
@@ -290,19 +291,28 @@ const handleSaveItem = async (): Promise<void> => {
                 <template #header>
                     <div class="flex items-center justify-between">
                         <h3 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white">
-                            {{ isEditing ? 'Edit Item' : 'Add New Item' }}
+                            {{ isEditing ? `Edit ${currentItemName}` : 'Add New Item' }}
                         </h3>
                         <UButton color="primary" variant="ghost" icon="i-heroicons-x-mark-20-solid"
                             @click="showModal = false" />
                     </div>
                 </template>
                 <template #body>
-                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" />
+                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant">
+                        <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                            <span class="inline-flex bg-default px-1">Item name</span>
+                        </label>
+                    </UInput>
                         <div class="space-y-4 mt-2">
                             <div v-for="(option, index) in currentStructuredOptions" :key="option.id"
                                 class="p-3 border border-gray-200 dark:border-gray-700 rounded-md space-y-3 bg-gray-50 dark:bg-gray-800/50">
-                                <div class="flex items-center space-x-2">
-                                        <UInput v-model="option.name" placeholder="e.g., Size, Milk, Decaf" class="w-1/3" required/>
+                                <div class="flex flex-col items-start space-y-2 space-x-2">
+                                        <UInput v-model="option.name" placeholder="e.g., Size, Milk, Decaf" class="w-1/3" required>
+                                            <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                                <span class="inline-flex bg-default px-1">Option name</span>
+                                            </label>
+                                        </UInput>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Simple option</p>
                                         <USwitch v-model="option.isBoolean"/>
                                     <UButton icon="i-heroicons-x-mark-20-solid" color="error" variant="soft"
                                         @click="removeStructuredOption(index)" class="self-end mb-1.5"
@@ -315,15 +325,19 @@ const handleSaveItem = async (): Promise<void> => {
                                     <div v-for="(valueItem, valueIndex) in option.values" :key="valueItem.id"
                                         class="flex items-center space-x-2">
                                             <UInput v-model="valueItem.name"
-                                                placeholder="e.g., Small, Large, Oat Milk" />
+                                                placeholder="e.g., Small, Large, Oat Milk">
+                                                <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                                    <span class="inline-flex bg-default px-1">Value</span>
+                                                </label>
+                                            </UInput>
                                         <UButton icon="i-heroicons-minus-circle-20-solid" color="error" variant="link"
                                             @click="removeValueFromOptionList(index, valueIndex)"
                                             aria-label="Remove value" />
                                     </div>
-                                    <UButton label="Add Value" icon="i-heroicons-plus-circle-16-solid" size="xs"
-                                        variant="outline" @click="addValueToOptionList(index)"
-                                        :disabled="!option.name.trim()" />
                                 </div>
+                                <UButton v-if="!option.isBoolean" label="Add Value" icon="i-heroicons-plus-circle-16-solid" size="xs"
+                                    variant="outline" @click="addValueToOptionList(index)"
+                                    :disabled="!option.name.trim()" />
                             </div>
                             <UButton label="Add New Option Type" icon="i-heroicons-plus-20-solid" variant="outline"
                                 @click="addNewStructuredOption" />

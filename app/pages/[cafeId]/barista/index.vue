@@ -129,7 +129,7 @@ const logout = async () => {
             v-for="order in pastOrders"
             :key="order.$id"
             class="mb-4 text-(--ui-text) bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-200 active:drop-shadow-md transition-all">
-            <div>{{ order.item.name || 'Unknown item'  }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
+            <div>{{ order.item?.name || 'Unknown item'  }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
                     <div>{{ order.status  }}</div>

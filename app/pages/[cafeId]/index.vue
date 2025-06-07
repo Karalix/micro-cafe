@@ -31,6 +31,32 @@ try {
     navigateTo('/invalid-cafe')
 }
 
+/*
+Setup the HEAD of this page so it is PWA ready 
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Awesome App</title>
+  <meta name="description" content="My Awesome App description">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
+  <meta name="theme-color" content="#ffffff">
+</head>
+*/
+const head = useHead({
+    title: cafePromise.name,
+    meta: [
+        { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+        { name: 'description', content: `Order your favorite items from ${cafePromise.name}` },
+        { name: 'theme-color', content: '#f0e4d2' }
+    ],
+    link: [
+        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' },
+        { rel: 'mask-icon', href: '/maskable-icon-512x512.png', color: '#f0e4d2' }
+    ]
+})
+
 itemsPromise.then(function (response) {
     items.value = response.documents
 }, function (error) {
@@ -156,7 +182,7 @@ function sendCommand() {
             <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Past Orders</h2>
             <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white drop-shadow-xl rounded-lg">
                <div class="flex flex-col justify-between">
-                    <div class="font-bold text-2xl">{{ order.item.name  }}</div>
+                    <div class="font-bold text-2xl">{{ order.item?.name || 'Unknown item'  }}</div>
                     <div class="font-mono text-stone-500 text-sm">#{{ order.$id }}</div>
                     <div class="mt-4">{{ order.options.join(', ')  }}</div>
                     <div :class="{'text-green-300': order.status === 'completed', 'text-yellow-300': order.status === 'ordered', 'text-red-300': order.status === 'canceled'}">
