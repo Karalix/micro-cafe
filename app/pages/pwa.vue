@@ -1,9 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
 const router = useRouter()
 
 const lastVisitedCafe = localStorage.getItem('lastVisitedCafe')
 if (lastVisitedCafe) {
-    router.push(lastVisitedCafe)
+    router.push('/' + lastVisitedCafe)
 } else {
     router.push('/')
     console.log('No last visited cafe')
@@ -11,5 +11,7 @@ if (lastVisitedCafe) {
 </script>
 
 <template>
-    <div></div>
+    <div>
+        ... redirecting
+    </div>
 </template>
