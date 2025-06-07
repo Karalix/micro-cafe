@@ -53,7 +53,7 @@ export default defineNuxtConfig({
           purpose: 'any'
         },
         {
-          src: 'maskable-icon-512x512.png',
+          src: 'pwa-512x512.png',
           sizes: '512x512',
           type: 'image/png',
           purpose: 'maskable'
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
       link: [
           { rel: 'icon', href: '/favicon.ico' },
           { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' },
-          { rel: 'mask-icon', href: '/maskable-icon-512x512.png', color: '#f0e4d2' }
+          { rel: 'mask-icon', href: '/pwa-512x512.png', color: '#f0e4d2' }
       ]
     }
   }
