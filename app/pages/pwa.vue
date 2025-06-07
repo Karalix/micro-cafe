@@ -1,0 +1,15 @@
+<script lang="ts">
+const router = useRouter()
+
+const lastVisitedCafe = localStorage.getItem('lastVisitedCafe')
+if (lastVisitedCafe) {
+    router.push(lastVisitedCafe)
+} else {
+    router.push('/')
+    console.log('No last visited cafe')
+}
+</script>
+
+<template>
+    <div></div>
+</template>

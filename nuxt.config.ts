@@ -34,6 +34,7 @@ export default defineNuxtConfig({
       short_name: 'Tiny Café',
       description: 'Order your favorite café',
       theme_color: '#f0e4d2',
+      start_url: '/pwa',
       icons: [
         {
           src: 'pwa-192x192.png',

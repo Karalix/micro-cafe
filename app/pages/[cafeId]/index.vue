@@ -90,6 +90,11 @@ watch(selectedItem, async (newSelectedItem) => {
 
 
 onMounted(async () => {
+    // if localstorage is available, store the current cafe ID in the localstorage
+    if (localStorage) {
+        localStorage.setItem('lastVisitedCafe', cafePromise.$id)
+    }
+
     // get the list of order ids from the localstorage and get the orders from the database
     const ordersIds = localStorage.getItem('orders')
 
