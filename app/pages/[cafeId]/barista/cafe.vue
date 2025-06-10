@@ -75,10 +75,10 @@
             <UCard>
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight">
-                        Update Cafe Details
+                        Update Cafe Name
                     </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Modify your cafe's information.
+                        Modify your cafe's name.
                     </p>
                 </template>
 
@@ -113,21 +113,25 @@
                 </div>
             </UCard>
         </UContainer>
+        <UButton @click="logout" class="mb-10 ml-4 sm:ml-6">Logout</UButton>
         <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { Client, Databases, Query, ID, type Models } from 'appwrite'
+import { Client, Databases, Query, ID, Account, type Models } from 'appwrite'
 import { ref, computed, watch } from 'vue'
 import { useRoute } from '#imports' // Nuxt auto-imports route composable
 import { useToast } from '#imports' // Nuxt UI auto-imports toast composable
 import QrCodeVue from 'qrcode.vue' // Import QR Code component
 import { useClipboard } from '@vueuse/core' // For advanced clipboard functionality
 
+const { add: addToast } = useToast(); // Optional: For success/error notifications
+
 const client = new Client();
 client.setEndpoint('https://cloud.appwrite.io/v1').setProject('micro-cafe'); // Replace with your project ID
 const databases = new Databases(client);
+const account = new Account(client);
 
 // Define types for route parameters for better type safety if needed.
 // interface CafeRouteParams {
@@ -303,6 +307,13 @@ async function handleCopyUrl(): Promise<void> {
       icon: 'i-heroicons-x-circle-20-solid',
     })
   }
+}
+
+
+const logout = async () => {
+    await account.deleteSession('current')
+    navigateTo('/')
+    addToast({ title: 'Logged out', description: 'You have been logged out', color: 'primary' })
 }
 
 // Nuxt UI components like UPage, UCard, UInput, UButton, etc.,

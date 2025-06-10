@@ -44,8 +44,8 @@ onMounted(async () => {
         // It's also a good practice to check for the existence of nested objects
         // before accessing their properties, if they can be optional.
         if (payload && payload.cafeId && payload.cafeId.$id === route.params.cafeId) {
-            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('status', 'ordered')])).documents;
-            pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.notEqual('status', 'ordered')])).documents.slice(0, 3);
+            orders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.equal('status', 'ordered'), Query.orderDesc('$createdAt')])).documents;
+            pastOrders.value = (await databases.listDocuments('cafe', 'order', [Query.equal('cafeId', route.params.cafeId as string), Query.notEqual('status', 'ordered'), Query.orderDesc('$createdAt')])).documents.slice(0, 3);
         }
     });
     if (Notification.permission === 'default') {
@@ -96,19 +96,13 @@ const cancelOrder = async (orderId: string) => {
     })
 }
 
-const logout = async () => {
-    await account.deleteSession('current')
-    navigateTo('/')
-    addToast({ title: 'Logged out', description: 'You have been logged out', color: 'primary' })
-}
 </script>
 
 
 <template>
     <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">Order</h1>
-        <UButton @click="logout" class="mb-4 ml-4 sm:ml-6">Logout</UButton>
-        <UButton v-if="showNotificationPrompt" @click="requestNotificationPermission" class="mb-4 ml-4 sm:ml-6">Request Notification Permission</UButton>
+        <UButton v-if="showNotificationPrompt" @click="requestNotificationPermission" class="mb-4 ml-4 sm:ml-6">Receive a notification when a new order is placed</UButton>
         <div class="flex flex-col justify-center grow"></div>
         <UCard
            variant="soft"
