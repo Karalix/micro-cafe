@@ -12,6 +12,6 @@ if (lastVisitedCafe) {
 
 <template>
     <div>
-        ... redirecting to your preferred cafe ...
+        ... redirecting to your preferred café ...
     </div>
 </template>
