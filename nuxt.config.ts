@@ -61,6 +61,13 @@ export default defineNuxtConfig({
       ]
     }
   },
+  // --- CONFIGURATION DE SERVEUR ---
+  nitro: {
+    preset: 'static',
+    prerender: {
+      routes: ['/', 'login', 'pwa'],
+    },
+  },
   app: {
     head: {
       title: 'My Tiny Café',
