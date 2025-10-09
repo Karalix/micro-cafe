@@ -63,7 +63,7 @@ export default defineNuxtConfig({
   },
   // --- CONFIGURATION DE SERVEUR ---
   nitro: {
-    preset: 'static',
+    preset: 'cloudflare-pages',
     prerender: {
       routes: ['/', 'login', 'pwa'],
     },
