@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   hub: {},
   ssr: false,
   pwa: {
-    registerType: 'autoUpdate',
+    registerType: 'prompt',
     devOptions: {
       enabled: false,
     },
