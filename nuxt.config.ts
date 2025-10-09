@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   hub: {},
   ssr: false,
   pwa: {
+    filename: 'sworker.js',
     registerType: 'prompt',
     devOptions: {
       enabled: false,
