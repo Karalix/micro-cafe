@@ -3,6 +3,18 @@
 
 @theme static {
     --primary: black;
+    
+    --color-latte: #FDFBF7;
+    --color-latte-50: #FFF8F0;
+    --color-latte-100: #F5E6D3;
+    --color-latte-200: #D7CCC8;
+    
+    --color-coffee: #2C1810;
+    --color-coffee-500: #8B5E3C;
+    --color-coffee-600: #6F4E37;
+    
+    --color-green-soft: #E8F5E9;
+    --color-green-pale: #D0F0C0;
 }
 
 :root {

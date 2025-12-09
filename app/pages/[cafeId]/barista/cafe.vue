@@ -1,12 +1,12 @@
 <template>
-  <div class="pb-16">
+  <div class="pb-16 bg-latte min-h-screen">
         <UContainer class="py-8">
-            <UCard>
+            <UCard class="bg-white ring-1 ring-gray-200">
             <template #header>
-                <h1 class="text-xl font-semibold leading-tight">
+                <h1 class="text-xl font-semibold leading-tight text-coffee">
                 Share Your Page
                 </h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
+                <p class="text-sm text-gray-500">
                 Share this page using the URL or QR code below.
                 </p>
             </template>
@@ -43,13 +43,13 @@
                 <UDivider />
 
                 <div>
-                <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                <h2 class="text-lg font-medium text-coffee mb-2">
                     QR Code
                 </h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                <p class="text-sm text-gray-500 mb-3">
                     Scan this QR code with a mobile device to open the page.
                 </p>
-                <div v-if="pageUrl" class="flex justify-center items-center p-4 bg-white dark:bg-gray-50 rounded-lg shadow max-w-xs mx-auto">
+                <div v-if="pageUrl" class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100">
                     <ClientOnly>
                     <QrCodeVue
                         :value="pageUrl"
@@ -63,7 +63,7 @@
                     </template>
                     </ClientOnly>
                 </div>
-                <div v-else class="text-center text-gray-500 dark:text-gray-400 py-10">
+                <div v-else class="text-center text-gray-500 py-10">
                     <p class="mb-2">Page URL not available, QR code cannot be generated.</p>
                     <USkeleton class="h-[220px] w-[220px mx-auto" />
                 </div>
@@ -72,12 +72,12 @@
             </UCard>
         </UContainer>
         <UContainer class="py-8">
-            <UCard>
+            <UCard class="bg-white ring-1 ring-gray-200">
                 <template #header>
-                    <h1 class="text-xl font-semibold leading-tight">
+                    <h1 class="text-xl font-semibold leading-tight text-coffee">
                         Update Cafe Name
                     </h1>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                    <p class="text-sm text-gray-500">
                         Modify your cafe's name.
                     </p>
                 </template>
@@ -113,8 +113,8 @@
                 </div>
             </UCard>
         </UContainer>
-        <UButton @click="logout" class="mb-10 ml-4 sm:ml-6">Logout</UButton>
-        <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+        <UButton @click="logout" class="mb-10 ml-4 sm:ml-6" color="neutral" variant="outline">Logout</UButton>
+        <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
 </template>
 

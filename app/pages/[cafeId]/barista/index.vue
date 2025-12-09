@@ -100,29 +100,27 @@ const cancelOrder = async (orderId: string) => {
 
 
 <template>
-    <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
-        <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">Order</h1>
-        <UButton v-if="showNotificationPrompt" @click="requestNotificationPermission" class="mb-4 ml-4 sm:ml-6">Receive a notification when a new order is placed</UButton>
+    <div class="bg-latte p-8 min-h-screen flex flex-col">
+        <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6 text-coffee">Order</h1>
+        <UButton v-if="showNotificationPrompt" @click="requestNotificationPermission" class="mb-4 ml-4 sm:ml-6 bg-coffee-500 hover:bg-coffee-600 text-white">Receive a notification when a new order is placed</UButton>
         <div class="flex flex-col justify-center grow"></div>
         <UCard
-           variant="soft"
            v-for="order in orders"
            :key="order.$id"
-           class="mb-4 text-(--ui-text) bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-200 active:drop-shadow-md transition-all">
+           class="mb-4 text-coffee bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 active:drop-shadow-md transition-all ring-1 ring-gray-200">
             <div>{{ order.item?.name || 'Unknown item' }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
-                    <UButton color="error" @click="cancelOrder(order.$id)">Cancel</UButton>
-                    <UButton color="success" @click="completeOrder(order.$id)">Complete</UButton>
+                    <UButton color="error" variant="ghost" @click="cancelOrder(order.$id)">Cancel</UButton>
+                    <UButton color="primary" variant="solid" @click="completeOrder(order.$id)">Complete</UButton>
                 </div>
             </template>
         </UCard>
-        <h2 class="font-bold text-xl mb-4 ml-4 sm:ml-6">Past Orders</h2>
+        <h2 class="font-bold text-xl mb-4 ml-4 sm:ml-6 text-coffee">Past Orders</h2>
         <UCard
-            variant="soft"
             v-for="order in pastOrders"
             :key="order.$id"
-            class="mb-4 text-(--ui-text) bg-(--ui-bg) drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-gray-200 active:drop-shadow-md transition-all">
+            class="mb-4 text-gray-600 bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 active:drop-shadow-md transition-all ring-1 ring-gray-200">
             <div>{{ order.item?.name || 'Unknown item'  }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
@@ -131,6 +129,6 @@ const cancelOrder = async (orderId: string) => {
             </template>
         </UCard>
         <div class="flex flex-col justify-center grow"></div>
-              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
 </template>

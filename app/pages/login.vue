@@ -1,64 +1,67 @@
 
 <template>
-  <UCard class="max-w-sm mx-auto mt-10">
-    <template #header>
-      <h2 class="text-xl font-semibold text-center">Login</h2>
-    </template>
+  <div class="bg-latte min-h-screen flex items-center justify-center p-4">
+    <UCard class="w-full max-w-sm bg-white ring-1 ring-gray-200">
+      <template #header>
+        <h2 class="text-xl font-semibold text-center text-coffee">Login</h2>
+      </template>
 
-    <UForm :state="state" :schema="schema" @submit="handleLogin" class="flex flex-col space-y-4">
-      <UFormGroup label="Email" name="email" class="mb-4">
-        <UInput
-          v-model="state.email"
-          type="email"
-          placeholder="you@example.com"
-          icon="i-heroicons-envelope"
-          required
-        >
-          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-            <span class="inline-flex bg-default px-1">Email</span>
-          </label>
-        </UInput> 
-      </UFormGroup>
+      <UForm :state="state" :schema="schema" @submit="handleLogin" class="flex flex-col space-y-4">
+        <UFormGroup label="Email" name="email" class="mb-4">
+          <UInput
+            v-model="state.email"
+            type="email"
+            placeholder="you@example.com"
+            icon="i-heroicons-envelope"
+            required
+          >
+            <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+              <span class="inline-flex bg-white px-1">Email</span>
+            </label>
+          </UInput> 
+        </UFormGroup>
 
-      <UFormGroup label="Password" name="password" class="mb-6">
-        <UInput
-          v-model="state.password"
-          type="password"
-          placeholder="••••••••"
-          icon="i-heroicons-lock-closed"
-          required
-        >
-          <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-            <span class="inline-flex bg-default px-1">Password</span>
-          </label>
-        </UInput> 
-      </UFormGroup>
+        <UFormGroup label="Password" name="password" class="mb-6">
+          <UInput
+            v-model="state.password"
+            type="password"
+            placeholder="••••••••"
+            icon="i-heroicons-lock-closed"
+            required
+          >
+            <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+              <span class="inline-flex bg-white px-1">Password</span>
+            </label>
+          </UInput> 
+        </UFormGroup>
 
-      <UAlert
-        v-if="errorMessage"
-        icon="i-heroicons-exclamation-triangle"
-        color="red"
-        variant="soft"
-        :title="errorMessage"
-        class="mb-4"
-      />
+        <UAlert
+          v-if="errorMessage"
+          icon="i-heroicons-exclamation-triangle"
+          color="error"
+          variant="soft"
+          :title="errorMessage"
+          class="mb-4"
+        />
 
-      <UButton
-        type="submit"
-        label="Login"
-        block
-        :loading="loading"
-        :disabled="loading"
-      />
-    </UForm>
+        <UButton
+          type="submit"
+          label="Login"
+          block
+          :loading="loading"
+          :disabled="loading"
+          class="bg-coffee-500 hover:bg-coffee-600 text-white"
+        />
+      </UForm>
 
-    <template #footer>
-      <p class="text-sm text-center text-gray-500 dark:text-gray-400">
-        Don't have an account?
-        <NuxtLink to="/signup" class="text-primary font-medium">Sign up</NuxtLink>
-      </p>
-    </template>
-  </UCard>
+      <template #footer>
+        <p class="text-sm text-center text-gray-500">
+          Don't have an account?
+          <NuxtLink to="/signup" class="text-coffee-600 font-medium hover:underline">Sign up</NuxtLink>
+        </p>
+      </template>
+    </UCard>
+  </div>
 </template>
 
 <script setup lang="ts">

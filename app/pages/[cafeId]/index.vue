@@ -166,31 +166,31 @@ function sendCommand() {
 </script>
 
 <template>
-    <div class="bg-(--ui-bg-soft) p-8 min-h-screen flex flex-col">
-        <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6">{{ cafePromise.name }}</h1>
+    <div class="bg-latte p-8 min-h-screen flex flex-col text-coffee">
+        <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6 text-coffee">{{ cafePromise.name }}</h1>
         <NuxtLink :to="`/${route.params.cafeId}/barista`">
-            <UButton class="fixed top-4 right-4 z-10">
+            <UButton class="fixed top-4 right-4 z-10 bg-coffee-500 hover:bg-coffee-600 text-white">
                 Vue barista
                 <UIcon name="i-hugeicons:coffee-02" />
             </UButton>
         </NuxtLink>
         <div class="flex flex-col justify-center grow">
-            <h2 class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Menu</h2>
+            <h2 class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">Menu</h2>
             <UCard
                 v-for="item of items"
                 :key="item.$id"
                 @click="isOpenOptions = true;selectedItem = item"
                 variant="soft"
-                class="mb-2 flex flex-row bg-(--ui-bg) drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-(--ui-bg-accented) active:drop-shadow-md transition-all">
-                <div class="text-(--ui-text)">{{ item.name }}</div>
+                class="mb-2 flex flex-row bg-white drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 active:drop-shadow-md transition-all">
+                <div class="text-coffee">{{ item.name }}</div>
             </UCard>
-            <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6">Past Orders</h2>
+            <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">Past Orders</h2>
             <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white drop-shadow-xl rounded-lg">
                <div class="flex flex-col justify-between">
-                    <div class="font-bold text-2xl">{{ order.item?.name || 'Unknown item'  }}</div>
-                    <div class="font-mono text-stone-500 text-sm">#{{ order.$id }}</div>
-                    <div class="mt-4">{{ order.options.join(', ')  }}</div>
-                    <div :class="{'text-green-300': order.status === 'completed', 'text-yellow-300': order.status === 'ordered', 'text-red-300': order.status === 'canceled'}">
+                    <div class="font-bold text-2xl text-coffee">{{ order.item?.name || 'Unknown item'  }}</div>
+                    <div class="font-mono text-gray-500 text-sm">#{{ order.$id }}</div>
+                    <div class="mt-4 text-coffee">{{ order.options.join(', ')  }}</div>
+                    <div :class="{'text-green-600': order.status === 'completed', 'text-yellow-600': order.status === 'ordered', 'text-red-600': order.status === 'canceled'}">
                         {{ orderStatusText(order) }}
                     </div>
                 </div>
@@ -199,25 +199,28 @@ function sendCommand() {
         <USlideover
             :open="isOpenOptions"
             :close="{ onClick: () => isOpenOptions = false, color: 'primary' }"
-            side="bottom" :title="selectedItem?.name">
+            side="bottom" :title="selectedItem?.name"
+            :ui="{ background: 'bg-white', overlay: { background: 'bg-coffee/50' } }">
             <template #body>
-                <div
-                    v-for="opt of selectedOptions"
-                    :key="opt.name"
-                    class="mb-4">
-                    <div v-if="opt.options === false" class="flex flex-row justify-between">
-                        <div class="text-(--ui-primary)">{{ opt.name }}</div>
-                        <USwitch color="primary" v-model="opt.value"></USwitch>
+                <div class="p-4">
+                    <div
+                        v-for="opt of selectedOptions"
+                        :key="opt.name"
+                        class="mb-4">
+                        <div v-if="opt.options === false" class="flex flex-row justify-between">
+                            <div class="text-coffee">{{ opt.name }}</div>
+                            <USwitch color="primary" v-model="opt.value"></USwitch>
+                        </div>
+                        <div v-else class="flex flex-col">
+                            <UTabs :content="false" :items="opt.options.map((o: string) =>  { return { label: o, slot: o } })" v-model="opt.value" default-value="0" :ui="{ list: { background: 'bg-latte-100', marker: { background: 'bg-white' }, tab: { active: 'text-coffee', inactive: 'text-gray-500' } } }"></UTabs>
+                        </div>
                     </div>
-                    <div v-else class="flex flex-col">
-                        <UTabs :content="false" :items="opt.options.map(o =>  { return { label: o, slot: o } })" v-model="opt.value" default-value="0"></UTabs>
+                    <UFormField label="Votre nom" class="mt-4">
+                        <UInput v-model="clientName" placeholder="Votre nom" class="bg-white text-coffee focus:ring-coffee-500"></UInput>
+                    </UFormField>
+                    <div class="flex flex-row justify-end mt-4">
+                        <UButton :loading="isOrderSending" size="xl" class="rounded-full bg-coffee-500 hover:bg-coffee-600 text-white" @click="sendCommand">Commander</UButton>
                     </div>
-                </div>
-                <UFormField label="Votre nom" class="mt-4">
-                    <UInput v-model="clientName" placeholder="Votre nom"></UInput>
-                </UFormField>
-                <div class="flex flex-row justify-end mt-4">
-                    <UButton :loading="isOrderSending" size="xl" class="rounded-full" @click="sendCommand">Commander</UButton>
                 </div>
             </template>
         </USlideover>

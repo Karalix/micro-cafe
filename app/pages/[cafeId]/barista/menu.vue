@@ -137,6 +137,9 @@ const addNewStructuredOption = (): void => {
 const removeStructuredOption = (index: number): void => {
     if (currentStructuredOptions.value.length > 1) {// Ensure at least one option remains
         currentStructuredOptions.value.splice(index, 1);
+    } else {
+        // Reset the only remaining option
+        currentStructuredOptions.value[0] = {id: '', name: '', isBoolean: true, values: false };
     }
 };
 
@@ -223,37 +226,38 @@ const handleSaveItem = async (): Promise<void> => {
 
 </script>
 <template>
+    <div class="bg-latte min-h-screen">
     <UContainer class="py-8 pb-28">
         <div v-if="isLoadingCafe" class="mb-6">
             <USkeleton class="h-10 w-3/4 mb-2" />
             <USkeleton class="h-6 w-1/4" />
         </div>
         <div v-else-if="cafe" class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
+            <h1 class="text-4xl font-bold text-coffee">
                 Manage Menu for {{ cafe.name }}
             </h1>
-            <p class="text-md text-gray-600 dark:text-gray-400">Cafe ID: {{ cafe.$id }}</p>
+            <p class="text-md text-gray-600">Cafe ID: {{ cafe.$id }}</p>
         </div>
 
-        <UButton @click="openAddItemModal" icon="i-heroicons-plus-circle-20-solid" label="Add New Item" class="mb-8"
+        <UButton @click="openAddItemModal" icon="i-heroicons-plus-circle-20-solid" label="Add New Item" class="mb-8 bg-coffee-500 hover:bg-coffee-600 text-white"
             size="lg" />
 
         <div v-if="isLoadingItems && items.length === 0" class="space-y-4">
             <USkeleton v-for="i in 3" :key="i" class="h-32 w-full" />
         </div>
-        <div v-else-if="!items || items.length === 0" class="text-center text-gray-500 dark:text-gray-400 py-12">
+        <div v-else-if="!items || items.length === 0" class="text-center text-gray-500 py-12">
             <UIcon name="i-heroicons-clipboard-document-list"
-                class="mx-auto h-16 w-16 text-gray-400 dark:text-gray-500" />
-            <h3 class="mt-4 text-xl font-semibold text-gray-900 dark:text-white">No items yet</h3>
+                class="mx-auto h-16 w-16 text-gray-400" />
+            <h3 class="mt-4 text-xl font-semibold text-coffee">No items yet</h3>
             <p class="mt-2 text-md">Get started by adding a new menu item.</p>
         </div>
 
         <ul v-else class="space-y-6">
             <li v-for="item in items" :key="item.$id">
-                <UCard>
+                <UCard class="bg-white ring-1 ring-gray-200">
                     <template #header>
                         <div class="flex justify-between items-center">
-                            <h2 class="text-2xl font-semibold text-primary-600 dark:text-primary-400 truncate"
+                            <h2 class="text-2xl font-semibold text-coffee truncate"
                                 :title="item.name">
                                 {{ item.name }}
                             </h2>
@@ -261,23 +265,23 @@ const handleSaveItem = async (): Promise<void> => {
                     </template>
 
                     <div v-if="item.options && item.options.length > 0">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-1">
                             Options:</p>
-                        <ul class="list-disc list-inside pl-1 text-gray-700 dark:text-gray-300 space-y-1">
+                        <ul class="list-disc list-inside pl-1 text-gray-700 space-y-1">
                             <li v-for="(option, index) in item.options" :key="index" class="truncate text-sm"
                                 :title="option">
                                 {{ option }}
                             </li>
                         </ul>
                     </div>
-                    <p v-else class="text-sm text-gray-500 dark:text-gray-400 italic">No specific options defined.</p>
+                    <p v-else class="text-sm text-gray-500 italic">No specific options defined.</p>
 
                     <template #footer>
                         <div class="flex justify-end space-x-3">
                             <UButton @click="openEditItemModal(item)" label="Edit"
-                                icon="i-heroicons-pencil-square-20-solid" variant="outline" />
+                                icon="i-heroicons-pencil-square-20-solid" variant="outline" class="text-coffee border-coffee hover:bg-latte-100" />
                             <UButton @click="handleDeleteItem(item.$id)" label="Delete"
-                                icon="i-heroicons-trash-20-solid" color="error" variant="solid" />
+                                icon="i-heroicons-trash-20-solid" color="error" variant="ghost" />
                         </div>
                     </template>
                 </UCard>
@@ -285,49 +289,47 @@ const handleSaveItem = async (): Promise<void> => {
         </ul>
 
         <!-- Modal for Add/Edit Item -->
-        <USlideover :open="showModal" @close="showModal = false" side="bottom">
-            <!-- Removed :close attribute for explicit button -->
-            <!-- Added @close to handle closing via ESC or overlay click -->
-                <template #header>
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white">
+        <USlideover :open="showModal" @close="showModal = false" side="bottom" :ui="{ background: 'bg-white', overlay: { background: 'bg-coffee/50' } }">
+            <template #content>
+            <div class="p-4 flex-1 overflow-y-auto">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold leading-6 text-coffee">
                             {{ isEditing ? `Edit ${currentItemName}` : 'Add New Item' }}
                         </h3>
-                        <UButton color="primary" variant="ghost" icon="i-heroicons-x-mark-20-solid"
+                        <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid"
                             @click="showModal = false" />
                     </div>
-                </template>
-                <template #body>
-                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant">
-                        <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                            <span class="inline-flex bg-default px-1">Item name</span>
+                    
+                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4">
+                        <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                            <span class="inline-flex bg-white px-1">Item name</span>
                         </label>
                     </UInput>
                         <div class="space-y-4 mt-2">
                             <div v-for="(option, index) in currentStructuredOptions" :key="option.id"
-                                class="p-3 border border-gray-200 dark:border-gray-700 rounded-md space-y-3 bg-gray-50 dark:bg-gray-800/50">
+                                class="p-3 border border-gray-200 rounded-md space-y-3 bg-gray-50">
                                 <div class="flex flex-col items-start space-y-2 space-x-2">
                                         <UInput v-model="option.name" placeholder="e.g., Size, Milk, Decaf" class="w-1/3" required>
-                                            <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                                <span class="inline-flex bg-default px-1">Option name</span>
+                                            <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                                <span class="inline-flex bg-gray-50 px-1">Option name</span>
                                             </label>
                                         </UInput>
-                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Simple option</p>
-                                        <USwitch v-model="option.isBoolean"/>
+                                        <p class="text-sm font-medium text-gray-700">Simple option</p>
+                                        <USwitch v-model="option.isBoolean" color="primary"/>
                                     <UButton icon="i-heroicons-x-mark-20-solid" color="error" variant="soft"
                                         @click="removeStructuredOption(index)" class="self-end mb-1.5"
                                         aria-label="Remove option" />
                                 </div>
 
                                 <div v-if="Array.isArray(option.values) && !option.isBoolean" class="pl-2 space-y-2">
-                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Values for {{
+                                    <p class="text-sm font-medium text-gray-700">Values for {{
                                         option.name || 'this option' }}:</p>
                                     <div v-for="(valueItem, valueIndex) in option.values" :key="valueItem.id"
                                         class="flex items-center space-x-2">
                                             <UInput v-model="valueItem.name"
                                                 placeholder="e.g., Small, Large, Oat Milk">
-                                                <label class="pointer-events-none absolute left-0 -top-2.5 text-highlighted text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-highlighted peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-dimmed peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                                    <span class="inline-flex bg-default px-1">Value</span>
+                                                <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                                    <span class="inline-flex bg-gray-50 px-1">Value</span>
                                                 </label>
                                             </UInput>
                                         <UButton icon="i-heroicons-minus-circle-20-solid" color="error" variant="link"
@@ -342,19 +344,19 @@ const handleSaveItem = async (): Promise<void> => {
                             <UButton label="Add New Option Type" icon="i-heroicons-plus-20-solid" variant="outline"
                                 @click="addNewStructuredOption" />
                         </div>
-                </template>
-                <template #footer>
-                    <div class="flex justify-end space-x-3">
-                        <UButton label="Cancel" color="primary" variant="outline" @click="showModal = false" />
-                        <UButton type="submit" :label="isEditing ? 'Save Changes' : 'Add Item'"
-                            @click="handleSaveItem" />
-                    </div>
-                </template>
+            </div>
+            <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3">
+                <UButton label="Cancel" color="neutral" variant="outline" @click="showModal = false" />
+                <UButton type="submit" :label="isEditing ? 'Save Changes' : 'Add Item'"
+                    class="bg-coffee-500 hover:bg-coffee-600 text-white" @click="handleSaveItem" />
+            </div>
+            </template>
         </USlideover>
 
         <!-- Toaster for notifications -->
         <UNotifications />
-              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-(--ui-bg) drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
 
     </UContainer>
+    </div>
 </template>
