@@ -103,11 +103,18 @@ const cancelOrder = async (orderId: string) => {
     <div class="bg-latte p-8 min-h-screen flex flex-col">
         <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6 text-coffee">Order</h1>
         <UButton v-if="showNotificationPrompt" @click="requestNotificationPermission" class="mb-4 ml-4 sm:ml-6 bg-coffee-500 hover:bg-coffee-600 text-white">Receive a notification when a new order is placed</UButton>
-        <div class="flex flex-col justify-center grow"></div>
+        
+        <div v-if="orders.length === 0 && pastOrders.length === 0" class="flex flex-col items-center justify-center grow py-12 text-center">
+            <UIcon name="i-heroicons-inbox" class="w-16 h-16 text-gray-400 dark:text-gray-500 mb-4" />
+            <h3 class="text-xl font-semibold text-coffee mb-2">No orders yet</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">Share your café page to start receiving orders!</p>
+            <UButton :to="`/${route.params.cafeId}/barista/cafe`" class="bg-coffee-500 hover:bg-coffee-600 text-white" label="Share my Café" icon="i-heroicons-share" />
+        </div>
+
         <UCard
            v-for="order in orders"
            :key="order.$id"
-           class="mb-4 text-coffee bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 active:drop-shadow-md transition-all ring-1 ring-gray-200">
+           class="mb-4 text-coffee bg-white dark:bg-latte-50 drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 dark:hover:bg-latte-100 active:drop-shadow-md transition-all ring-1 ring-gray-200 dark:ring-gray-700">
             <div>{{ order.item?.name || 'Unknown item' }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
@@ -120,7 +127,7 @@ const cancelOrder = async (orderId: string) => {
         <UCard
             v-for="order in pastOrders"
             :key="order.$id"
-            class="mb-4 text-gray-600 bg-white drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 active:drop-shadow-md transition-all ring-1 ring-gray-200">
+            class="mb-4 text-gray-600 dark:text-gray-400 bg-white dark:bg-latte-50 drop-shadow-sm rounded-2xl hover:cursor-pointer hover:bg-latte-50 dark:hover:bg-latte-100 active:drop-shadow-md transition-all ring-1 ring-gray-200 dark:ring-gray-700">
             <div>{{ order.item?.name || 'Unknown item'  }} - {{ order.clientName }} - {{ order.options.join(', ') }}</div>
             <template #footer>
                 <div class="flex flex-row space-x-3 justify-end">
@@ -129,6 +136,6 @@ const cancelOrder = async (orderId: string) => {
             </template>
         </UCard>
         <div class="flex flex-col justify-center grow"></div>
-              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white dark:bg-latte-50 drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
 </template>

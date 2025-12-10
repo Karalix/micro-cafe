@@ -34,7 +34,7 @@
             <h1 class="text-5xl lg:text-7xl font-serif font-bold text-coffee leading-tight">
               Turn Your Home into the <span class="text-coffee-500">Best Coffee Shop</span> in Town.
             </h1>
-            <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               The digital menu for home baristas. Create your drink list, share your QR code with friends and family, and receive orders straight to your phone. 
               <br class="hidden lg:block" />
               <span class="font-semibold text-coffee-500">100% Free. 100% Cozy.</span>
@@ -48,7 +48,7 @@
                 Open My Tiny Café
               </UButton>
             </div>
-            <p class="text-sm text-gray-500 italic">
+            <p class="text-sm text-gray-500 dark:text-gray-400 italic">
               No credit card required. No ads. Just love.
             </p>
           </div>
@@ -61,11 +61,11 @@
                 <div class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
                 <div class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
                 <div class="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
-                <div class="rounded-[2rem] overflow-hidden w-full h-full bg-white relative">
+                <div class="rounded-[2rem] overflow-hidden w-full h-full bg-white dark:bg-latte-50 relative">
                     <!-- Screen Content -->
                     <div class="bg-latte h-full flex flex-col">
                         <!-- Notification Banner -->
-                        <div class="mx-4 mt-12 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-gray-100 flex items-start gap-3 animate-pulse">
+                        <div class="mx-4 mt-12 bg-white/90 dark:bg-latte-50/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-start gap-3 animate-pulse">
                             <div class="bg-coffee-500 p-1.5 rounded-lg shrink-0">
                                 <UIcon name="i-heroicons-cup-saucer" class="w-5 h-5 text-white" />
                             </div>
@@ -80,21 +80,21 @@
                         <div class="p-6 mt-4 space-y-4">
                             <h3 class="font-serif text-2xl text-coffee font-bold">Menu</h3>
                             <div class="space-y-3">
-                                <div class="p-3 bg-white rounded-xl shadow-sm border border-latte-100 flex justify-between items-center">
+                                <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
                                     <div>
                                         <p class="font-medium text-coffee">Latte</p>
                                         <p class="text-xs text-gray-500">Silky & Smooth</p>
                                     </div>
                                     <UIcon name="i-heroicons-plus-circle" class="w-6 h-6 text-coffee-500" />
                                 </div>
-                                <div class="p-3 bg-white rounded-xl shadow-sm border border-latte-100 flex justify-between items-center">
+                                <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
                                     <div>
                                         <p class="font-medium text-coffee">Matcha Latte</p>
                                         <p class="text-xs text-gray-500">Ceremonial Grade</p>
                                     </div>
                                     <UIcon name="i-heroicons-plus-circle" class="w-6 h-6 text-coffee-500" />
                                 </div>
-                                 <div class="p-3 bg-white rounded-xl shadow-sm border border-latte-100 flex justify-between items-center">
+                                                                  <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
                                     <div>
                                         <p class="font-medium text-coffee">Tisane</p>
                                         <p class="text-xs text-gray-500">Relaxing blend</p>
@@ -115,7 +115,7 @@
     </header>
 
     <!-- Value Proposition -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-latte-50">
       <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
         <div class="space-y-4">
           <h2 class="text-sm font-bold tracking-widest text-coffee-500 uppercase">Hospitality, Upgraded</h2>
@@ -128,14 +128,14 @@
             <div class="bg-latte-50 p-8 rounded-3xl h-full">
                 <div class="text-4xl mb-4">😫</div>
                 <h4 class="font-bold text-lg mb-2 text-coffee">The Problem</h4>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-400">
                     Shouting from the kitchen, "Who wants tea?" and forgetting who wanted sugar and who wanted almond milk by the time the kettle boils.
                 </p>
             </div>
             <div class="bg-green-soft p-8 rounded-3xl h-full">
                 <div class="text-4xl mb-4">✨</div>
                 <h4 class="font-bold text-lg mb-2 text-coffee">The Solution</h4>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-400">
                     My Tiny Café brings the delight of a boutique coffee shop experience to your living room. Make the moment special.
                 </p>
             </div>
@@ -157,7 +157,7 @@
               <UIcon name="i-heroicons-clipboard-document-list" class="w-8 h-8" />
             </div>
             <h3 class="text-xl font-bold text-coffee">1. Build Your Menu</h3>
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-gray-400">
               Give your café a name. Add your specialties—Latte, Tisane, or Tartine. Customize options for milk and sugar.
             </p>
           </div>
@@ -168,7 +168,7 @@
               <UIcon name="i-heroicons-qr-code" class="w-8 h-8" />
             </div>
             <h3 class="text-xl font-bold text-coffee">2. Share the Link</h3>
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-gray-400">
               Print your QR code for the fridge or text the link. Guests browse and customize their beverage exactly how they like it.
             </p>
           </div>
@@ -179,7 +179,7 @@
               <UIcon name="i-heroicons-bell-alert" class="w-8 h-8" />
             </div>
             <h3 class="text-xl font-bold text-coffee">3. Get Notified & Serve</h3>
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-gray-400">
               Ding! You get a notification instantly. No money changes hands—just a perfect cup served with a smile.
             </p>
           </div>
@@ -188,7 +188,7 @@
     </section>
 
     <!-- Features -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-latte-50">
       <div class="max-w-5xl mx-auto px-6">
         <div class="bg-coffee rounded-[3rem] p-8 lg:p-16 text-white shadow-2xl">
             <h2 class="text-3xl font-serif font-bold mb-12 text-center">Features</h2>
@@ -231,9 +231,9 @@
       <div class="max-w-4xl mx-auto px-6">
         <h2 class="text-3xl font-serif font-bold text-center text-coffee mb-16">Real Stories</h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+            <div class="bg-white dark:bg-latte-50 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative">
                 <div class="text-6xl text-latte-100 absolute top-4 left-4 font-serif">"</div>
-                <p class="text-gray-700 relative z-10 italic mb-4">
+                <p class="text-gray-700 dark:text-gray-300 relative z-10 italic mb-4">
                     Can I use your app to order a tea, dad?
                 </p>
                 <div class="flex items-center gap-3">
@@ -244,9 +244,9 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+            <div class="bg-white dark:bg-latte-50 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative">
                 <div class="text-6xl text-latte-100 absolute top-4 left-4 font-serif">"</div>
-                <p class="text-gray-700 relative z-10 italic mb-4">
+                <p class="text-gray-700 dark:text-gray-300 relative z-10 italic mb-4">
                     It's so much easier to order a coffee for when I get back home.
                 </p>
                 <div class="flex items-center gap-3">
@@ -262,24 +262,24 @@
     </section>
 
     <!-- Who is it for -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-latte-50">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-serif font-bold text-center text-coffee mb-16">Who is My Tiny Café For?</h2>
         <div class="grid md:grid-cols-3 gap-8">
             <div class="text-center p-6">
                 <div class="text-5xl mb-4">💻</div>
                 <h3 class="font-bold text-lg mb-2">The Remote Work Power Couple</h3>
-                <p class="text-sm text-gray-600">Send a silent order for a caffeine boost without interrupting the Zoom meeting.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Send a silent order for a caffeine boost without interrupting the Zoom meeting.</p>
             </div>
             <div class="text-center p-6">
                 <div class="text-5xl mb-4">🍽️</div>
                 <h3 class="font-bold text-lg mb-2">The "Host with the Most"</h3>
-                <p class="text-sm text-gray-600">Impress your guests by letting them order their post-meal digestif via a digital menu.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Impress your guests by letting them order their post-meal digestif via a digital menu.</p>
             </div>
             <div class="text-center p-6">
                 <div class="text-5xl mb-4">🧸</div>
                 <h3 class="font-bold text-lg mb-2">The Playful Parent</h3>
-                <p class="text-sm text-gray-600">Kids love playing "restaurant." Set up the menu for them and let them take your order.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Kids love playing "restaurant." Set up the menu for them and let them take your order.</p>
             </div>
         </div>
       </div>
@@ -294,19 +294,19 @@
                 <template #header>
                     <h3 class="font-bold text-coffee">Is it really free?</h3>
                 </template>
-                <p class="text-gray-600 text-sm">Yes! My Tiny Café is currently completely free to use.</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Yes! My Tiny Café is currently completely free to use.</p>
             </UCard>
             <UCard>
                 <template #header>
                     <h3 class="font-bold text-coffee">Can I charge money for the drinks?</h3>
                 </template>
-                <p class="text-gray-600 text-sm">No. This app is designed for friends and family. There is no payment processing involved—just the joy of serving a drink to someone you care about.</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">No. This app is designed for friends and family. There is no payment processing involved—just the joy of serving a drink to someone you care about.</p>
             </UCard>
             <UCard>
                 <template #header>
                     <h3 class="font-bold text-coffee">What can I put on the menu?</h3>
                 </template>
-                <p class="text-gray-600 text-sm">Anything! Coffee, tea, snacks, tartines, water... if you can make it in your kitchen, you can put it on your menu.</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Anything! Coffee, tea, snacks, tartines, water... if you can make it in your kitchen, you can put it on your menu.</p>
             </UCard>
         </div>
       </div>
@@ -321,7 +321,7 @@
             <UButton 
                 to="/signup" 
                 size="xl"
-                class="bg-latte-100 hover:bg-white text-coffee px-8 py-4 rounded-full font-bold"
+                class="bg-latte-100 hover:bg-white dark:hover:bg-latte-200 text-coffee px-8 py-4 rounded-full font-bold"
             >
                 Create Your Café Now
             </UButton>

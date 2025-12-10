@@ -181,14 +181,14 @@ function sendCommand() {
                 :key="item.$id"
                 @click="isOpenOptions = true;selectedItem = item"
                 variant="soft"
-                class="mb-2 flex flex-row bg-white drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 active:drop-shadow-md transition-all">
+                class="mb-2 flex flex-row bg-white dark:bg-latte-50 drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 dark:hover:bg-latte-200 active:drop-shadow-md transition-all">
                 <div class="text-coffee">{{ item.name }}</div>
             </UCard>
             <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">Past Orders</h2>
-            <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white drop-shadow-xl rounded-lg">
+            <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white dark:bg-latte-50 drop-shadow-xl rounded-lg">
                <div class="flex flex-col justify-between">
                     <div class="font-bold text-2xl text-coffee">{{ order.item?.name || 'Unknown item'  }}</div>
-                    <div class="font-mono text-gray-500 text-sm">#{{ order.$id }}</div>
+                    <div class="font-mono text-gray-500 dark:text-gray-400 text-sm">#{{ order.$id }}</div>
                     <div class="mt-4 text-coffee">{{ order.options.join(', ')  }}</div>
                     <div :class="{'text-green-600': order.status === 'completed', 'text-yellow-600': order.status === 'ordered', 'text-red-600': order.status === 'canceled'}">
                         {{ orderStatusText(order) }}

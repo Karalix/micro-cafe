@@ -1,12 +1,12 @@
 <template>
   <div class="pb-16 bg-latte min-h-screen">
         <UContainer class="py-8">
-            <UCard class="bg-white ring-1 ring-gray-200">
+            <UCard class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
             <template #header>
                 <h1 class="text-xl font-semibold leading-tight text-coffee">
                 Share Your Page
                 </h1>
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
                 Share this page using the URL or QR code below.
                 </p>
             </template>
@@ -46,7 +46,7 @@
                 <h2 class="text-lg font-medium text-coffee mb-2">
                     QR Code
                 </h2>
-                <p class="text-sm text-gray-500 mb-3">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
                     Scan this QR code with a mobile device to open the page.
                 </p>
                 <div v-if="pageUrl" class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100">

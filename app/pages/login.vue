@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-latte min-h-screen flex items-center justify-center p-4">
-    <UCard class="w-full max-w-sm bg-white ring-1 ring-gray-200">
+    <UCard class="w-full max-w-sm bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
       <template #header>
         <h2 class="text-xl font-semibold text-center text-coffee">Login</h2>
       </template>
@@ -16,7 +16,7 @@
             required
           >
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white px-1">Email</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Email</span>
             </label>
           </UInput> 
         </UFormGroup>
@@ -30,7 +30,7 @@
             required
           >
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white px-1">Password</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Password</span>
             </label>
           </UInput> 
         </UFormGroup>
