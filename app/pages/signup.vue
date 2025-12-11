@@ -1,13 +1,13 @@
 <template>
   <div class="bg-latte min-h-screen flex items-center justify-center p-4">
-    <UCard class="w-full max-w-sm bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
+    <UCard class="w-full sm:max-w-sm bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
       <template #header>
         <h2 class="text-xl font-bold text-center text-coffee">Create Account</h2>
       </template>
 
       <UForm :state="state" :schema="schema" @submit="handleSignup" class="flex flex-col space-y-4">
         <UFormGroup label="Name" name="name" class="mb-4">
-          <UInput v-model="state.name" placeholder="Your Name">
+          <UInput v-model="state.name" placeholder="Your Name" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
               <span class="inline-flex bg-white dark:bg-latte-50 px-1">Your name</span>
             </label>
@@ -15,7 +15,7 @@
         </UFormGroup>
 
         <UFormGroup label="Email" name="email" class="mb-4">
-          <UInput v-model="state.email" type="email" placeholder="you@example.com">
+          <UInput v-model="state.email" type="email" placeholder="you@example.com" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
               <span class="inline-flex bg-white dark:bg-latte-50 px-1">Email</span>
             </label>
@@ -24,7 +24,7 @@
 
 
         <UFormGroup label="Café ID" name="cafeId" class="mb-4">
-          <UInput v-model="state.cafeID" placeholder="Café ID">
+          <UInput v-model="state.cafeID" placeholder="Café ID" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
               <span class="inline-flex bg-white dark:bg-latte-50 px-1">Your café ID</span>
             </label>
@@ -32,7 +32,16 @@
         </UFormGroup>
 
         <UFormGroup label="Password" name="password" class="mb-6">
-          <UInput v-model="state.password" type="password" placeholder="••••••••">
+          <UInput v-model="state.password" :type="showPassword ? 'text' : 'password'" placeholder="••••••••" :ui="{ trailing: 'pointer-events-auto' }" class="w-full">
+            <template #trailing>
+              <UButton
+                color="neutral"
+                variant="ghost"
+                :icon="showPassword ? 'i-heroicons-eye-slash-20-solid' : 'i-heroicons-eye-20-solid'"
+                :padded="false"
+                @click="showPassword = !showPassword"
+              />
+            </template>
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
               <span class="inline-flex bg-white dark:bg-latte-50 px-1">Password</span>
             </label>
@@ -84,6 +93,7 @@ const state = reactive({
 
 // Loading state for the button
 const loading = ref(false);
+const showPassword = ref(false);
 
 // Validation schema using Zod
 const schema = z.object({
