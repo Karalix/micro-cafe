@@ -5,7 +5,7 @@
         <h2 class="text-xl font-bold text-center text-coffee">Create Account</h2>
       </template>
 
-      <UForm :state="state" :schema="schema" @submit="handleSignup" class="flex flex-col space-y-4">
+      <UForm :state="state" :schema="schema" @submit="handleSignup" @error="handleError" class="flex flex-col space-y-4">
         <UFormGroup label="Name" name="name" class="mb-4">
           <UInput v-model="state.name" placeholder="Your Name" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
@@ -54,6 +54,9 @@
         <UButton type="submit" block :loading="loading" class="bg-coffee-500 hover:bg-coffee-600 text-white">
           Sign Up
         </UButton>
+        <p v-if="hasErrors" class="text-red-500 text-sm text-center mt-2">
+          {{ hasErrors.errors.map(err => err.message).join(', ') }}
+        </p>
       </UForm>
 
       <template #footer>
@@ -72,7 +75,7 @@
 
 <script setup lang="ts">
 import { z } from 'zod';
-import type { FormSubmitEvent } from '#ui/types';
+import type { FormErrorEvent, FormSubmitEvent } from '#ui/types';
 import { Client, Account, Databases, Query, ID } from 'appwrite';
 
 const client = new Client();
@@ -94,6 +97,11 @@ const state = reactive({
 // Loading state for the button
 const loading = ref(false);
 const showPassword = ref(false);
+const hasErrors = ref(null as FormErrorEvent | null);
+
+function handleError(error: FormErrorEvent) {
+  hasErrors.value = error;
+}
 
 // Validation schema using Zod
 const schema = z.object({
@@ -124,6 +132,7 @@ watch(() => state.name, (newName) => {
  * Creates a new user account using Appwrite.
  */
 async function handleSignup(event: FormSubmitEvent<Schema>) {
+  hasErrors.value = null;
   loading.value = true;
 
   // Honeypot check: if the hidden checkbox is checked, fail silently
