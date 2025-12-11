@@ -326,7 +326,7 @@ const parseOption = (optionString: string) => {
                     </UInput>
                         <div class="space-y-4 mt-2">
                             <div v-for="(option, index) in currentStructuredOptions" :key="option.id"
-                                class="p-3 border border-gray-200 dark:border-latte-100 rounded-md space-y-3 bg-gray-50 dark:bg-gray-700">
+                                class="p-3 border border-gray-200 dark:border-latte-100 rounded-md space-y-3 bg-gray-50 dark:bg-latte-50">
                                 <div class="flex flex-col items-start space-y-2 space-x-2">
                                         <UInput v-model="option.name" placeholder="e.g., Size, Milk, Decaf" class="w-1/3" required>
                                             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
@@ -364,7 +364,7 @@ const parseOption = (optionString: string) => {
                                 @click="addNewStructuredOption" />
                         </div>
             </div>
-            <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-latte-100 flex justify-end space-x-3">
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-black flex justify-end space-x-3">
                 <UButton label="Cancel" color="neutral" variant="outline" @click="showModal = false" />
                 <UButton type="submit" :label="isEditing ? 'Save Changes' : 'Add Item'"
                     class="bg-coffee-500 hover:bg-coffee-600 text-white" @click="handleSaveItem" />

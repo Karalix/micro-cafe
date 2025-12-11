@@ -72,7 +72,7 @@
             </UCard>
         </UContainer>
         <UContainer class="py-8">
-            <UCard class="bg-white ring-1 ring-gray-200">
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
                         Update Cafe Name

@@ -38,6 +38,9 @@
             </label>
           </UInput> 
         </UFormGroup>
+        <div class="hidden" aria-hidden="true">
+          <UCheckbox v-model="state.newsletter" label="Subscribe to newsletter" tabindex="-1" />
+        </div>
 
         <UButton type="submit" block :loading="loading" class="bg-coffee-500 hover:bg-coffee-600 text-white">
           Sign Up
@@ -75,7 +78,8 @@ const state = reactive({
   name: '',
   email: '',
   password: '',
-  cafeID: ''
+  cafeID: '',
+  newsletter: false
 });
 
 // Loading state for the button
@@ -86,7 +90,8 @@ const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
-  cafeID: z.string().min(3, 'Cafe ID must be at least 3 characters')
+  cafeID: z.string().min(3, 'Cafe ID must be at least 3 characters'),
+  newsletter: z.boolean().optional()
 });
 
 type Schema = z.output<typeof schema>;
@@ -110,6 +115,17 @@ watch(() => state.name, (newName) => {
  */
 async function handleSignup(event: FormSubmitEvent<Schema>) {
   loading.value = true;
+
+  // Honeypot check: if the hidden checkbox is checked, fail silently
+  if (state.newsletter) {
+    setTimeout(() => {
+      loading.value = false;
+      toast.add({ title: 'Account Created!', description: 'Please login to continue.', color: 'primary' });
+      router.push('/login');
+    }, 1000);
+    return;
+  }
+
   // Before creating a new account, verify that the cafeID does not already exsist in the database
   const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);
   if (alreadyExists.total > 0) {
