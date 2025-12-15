@@ -1,0 +1,184 @@
+{
+    "projectId": "micro-cafe",
+    "endpoint": "https://fra.cloud.appwrite.io/v1",
+    "tablesDB": [
+        {
+            "$id": "cafe",
+            "name": "Café",
+            "enabled": true
+        }
+    ],
+    "tables": [
+        {
+            "$id": "item",
+            "$permissions": [
+                "read(\"any\")",
+                "create(\"users\")",
+                "read(\"users\")",
+                "update(\"users\")",
+                "delete(\"users\")"
+            ],
+            "databaseId": "cafe",
+            "name": "Item",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 512,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "options",
+                    "type": "string",
+                    "required": false,
+                    "array": true,
+                    "size": 1024,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "cafeId",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "cafe",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "67da0a20001ce528a2e9",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "order",
+            "$permissions": [
+                "create(\"any\")",
+                "read(\"any\")",
+                "update(\"any\")",
+                "create(\"users\")",
+                "read(\"users\")",
+                "update(\"users\")",
+                "delete(\"users\")"
+            ],
+            "databaseId": "cafe",
+            "name": "Order",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "item",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "item",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "67da02c50033c305449b",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "elements": [
+                        "ordered",
+                        "canceled",
+                        "completed"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "clientName",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 512,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "note",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 1024,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "options",
+                    "type": "string",
+                    "required": false,
+                    "array": true,
+                    "size": 1024,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "review",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": 0,
+                    "max": 5,
+                    "default": null
+                },
+                {
+                    "key": "cafeId",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "cafe",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "67da09f9001c83e8c9b0",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "cafe",
+            "$permissions": [
+                "create(\"users\")",
+                "read(\"users\")",
+                "read(\"any\")"
+            ],
+            "databaseId": "cafe",
+            "name": "Café",
+            "enabled": true,
+            "rowSecurity": true,
+            "columns": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 512,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "logo",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "format": "url",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        }
+    ]
+}

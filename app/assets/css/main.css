@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+    --color-latte: #FDFBF7;
+    --color-latte-50: #FFF8F0;
+    --color-latte-100: #F5E6D3;
+    --color-latte-200: #D7CCC8;
+    
+    --color-coffee: #2C1810;
+    --color-coffee-500: #8B5E3C;
+    --color-coffee-600: #6F4E37;
+
+    --ui-primary: black;
+    --ui-success: oklch(0.897 0.196 126.665);
+    --ui-error: oklch(0.808 0.114 19.571);
+    --ui-warning: oklch(0.905 0.182 98.111);
+    --ui-info: oklch(0.865 0.127 207.078);
+    --ui-bg-accented: lightgray;
+    --ui-bg: white;
+    --ui-bg-soft: #f3f4f6;
+}
+
+.dark {
+    --color-latte: #18181b;
+    --color-latte-50: #27272a;
+    --color-latte-100: #3f3f46;
+    --color-latte-200: #52525b;
+    
+    --color-coffee: #FDFBF7;
+    --color-coffee-500: #D7CCC8;
+    --color-coffee-600: #F5E6D3;
+
+    --ui-primary: white;
+    --ui-bg-accented: gray;
+    --ui-bg: black;
+    --ui-bg-soft: gray;
+    --ui-text: white;
+    --ui-text-soft: lightgray;
+}
+
+@theme static {
+    --primary: black;
+    
+    --color-latte: var(--color-latte);
+    --color-latte-50: var(--color-latte-50);
+    --color-latte-100: var(--color-latte-100);
+    --color-latte-200: var(--color-latte-200);
+    
+    --color-coffee: var(--color-coffee);
+    --color-coffee-500: var(--color-coffee-500);
+    --color-coffee-600: var(--color-coffee-600);
+    
+    --color-green-soft: #E8F5E9;
+    --color-green-pale: #D0F0C0;
+}
