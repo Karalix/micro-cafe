@@ -312,6 +312,29 @@
       </div>
     </section>
 
+    <!-- Open Source -->
+    <section class="py-20 bg-white dark:bg-latte-50">
+      <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+        <div class="inline-flex items-center justify-center p-4 bg-gray-900 rounded-full shadow-lg mb-4">
+            <UIcon name="i-simple-icons-github" class="w-8 h-8 text-white" />
+        </div>
+        <h2 class="text-3xl font-serif font-bold text-coffee">Proudly Open Source</h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            I believe in transparency and community. My Tiny Café is open source, so you can see exactly how it's built, contribute features, or host it yourself.
+        </p>
+        <UButton 
+            to="https://github.com/Karalix/micro-cafe" 
+            target="_blank"
+            variant="solid" 
+            size="xl"
+            class="bg-gray-900 hover:bg-gray-800 text-white"
+        >
+            <UIcon name="i-simple-icons-github" class="w-5 h-5 mr-2" />
+            View on GitHub
+        </UButton>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-coffee text-latte-100 py-20">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8">

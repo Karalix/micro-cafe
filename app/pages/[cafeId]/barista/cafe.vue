@@ -113,6 +113,62 @@
                 </div>
             </UCard>
         </UContainer>
+
+        <UContainer class="py-8">
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
+                <template #header>
+                    <h1 class="text-xl font-semibold leading-tight text-coffee">
+                        About & Support
+                    </h1>
+                </template>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                            <UIcon name="i-simple-icons-github" class="w-6 h-6 text-gray-900 dark:text-white" />
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-coffee">Open Source</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                This project is open source.
+                            </p>
+                            <UButton
+                                to="https://github.com/Karalix/micro-cafe"
+                                target="_blank"
+                                variant="link"
+                                class="p-0"
+                            >
+                                View on GitHub
+                            </UButton>
+                        </div>
+                    </div>
+
+                    <UDivider />
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                            <UIcon name="i-heroicons-user-circle" class="w-6 h-6 text-blue-500" />
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-coffee">Contact the Maker</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                Built by Alix. Reach out if you need anything.
+                            </p>
+                            <UButton
+                                to="https://krlx.fr"
+                                target="_blank"
+                                color="primary"
+                                variant="link"
+                                class="p-0"
+                            >
+                                Visit krlx.fr
+                            </UButton>
+                        </div>
+                    </div>
+                </div>
+            </UCard>
+        </UContainer>
+
         <UButton @click="logout" class="mb-10 ml-4 sm:ml-6" color="neutral" variant="outline">Logout</UButton>
         <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
