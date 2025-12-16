@@ -102,6 +102,14 @@ function handleError(error: FormErrorEvent) {
   hasErrors.value = error;
 }
 
+function sanitizeCafeID(input: string): string {
+  let cafeID = input.toLowerCase().replace(/\s+/g, '');
+  cafeID = cafeID.replace(/[^a-z0-9]/g, '');
+  cafeID = cafeID.replace(/^-+|-+$/g, '');
+  cafeID = cafeID.replace(/-+/g, '-');
+  return cafeID.slice(0, 20);
+}
+
 // Validation schema using Zod
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -115,15 +123,7 @@ type Schema = z.output<typeof schema>;
 
 // Watch the value of name and update cafeID accordingly "Jean Dupont" -> "jeandupont"
 watch(() => state.name, (newName) => {
-  state.cafeID = newName.toLowerCase().replace(/\s+/g, '');
-  // Remove any non-alphanumeric characters
-  state.cafeID = state.cafeID.replace(/[^a-z0-9]/g, '');
-  // Remove any leading or trailing hyphens
-  state.cafeID = state.cafeID.replace(/^-+|-+$/g, '');
-  // Remove any consecutive hyphens
-  state.cafeID = state.cafeID.replace(/-+/g, '-');
-  // Limit to 20 characters
-  state.cafeID = state.cafeID.slice(0, 20);
+    state.cafeID = sanitizeCafeID(newName);
 });
 
 /**
@@ -143,6 +143,8 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
     }, 1000);
     return;
   }
+
+  state.cafeID = sanitizeCafeID(state.cafeID);
 
   // Before creating a new account, verify that the cafeID does not already exsist in the database
   const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);

@@ -190,7 +190,7 @@
                 </div>
             </UCard>
         </UContainer>
-
+        <p class="my-4 ml-4 sm:ml-6">If you want to delete your account, please send me an email at <a href="mailto:alix@krlx.fr">alix@krlx.fr</a> until I implement this feature.</p>
         <UButton @click="logout" class="mb-10 ml-4 sm:ml-6" color="neutral" variant="outline">Logout</UButton>
         <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
     </div>
