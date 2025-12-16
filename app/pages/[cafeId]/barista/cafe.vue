@@ -165,6 +165,28 @@
                             </UButton>
                         </div>
                     </div>
+
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                            <UIcon name="i-heroicons-heart" class="w-6 h-6 text-red-500" />
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-coffee">Support My Tiny Café</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                My Tiny Café is available free of charge, but if you enjoy using it, consider supporting its hosting costs.
+                            </p>
+                            <UButton
+                                to="https://buymeacoffee.com/krlx"
+                                target="_blank"
+                                color="primary"
+                                variant="link"
+                                class="p-0"
+                            >
+                                Support on Buy Me a Coffee
+                            </UButton>
+                        </div>
+                    </div>
                 </div>
             </UCard>
         </UContainer>
