@@ -124,6 +124,13 @@ async function handleSetup(event: FormSubmitEvent<Schema>) {
       return;
     }
 
+
+  if (state.cafeID === 'undefined') {
+    toast.add({ title: 'Invalid Cafe ID', description: 'Cafe ID cannot be "undefined". Please choose a different cafe ID.', color: 'error' });
+    loading.value = false;
+    return;
+  }
+
     const { name } = event.data;
 
     // Create a new document in the 'cafes' collection

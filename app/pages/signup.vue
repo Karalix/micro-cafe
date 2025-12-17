@@ -145,6 +145,11 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
   }
 
   state.cafeID = sanitizeCafeID(state.cafeID);
+  if (state.cafeID === 'undefined') {
+    toast.add({ title: 'Invalid Cafe ID', description: 'Cafe ID cannot be "undefined". Please choose a different cafe ID.', color: 'error' });
+    loading.value = false;
+    return;
+  }
 
   // Before creating a new account, verify that the cafeID does not already exsist in the database
   const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);
