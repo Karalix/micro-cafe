@@ -215,8 +215,8 @@ function sendCommand() {
                             <UTabs :content="false" :items="opt.options.map((o: string) =>  { return { label: o, slot: o } })" v-model="opt.value" default-value="0" :ui="{ list: { background: 'bg-latte-100', marker: { background: 'bg-white' }, tab: { active: 'text-coffee', inactive: 'text-gray-500' } } }"></UTabs>
                         </div>
                     </div>
-                    <UFormField label="Votre nom" class="mt-4">
-                        <UInput v-model="clientName" placeholder="Votre nom" class="bg-white text-coffee focus:ring-coffee-500"></UInput>
+                    <UFormField label="Your name" class="mt-4">
+                        <UInput v-model="clientName" placeholder="Your name" class="bg-white text-coffee focus:ring-coffee-500"></UInput>
                     </UFormField>
                     <div class="flex flex-row justify-end mt-4">
                         <UButton :loading="isOrderSending" size="xl" class="rounded-full bg-coffee-500 hover:bg-coffee-600 text-white" @click="sendCommand">Order</UButton>
