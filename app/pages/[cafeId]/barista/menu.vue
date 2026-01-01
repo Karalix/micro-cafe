@@ -13,6 +13,7 @@ interface ItemDocument extends Models.Document {
     name: string;
     options: string[];
     price?: string;
+    description?: string;
     cafeId: CafeDocument; // Based on example, cafeId is populated on read
 }
 
@@ -32,6 +33,7 @@ const isEditing = ref(false)
 const currentItemId = ref<string | null>(null)
 const currentItemName = ref('')
 const currentItemPrice = ref('')
+const currentItemDescription = ref('')
 const currentItemOptions = ref('') // Textarea content, newline separated
 const currentStructuredOptions = ref([] as {id: string, name: string, isBoolean: boolean, values: {id: string, name: string}[] | false }[])
 /**
@@ -100,6 +102,7 @@ const openAddItemModal = (): void => {
     currentItemId.value = null;
     currentItemName.value = '';
     currentItemPrice.value = '';
+    currentItemDescription.value = '';
     currentItemOptions.value = '';
     currentStructuredOptions.value = [{id: '', name: '', isBoolean: true, values: false}];
     showModal.value = true;
@@ -113,6 +116,7 @@ const openEditItemModal = (item: ItemDocument): void => {
     isEditing.value = true;
     currentItemId.value = item.$id;
     currentItemPrice.value = item.price || '';
+    currentItemDescription.value = item.description || '';
     currentItemName.value = item.name || '';
     currentItemOptions.value = (Array.isArray(item.options) ? item.options.join('\n') : '');
     currentStructuredOptions.value = item.options.map((opt: string) => {
@@ -206,6 +210,7 @@ const handleSaveItem = async (): Promise<void> => {
 
     // Data to be sent to Appwrite. cafeId must be a string ID.
     const itemData = {
+        description: currentItemDescription.value.trim(),
         name: currentItemName.value.trim(),
         price: currentItemPrice.value.trim(),
         options: optionsArray,
@@ -275,7 +280,7 @@ const parseOption = (optionString: string) => {
                             <span v-if="item.price" class="text-lg font-bold text-coffee-600">{{ item.price }}</span>
                         </div>
                     </template>
-
+                    <p v-if="item.description" class="text-sm text-gray-600 dark:text-gray-400 my-4">{{ item.description }}</p>
                     <div v-if="item.options && item.options.length > 0">
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
                             Options:</p>
@@ -322,16 +327,25 @@ const parseOption = (optionString: string) => {
                         <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid"
                             @click="showModal = false" />
                     </div>
-                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4 mr-4">
-                        <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                            <span class="inline-flex bg-white dark:bg-latte-50 px-1">Item name</span>
-                        </label>
-                    </UInput>
-                    <UInput v-model="currentItemPrice" placeholder="e.g., 3.50" class="mb-4">
-                        <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                            <span class="inline-flex bg-white dark:bg-latte-50 px-1">Price</span>
-                        </label>
-                    </UInput>
+                    <div>
+                        <div class="flex flex-row">
+                            <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4 mr-4">
+                                <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">Item name</span>
+                                </label>
+                            </UInput>
+                            <UInput v-model="currentItemPrice" placeholder="e.g., 3.50" class="mb-4">
+                                <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">Price</span>
+                                </label>
+                            </UInput>
+                        </div>
+                        <UTextarea v-model="currentItemDescription" placeholder="Item description..." class="mb-4" autoresize>
+                            <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                                <span class="inline-flex bg-white dark:bg-latte-50 px-1">Description</span>
+                            </label>
+                        </UTextarea>
+                    </div>
                         <div class="space-y-4 mt-2">
                             <div v-for="(option, index) in currentStructuredOptions" :key="option.id"
                                 class="p-3 border border-gray-200 dark:border-latte-100 rounded-md space-y-3 bg-gray-50 dark:bg-latte-50">
