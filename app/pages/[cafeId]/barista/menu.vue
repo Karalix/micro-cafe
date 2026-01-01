@@ -12,6 +12,7 @@ interface CafeDocument extends Models.Document {
 interface ItemDocument extends Models.Document {
     name: string;
     options: string[];
+    price?: string;
     cafeId: CafeDocument; // Based on example, cafeId is populated on read
 }
 
@@ -30,6 +31,7 @@ const showModal = ref(false)
 const isEditing = ref(false)
 const currentItemId = ref<string | null>(null)
 const currentItemName = ref('')
+const currentItemPrice = ref('')
 const currentItemOptions = ref('') // Textarea content, newline separated
 const currentStructuredOptions = ref([] as {id: string, name: string, isBoolean: boolean, values: {id: string, name: string}[] | false }[])
 /**
@@ -97,6 +99,7 @@ const openAddItemModal = (): void => {
     isEditing.value = false;
     currentItemId.value = null;
     currentItemName.value = '';
+    currentItemPrice.value = '';
     currentItemOptions.value = '';
     currentStructuredOptions.value = [{id: '', name: '', isBoolean: true, values: false}];
     showModal.value = true;
@@ -109,6 +112,7 @@ const openAddItemModal = (): void => {
 const openEditItemModal = (item: ItemDocument): void => {
     isEditing.value = true;
     currentItemId.value = item.$id;
+    currentItemPrice.value = item.price || '';
     currentItemName.value = item.name || '';
     currentItemOptions.value = (Array.isArray(item.options) ? item.options.join('\n') : '');
     currentStructuredOptions.value = item.options.map((opt: string) => {
@@ -203,6 +207,7 @@ const handleSaveItem = async (): Promise<void> => {
     // Data to be sent to Appwrite. cafeId must be a string ID.
     const itemData = {
         name: currentItemName.value.trim(),
+        price: currentItemPrice.value.trim(),
         options: optionsArray,
         cafeId: route.params.cafeId as string,
     };
@@ -264,10 +269,10 @@ const parseOption = (optionString: string) => {
                 <UCard class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
                     <template #header>
                         <div class="flex justify-between items-center">
-                            <h2 class="text-2xl font-semibold text-coffee truncate"
-                                :title="item.name">
+                            <h2 class="text-2xl font-semibold text-coffee truncate">
                                 {{ item.name }}
                             </h2>
+                            <span v-if="item.price" class="text-lg font-bold text-coffee-600">{{ item.price }}</span>
                         </div>
                     </template>
 
@@ -317,10 +322,14 @@ const parseOption = (optionString: string) => {
                         <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid"
                             @click="showModal = false" />
                     </div>
-                    
-                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4">
+                    <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4 mr-4">
                         <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
                             <span class="inline-flex bg-white dark:bg-latte-50 px-1">Item name</span>
+                        </label>
+                    </UInput>
+                    <UInput v-model="currentItemPrice" placeholder="e.g., 3.50" class="mb-4">
+                        <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
+                            <span class="inline-flex bg-white dark:bg-latte-50 px-1">Price</span>
                         </label>
                     </UInput>
                         <div class="space-y-4 mt-2">

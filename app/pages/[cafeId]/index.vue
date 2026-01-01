@@ -181,8 +181,11 @@ function sendCommand() {
                 :key="item.$id"
                 @click="isOpenOptions = true;selectedItem = item"
                 variant="soft"
-                class="mb-2 flex flex-row bg-white dark:bg-latte-50 drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 dark:hover:bg-latte-200 active:drop-shadow-md transition-all">
-                <div class="text-coffee">{{ item.name }}</div>
+                class="mb-2 bg-white dark:bg-latte-50 drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 dark:hover:bg-latte-200 active:drop-shadow-md transition-all">
+                <div class="flex row justify-between">
+                    <div class="text-coffee">{{ item.name }}</div>
+                    <div v-if="item.price" class="text-coffee-600 ml-auto">{{ item.price }}</div>
+                </div>    
             </UCard>
             <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">Past Orders</h2>
             <UCard v-for="order in orders" :key="order.$id" variant="soft" class="mt-2 flex flex-col bg-white dark:bg-latte-50 drop-shadow-xl rounded-lg">
