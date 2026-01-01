@@ -77,12 +77,15 @@ export default defineNuxtConfig({
       ]
     }
   },
-  // --- CONFIGURATION DE SERVEUR ---
   nitro: {
-    preset: 'cloudflare-pages',
     prerender: {
       routes: ['login', 'pwa'],
     },
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+    }
   },
   app: {
     head: {
