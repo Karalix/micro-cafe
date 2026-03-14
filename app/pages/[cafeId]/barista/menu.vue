@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Query, ID, type Models } from 'appwrite'
+import { Query, ID, Permission, Role, type Models } from 'appwrite'
 import { ref, onMounted } from 'vue'
 import { useRoute, navigateTo } from '#imports' // Using #imports for Nuxt 3 auto-imports
 
@@ -14,8 +14,24 @@ interface ItemDocument extends Models.Document {
     options: string[];
     price?: string;
     description?: string;
+    imageUrl?: string;
     cafeId: CafeDocument; // Based on example, cafeId is populated on read
 }
+
+const availableImages = [
+    { label: 'Bobba', value: '/images-cafe/bobba.png' },
+    { label: 'Café', value: '/images-cafe/cafe.png' },
+    { label: 'Cookie', value: '/images-cafe/cookie.png' },
+    { label: 'Emporter', value: '/images-cafe/emporter.png' },
+    { label: 'Gaiwan', value: '/images-cafe/gaiwan.png' },
+    { label: 'Jus', value: '/images-cafe/jus.png' },
+    { label: 'Latte', value: '/images-cafe/latte.png' },
+    { label: 'Muffin', value: '/images-cafe/muffin.png' },
+    { label: 'Mug', value: '/images-cafe/mug.png' },
+    { label: 'Tartine', value: '/images-cafe/tartine.png' },
+    { label: 'Thé', value: '/images-cafe/the.png' },
+    { label: 'Yaourt', value: '/images-cafe/yaourt.png' },
+]
 
 const route = useRoute()
 const toast = useToast()
@@ -26,6 +42,40 @@ const isLoadingItems = ref(true)
 
 const { $appwrite } = useNuxtApp()
 const databases = $appwrite.databases
+const account = $appwrite.account
+const storage = $appwrite.storage
+
+// Premium custom images
+const isPremium = ref(false)
+const customImages = ref<{ label: string; value: string }[]>([])
+
+const allAvailableImages = computed(() => {
+    if (customImages.value.length > 0) {
+        return [...availableImages, ...customImages.value]
+    }
+    return availableImages
+})
+
+const loadPremiumImages = async () => {
+    try {
+        const user = await account.get()
+        isPremium.value = user.labels?.includes('premium') ?? false
+        if (isPremium.value) {
+            const response = await storage.listFiles('images')
+            const ownedFiles = response.files.filter((file: any) =>
+                file.$permissions.includes(`delete("user:${user.$id}")`)
+            )
+            customImages.value = ownedFiles.map((file: any) => ({
+                label: file.name,
+                value: storage.getFileView('images', file.$id).toString(),
+            }))
+        }
+    } catch (e) {
+        // Not logged in or error — ignore
+    }
+}
+
+loadPremiumImages()
 
 // Modal state
 const showModal = ref(false)
@@ -34,6 +84,7 @@ const currentItemId = ref<string | null>(null)
 const currentItemName = ref('')
 const currentItemPrice = ref('')
 const currentItemDescription = ref('')
+const currentItemImageUrl = ref('')
 const currentItemOptions = ref('') // Textarea content, newline separated
 const currentStructuredOptions = ref([] as {id: string, name: string, isBoolean: boolean, values: {id: string, name: string}[] | false }[])
 /**
@@ -103,6 +154,7 @@ const openAddItemModal = (): void => {
     currentItemName.value = '';
     currentItemPrice.value = '';
     currentItemDescription.value = '';
+    currentItemImageUrl.value = '';
     currentItemOptions.value = '';
     currentStructuredOptions.value = [{id: '', name: '', isBoolean: true, values: false}];
     showModal.value = true;
@@ -117,6 +169,7 @@ const openEditItemModal = (item: ItemDocument): void => {
     currentItemId.value = item.$id;
     currentItemPrice.value = item.price || '';
     currentItemDescription.value = item.description || '';
+    currentItemImageUrl.value = item.imageUrl || '';
     currentItemName.value = item.name || '';
     currentItemOptions.value = (Array.isArray(item.options) ? item.options.join('\n') : '');
     currentStructuredOptions.value = item.options.map((opt: string) => {
@@ -213,6 +266,7 @@ const handleSaveItem = async (): Promise<void> => {
         description: currentItemDescription.value.trim(),
         name: currentItemName.value.trim(),
         price: currentItemPrice.value.trim(),
+        imageUrl: currentItemImageUrl.value,
         options: optionsArray,
         cafeId: route.params.cafeId as string,
     };
@@ -274,9 +328,12 @@ const parseOption = (optionString: string) => {
                 <UCard class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
                     <template #header>
                         <div class="flex justify-between items-center">
-                            <h2 class="text-2xl font-semibold text-coffee truncate">
-                                {{ item.name }}
-                            </h2>
+                            <div class="flex items-center gap-3">
+                                <img v-if="item.imageUrl" :src="item.imageUrl" :alt="item.name" class="w-10 h-10 rounded-md object-cover" />
+                                <h2 class="text-2xl font-semibold text-coffee truncate">
+                                    {{ item.name }}
+                                </h2>
+                            </div>
                             <span v-if="item.price" class="text-lg font-bold text-coffee-600">{{ item.price }}</span>
                         </div>
                     </template>
@@ -339,6 +396,13 @@ const parseOption = (optionString: string) => {
                                     <span class="inline-flex bg-white dark:bg-latte-50 px-1">Price</span>
                                 </label>
                             </UInput>
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-coffee text-xs font-medium mb-1 block">Image</label>
+                            <div class="flex items-center gap-3">
+                                <USelect v-model="currentItemImageUrl" :items="allAvailableImages" value-key="value" placeholder="Aucune image" class="flex-1" />
+                                <img v-if="currentItemImageUrl" :src="currentItemImageUrl" alt="Preview" class="w-12 h-12 rounded-md object-cover" />
+                            </div>
                         </div>
                         <UTextarea v-model="currentItemDescription" placeholder="Item description..." class="mb-4" autoresize>
                             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">

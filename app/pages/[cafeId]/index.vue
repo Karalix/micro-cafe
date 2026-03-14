@@ -272,21 +272,29 @@ function sendCommand() {
                 variant="soft"
                 class="mb-2 bg-white dark:bg-latte-50 drop-shadow-sm rounded-lg hover:cursor-pointer hover:bg-latte-100 dark:hover:bg-latte-200 active:drop-shadow-md transition-all"
             >
-                <div>
-                    <div class="flex row justify-between">
-                        <div class="text-coffee">{{ item.name }}</div>
-                        <div
-                            v-if="item.price"
-                            class="text-coffee-600 text-sm ml-auto"
-                        >
-                            {{ item.price }}
+                <div class="flex items-center gap-3">
+                    <img
+                        v-if="item.imageUrl"
+                        :src="item.imageUrl"
+                        :alt="item.name"
+                        class="w-20 h-20 -my-3 -ml-3 rounded-lg object-cover self-stretch"
+                    />
+                    <div class="flex-1">
+                        <div class="flex row justify-between items-center">
+                            <div class="text-coffee">{{ item.name }}</div>
+                            <div
+                                v-if="item.price"
+                                class="text-coffee-600 text-sm ml-auto"
+                            >
+                                {{ item.price }}
+                            </div>
                         </div>
-                    </div>
-                    <div
-                        v-if="item.description"
-                        class="text-sm italic text-gray-600 dark:text-gray-400 mt-4"
-                    >
-                        {{ item.description }}
+                        <div
+                            v-if="item.description"
+                            class="text-sm italic text-gray-600 dark:text-gray-400 mt-1"
+                        >
+                            {{ item.description }}
+                        </div>
                     </div>
                 </div>
             </UCard>
@@ -353,6 +361,12 @@ function sendCommand() {
         >
             <template #body>
                 <div class="p-4">
+                    <img
+                        v-if="selectedItem?.imageUrl"
+                        :src="selectedItem.imageUrl"
+                        :alt="selectedItem.name"
+                        class="w-full h-64 object-cover object-[center_25%] rounded-xl mb-4"
+                    />
                     <div
                         v-for="opt of selectedOptions"
                         :key="opt.name"
