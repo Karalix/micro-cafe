@@ -24,6 +24,7 @@ export default defineNuxtConfig({
         messagingSenderId: process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
         appId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID
       },
+      firebaseVapidKey: process.env.NUXT_PUBLIC_FIREBASE_VAPID_KEY,
       appwrite: {
         endpoint: process.env.NUXT_PUBLIC_APPWRITE_ENDPOINT,
         projectId: process.env.NUXT_PUBLIC_APPWRITE_PROJECT_ID
