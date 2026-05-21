@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Query, type Models } from 'appwrite'
-import { getMessaging, getToken } from "firebase/messaging";
 
 const { $appwrite } = useNuxtApp();
+const { syncPushTarget } = usePushTarget();
 const databases = $appwrite.databases;
 const account = $appwrite.account;
 const client = $appwrite.client;
@@ -58,32 +58,13 @@ onMounted(async () => {
 })
 
 const requestNotificationPermission = async () => {
-    // Manage Push Notifications
-    console.log('Requesting permission...');
-    const { $firebase } = useNuxtApp()
-    Notification.requestPermission().then((permission) => {
-    if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        const messaging = getMessaging($firebase);
-        getToken(messaging, {vapidKey: 'BH9Kq8XtWbSxZzebYCcU9weUMEXNbH94fj2gtQeSpp2Y9JDIwzGdbKAM8BgZQerB7QLUJqTDsFswGFH01UEFP9k'})
-            .then((currentToken) => {
-                if (currentToken) {
-                    console.log('Token received: ')
-                    console.log(currentToken)
-                    account.createPushTarget('unique()', currentToken, 'firebase')
-                    showNotificationPrompt.value = false
-                } else {
-                    console.log('No registration token available. Request permission to generate one.')
-                    showNotificationPrompt.value = false
-                }
-            }
-        ).catch((err) => {
-            console.log('An error occurred while retrieving token. ', err)
-        })
-    } else {
-        console.log('Unable to get permission to notify.');
+    try {
+        await syncPushTarget({ requestPermission: true });
+    } catch (err) {
+        console.error('Failed to register push target:', err);
+    } finally {
+        showNotificationPrompt.value = false;
     }
-    });
 }
 
 const completeOrder = async (orderId: string) => {
