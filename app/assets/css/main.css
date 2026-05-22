@@ -11,7 +11,7 @@
     --color-coffee-500: #8B5E3C;
     --color-coffee-600: #6F4E37;
 
-    --ui-primary: black;
+    --ui-primary: var(--color-coffee-500);
     --ui-success: oklch(0.897 0.196 126.665);
     --ui-error: oklch(0.808 0.114 19.571);
     --ui-warning: oklch(0.905 0.182 98.111);
@@ -31,7 +31,7 @@
     --color-coffee-500: #D7CCC8;
     --color-coffee-600: #F5E6D3;
 
-    --ui-primary: white;
+    --ui-primary: var(--color-coffee-500);
     --ui-bg-accented: gray;
     --ui-bg: black;
     --ui-bg-soft: gray;
@@ -40,7 +40,7 @@
 }
 
 @theme static {
-    --primary: black;
+    --primary: var(--color-coffee-500);
     
     --color-latte: var(--color-latte);
     --color-latte-50: var(--color-latte-50);
