@@ -86,29 +86,44 @@
                         </div>
 
                         <!-- App Content Mock -->
-                        <div class="p-6 mt-4 space-y-4">
-                            <h3 class="font-serif text-2xl text-coffee font-bold">Menu</h3>
-                            <div class="space-y-3">
-                                <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
-                                    <div>
-                                        <p class="font-medium text-coffee">Latte</p>
-                                        <p class="text-xs text-gray-500">Silky & Smooth</p>
+                        <div class="p-4 mt-4">
+                            <h3 class="font-serif text-xl text-coffee font-bold mb-3 ml-1">Menu</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
+                                    <div class="aspect-square w-full bg-latte-100">
+                                        <img src="/images-cafe/latte.png" alt="Latte" class="w-full h-full object-cover" />
                                     </div>
-                                    <UIcon name="i-heroicons-plus-circle" class="w-6 h-6 text-coffee-500" />
+                                    <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
+                                        <div class="font-medium text-coffee text-xs truncate">Latte</div>
+                                        <div class="text-coffee-600 text-[10px] shrink-0">1 hug 🤗</div>
+                                    </div>
                                 </div>
-                                <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
-                                    <div>
-                                        <p class="font-medium text-coffee">Matcha Latte</p>
-                                        <p class="text-xs text-gray-500">Ceremonial Grade</p>
+                                <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
+                                    <div class="aspect-square w-full bg-latte-100">
+                                        <img src="/images-cafe/gaiwan.png" alt="Matcha" class="w-full h-full object-cover" />
                                     </div>
-                                    <UIcon name="i-heroicons-plus-circle" class="w-6 h-6 text-coffee-500" />
+                                    <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
+                                        <div class="font-medium text-coffee text-xs truncate">Matcha</div>
+                                        <div class="text-coffee-600 text-[10px] shrink-0">5€</div>
+                                    </div>
                                 </div>
-                                                                  <div class="p-3 bg-white dark:bg-latte-50 rounded-xl shadow-sm border border-latte-100 dark:border-gray-700 flex justify-between items-center">
-                                    <div>
-                                        <p class="font-medium text-coffee">Tisane</p>
-                                        <p class="text-xs text-gray-500">Relaxing blend</p>
+                                <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
+                                    <div class="aspect-square w-full bg-latte-100">
+                                        <img src="/images-cafe/the.png" alt="Tea" class="w-full h-full object-cover" />
                                     </div>
-                                    <UIcon name="i-heroicons-plus-circle" class="w-6 h-6 text-coffee-500" />
+                                    <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
+                                        <div class="font-medium text-coffee text-xs truncate">Tea</div>
+                                        <div class="text-coffee-600 text-[10px] shrink-0">A story 📖</div>
+                                    </div>
+                                </div>
+                                <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
+                                    <div class="aspect-square w-full bg-latte-100">
+                                        <img src="/images-cafe/cookie.png" alt="Cookie" class="w-full h-full object-cover" />
+                                    </div>
+                                    <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
+                                        <div class="font-medium text-coffee text-xs truncate">Cookie</div>
+                                        <div class="text-coffee-600 text-[10px] shrink-0">Free!</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

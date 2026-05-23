@@ -7,7 +7,7 @@ const demoItems = [
     {
         $id: "demo-latte",
         name: "Latte",
-        price: "4€",
+        price: "1 hug 🤗",
         description: "Silky espresso topped with steamed milk.",
         options: ["Size:small;medium;large", "Milk:cow;oat;almond", "Sugar:boolean"],
         imageUrl: "/images-cafe/latte.png",
@@ -15,7 +15,6 @@ const demoItems = [
     {
         $id: "demo-espresso",
         name: "Espresso",
-        price: "3€",
         description: "Short, dark, intense. The classic.",
         options: ["Shots:single;double", "Sugar:boolean"],
         imageUrl: "/images-cafe/cafe.png",
@@ -31,7 +30,6 @@ const demoItems = [
     {
         $id: "demo-tea",
         name: "Tea",
-        price: "3€",
         description: "Loose-leaf, steeped to order.",
         options: ["Blend:earl grey;chamomile;mint;rooibos", "Honey:boolean"],
         imageUrl: "/images-cafe/the.png",
@@ -39,7 +37,6 @@ const demoItems = [
     {
         $id: "demo-juice",
         name: "Fresh Juice",
-        price: "4€",
         description: "Pressed this morning.",
         options: ["Flavor:orange;apple;carrot-ginger"],
         imageUrl: "/images-cafe/jus.png",
@@ -47,7 +44,6 @@ const demoItems = [
     {
         $id: "demo-bubble",
         name: "Bubble Tea",
-        price: "6€",
         description: "Chewy tapioca, your favorite flavor.",
         options: ["Flavor:taro;mango;classic milk", "Ice:boolean"],
         imageUrl: "/images-cafe/bobba.png",
@@ -55,7 +51,6 @@ const demoItems = [
     {
         $id: "demo-muffin",
         name: "Muffin",
-        price: "3€",
         description: "Baked this morning.",
         options: ["Flavor:chocolate;blueberry;banana"],
         imageUrl: "/images-cafe/muffin.png",
@@ -63,7 +58,7 @@ const demoItems = [
     {
         $id: "demo-cookie",
         name: "Cookie",
-        price: "2€",
+        price: "📖",
         description: "Warm and chewy.",
         options: ["Type:chocolate chip;oatmeal raisin", "Warmed:boolean"],
         imageUrl: "/images-cafe/cookie.png",
@@ -71,15 +66,14 @@ const demoItems = [
     {
         $id: "demo-tartine",
         name: "Tartine",
-        price: "5€",
         description: "Sourdough, toasted, with toppings.",
         options: ["Topping:butter & jam;avocado;honey & ricotta"],
         imageUrl: "/images-cafe/tartine.png",
     },
     {
         $id: "demo-yogurt",
-        name: "Yogurt Bowl",
-        price: "5€",
+        name: "Yogurt",
+        price: "Free!",
         description: "Greek yogurt, fresh fruits, granola.",
         options: ["Granola:boolean", "Honey:boolean"],
         imageUrl: "/images-cafe/yaourt.png",
