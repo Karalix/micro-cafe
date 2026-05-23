@@ -40,12 +40,21 @@
               <span class="font-semibold text-coffee-500">100% Free. 100% Cozy.</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <UButton 
-                to="/signup" 
+              <UButton
+                to="/signup"
                 size="xl"
                 class="bg-coffee-500 hover:bg-coffee-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 justify-center"
               >
                 Open My Tiny Café
+              </UButton>
+              <UButton
+                to="/demo"
+                size="xl"
+                variant="ghost"
+                color="neutral"
+                class="text-coffee-500 hover:bg-latte-100 px-8 py-4 rounded-full justify-center"
+              >
+                See a demo café ↗
               </UButton>
             </div>
             <p class="text-sm text-gray-500 dark:text-gray-400 italic">
