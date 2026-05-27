@@ -329,7 +329,7 @@ const parseOption = (optionString: string) => {
                     <template #header>
                         <div class="flex justify-between items-center">
                             <div class="flex items-center gap-3">
-                                <img v-if="item.imageUrl" :src="item.imageUrl" :alt="item.name" class="w-10 h-10 rounded-md object-cover" />
+                                <img v-if="item.imageUrl" :src="itemImage(item.imageUrl, 'thumb')" :alt="item.name" loading="lazy" decoding="async" class="w-10 h-10 rounded-md object-cover" />
                                 <h2 class="text-2xl font-semibold text-coffee truncate">
                                     {{ item.name }}
                                 </h2>
@@ -401,7 +401,7 @@ const parseOption = (optionString: string) => {
                             <label class="text-coffee text-xs font-medium mb-1 block">Image</label>
                             <div class="flex items-center gap-3">
                                 <USelect v-model="currentItemImageUrl" :items="allAvailableImages" value-key="value" placeholder="Aucune image" class="flex-1" />
-                                <img v-if="currentItemImageUrl" :src="currentItemImageUrl" alt="Preview" class="w-12 h-12 rounded-md object-cover" />
+                                <img v-if="currentItemImageUrl" :src="itemImage(currentItemImageUrl, 'thumb')" alt="Preview" loading="lazy" decoding="async" class="w-12 h-12 rounded-md object-cover" />
                             </div>
                         </div>
                         <UTextarea v-model="currentItemDescription" placeholder="Item description..." class="mb-4" autoresize>

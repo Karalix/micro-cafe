@@ -22,24 +22,6 @@ const props = defineProps<{
     baristaLink?: string;
 }>();
 
-function appwritePreview(
-    url: string | undefined,
-    width: number,
-    height?: number,
-): string {
-    if (!url) return "";
-    const match = url.match(/\/files\/([^/]+)\/view(\?.*)?$/);
-    if (!match) return url;
-    const queryString = match[2] ?? "";
-    const params = new URLSearchParams(queryString.replace(/^\?/, ""));
-    params.set("width", String(width));
-    if (height) params.set("height", String(height));
-    params.set("gravity", "center");
-    params.set("quality", "75");
-    params.set("output", "webp");
-    return url.replace(/\/view(\?.*)?$/, `/preview?${params.toString()}`);
-}
-
 const selectedItem = ref<MenuItem | null>(null);
 const selectedOptions = ref([] as any[]);
 const isOpenOptions = ref(false);
@@ -200,7 +182,7 @@ async function onSendCommand() {
                                 : `card-${item.$id}`,
                     }">
                     <div class="aspect-square w-full bg-latte-100">
-                        <img :src="item.imageUrl ? appwritePreview(item.imageUrl, 400, 400) : '/images-cafe/mug.png'" :alt="item.name"
+                        <img :src="itemImage(item.imageUrl, 'thumb')" :alt="item.name" loading="lazy" decoding="async"
                             class="w-full h-full object-cover" :style="{
                                 viewTransitionName:
                                     (selectedItem && selectedItem.$id !== item.$id) ||
@@ -264,10 +246,7 @@ async function onSendCommand() {
                             : 'none',
                     }">
                     <div class="relative shrink-0">
-                        <img :src="selectedItem?.imageUrl
-                            ? appwritePreview(selectedItem.imageUrl, 1024, 768)
-                            : '/images-cafe/mug.png'
-                            " :alt="selectedItem?.name" class="w-full h-72 sm:h-96 object-cover" :style="{
+                        <img :src="itemImage(selectedItem?.imageUrl, 'large')" :alt="selectedItem?.name" class="w-full h-72 sm:h-96 object-cover" decoding="async" :style="{
                                 viewTransitionName: selectedItem
                                     ? `item-${selectedItem.$id}`
                                     : 'none',
