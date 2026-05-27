@@ -36,7 +36,7 @@
                             Scan this QR code with a mobile device to open the
                             page.
                         </p>
-                        <div v-if="pageUrl"
+                        <div v-if="pageUrl" ref="qrCodeContainerRef"
                             class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100">
                             <ClientOnly>
                                 <QrCodeVue :value="pageUrl" :size="220" level="H" render-as="svg" :margin="2" />
@@ -44,6 +44,12 @@
                                     <USkeleton class="h-[220px] w-[220px" />
                                 </template>
                             </ClientOnly>
+                        </div>
+                        <div v-if="pageUrl" class="flex justify-center mt-4">
+                            <UButton @click="handleDownloadQrCode"
+                                icon="i-heroicons-arrow-down-tray-20-solid" variant="solid" size="lg">
+                                Download PNG
+                            </UButton>
                         </div>
                         <div v-else class="text-center text-gray-500 py-10">
                             <p class="mb-2">
@@ -570,6 +576,87 @@ async function handleCopyUrl(): Promise<void> {
             title: "Copy Failed",
             description:
                 "An error occurred while trying to copy the URL. Please copy it manually.",
+            color: "error",
+            icon: "i-heroicons-x-circle-20-solid",
+        });
+    }
+}
+
+const qrCodeContainerRef = ref<HTMLElement | null>(null);
+
+async function handleDownloadQrCode(): Promise<void> {
+    const svgElement = qrCodeContainerRef.value?.querySelector("svg");
+    if (!svgElement) {
+        toast.add({
+            title: "Download Failed",
+            description: "QR code is not ready yet. Please try again.",
+            color: "error",
+            icon: "i-heroicons-x-circle-20-solid",
+        });
+        return;
+    }
+
+    try {
+        const scale = 4;
+        const svgRect = svgElement.getBoundingClientRect();
+        const width = svgRect.width || 220;
+        const height = svgRect.height || 220;
+
+        const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+        clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        clonedSvg.setAttribute("width", String(width));
+        clonedSvg.setAttribute("height", String(height));
+
+        const svgString = new XMLSerializer().serializeToString(clonedSvg);
+        const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+        const svgUrl = URL.createObjectURL(svgBlob);
+
+        const image = new Image();
+        image.crossOrigin = "anonymous";
+
+        await new Promise<void>((resolve, reject) => {
+            image.onload = () => resolve();
+            image.onerror = () => reject(new Error("Failed to load SVG image"));
+            image.src = svgUrl;
+        });
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width * scale;
+        canvas.height = height * scale;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) throw new Error("Canvas context not available");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(svgUrl);
+
+        const pngBlob: Blob = await new Promise((resolve, reject) => {
+            canvas.toBlob(
+                (blob) => (blob ? resolve(blob) : reject(new Error("Canvas toBlob failed"))),
+                "image/png",
+            );
+        });
+
+        const downloadUrl = URL.createObjectURL(pngBlob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `qrcode-${currentCafeId.value ?? "cafe"}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(downloadUrl);
+
+        toast.add({
+            title: "QR Code Downloaded",
+            description: "The QR code PNG has been saved.",
+            color: "primary",
+            icon: "i-heroicons-check-circle-20-solid",
+        });
+    } catch (error) {
+        console.error("Failed to download QR code:", error);
+        toast.add({
+            title: "Download Failed",
+            description: "Could not generate the PNG file. Please try again.",
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
