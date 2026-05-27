@@ -1,9 +1,7 @@
 <template>
     <div class="pb-16 bg-latte min-h-screen">
         <UContainer class="py-8">
-            <UCard
-                class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700"
-            >
+            <UCard class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
                         Share Your Page
@@ -14,33 +12,15 @@
                 </template>
 
                 <div class="space-y-6">
-                    <UFormGroup
-                        label="Page URL"
-                        name="pageUrl"
-                        help="This is the direct link to your page."
-                    >
+                    <UFormGroup label="Page URL" name="pageUrl" help="This is the direct link to your page.">
                         <div class="flex items-center gap-2">
-                            <UInput
-                                :model-value="pageUrl"
-                                readonly
-                                class="flex-grow"
-                                placeholder="Generating URL..."
-                                icon="i-heroicons-link"
-                                size="lg"
-                            />
-                            <UButton
-                                @click="handleCopyUrl"
-                                :icon="
-                                    copied
-                                        ? 'i-heroicons-check-circle-20-solid'
-                                        : 'i-heroicons-clipboard-document-20-solid'
-                                "
-                                :color="copied ? 'success' : 'primary'"
-                                variant="solid"
-                                square
-                                size="lg"
-                                :disabled="!pageUrl"
-                            >
+                            <UInput :model-value="pageUrl" readonly class="flex-grow" placeholder="Generating URL..."
+                                icon="i-heroicons-link" size="lg" />
+                            <UButton @click="handleCopyUrl" :icon="copied
+                                    ? 'i-heroicons-check-circle-20-solid'
+                                    : 'i-heroicons-clipboard-document-20-solid'
+                                " :color="copied ? 'success' : 'primary'" variant="solid" square size="lg"
+                                :disabled="!pageUrl">
                                 {{ copied ? "Copied!" : "Copy" }}
                             </UButton>
                         </div>
@@ -52,24 +32,14 @@
                         <h2 class="text-lg font-medium text-coffee mb-2">
                             QR Code
                         </h2>
-                        <p
-                            class="text-sm text-gray-500 dark:text-gray-400 mb-3"
-                        >
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
                             Scan this QR code with a mobile device to open the
                             page.
                         </p>
-                        <div
-                            v-if="pageUrl"
-                            class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100"
-                        >
+                        <div v-if="pageUrl"
+                            class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100">
                             <ClientOnly>
-                                <QrCodeVue
-                                    :value="pageUrl"
-                                    :size="220"
-                                    level="H"
-                                    render-as="svg"
-                                    :margin="2"
-                                />
+                                <QrCodeVue :value="pageUrl" :size="220" level="H" render-as="svg" :margin="2" />
                                 <template #fallback>
                                     <USkeleton class="h-[220px] w-[220px" />
                                 </template>
@@ -87,9 +57,7 @@
             </UCard>
         </UContainer>
         <UContainer class="py-8">
-            <UCard
-                class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50"
-            >
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
                         Update Cafe Name
@@ -100,34 +68,15 @@
                 </template>
 
                 <div class="space-y-6">
-                    <UFormGroup
-                        label="Cafe Name"
-                        name="cafeNameUpdate"
-                        help="Enter the new name for your cafe."
-                    >
+                    <UFormGroup label="Cafe Name" name="cafeNameUpdate" help="Enter the new name for your cafe.">
                         <div class="flex items-center gap-2">
-                            <UInput
-                                v-model="cafeNameInput"
-                                placeholder="Enter new cafe name"
-                                class="flex-grow"
-                                icon="i-heroicons-identification-20-solid"
-                                size="lg"
-                                :disabled="
-                                    !currentCafeId || isLoadingUpdateName
-                                "
-                            />
-                            <UButton
-                                @click="handleUpdateCafeName"
-                                :loading="isLoadingUpdateName"
-                                :disabled="
-                                    !cafeNameInput.trim() ||
-                                    !currentCafeId ||
-                                    isLoadingUpdateName
-                                "
-                                icon="i-heroicons-arrow-path-20-solid"
-                                variant="solid"
-                                size="lg"
-                            >
+                            <UInput v-model="cafeNameInput" placeholder="Enter new cafe name" class="flex-grow"
+                                icon="i-heroicons-identification-20-solid" size="lg" :disabled="!currentCafeId || isLoadingUpdateName
+                                    " />
+                            <UButton @click="handleUpdateCafeName" :loading="isLoadingUpdateName" :disabled="!cafeNameInput.trim() ||
+                                !currentCafeId ||
+                                isLoadingUpdateName
+                                " icon="i-heroicons-arrow-path-20-solid" variant="solid" size="lg">
                                 {{
                                     isLoadingUpdateName
                                         ? "Updating..."
@@ -142,9 +91,7 @@
         </UContainer>
 
         <UContainer v-if="isPremium" class="py-8">
-            <UCard
-                class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50"
-            >
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
                         Custom Images
@@ -155,65 +102,29 @@
                 </template>
 
                 <div class="space-y-4">
-                    <UButton
-                        @click="fileInputRef?.click()"
-                        icon="i-heroicons-arrow-up-tray-20-solid"
-                        label="Upload Image"
-                        variant="solid"
-                        size="lg"
-                    />
-                    <input
-                        ref="fileInputRef"
-                        type="file"
-                        accept="image/*"
-                        class="hidden"
-                        @change="handleUploadImage"
-                    />
+                    <UButton @click="fileInputRef?.click()" icon="i-heroicons-arrow-up-tray-20-solid"
+                        label="Upload Image" variant="solid" size="lg" />
+                    <input ref="fileInputRef" type="file" accept="image/*" class="hidden" @change="handleUploadImage" />
 
                     <div v-if="isLoadingImages" class="flex gap-4">
-                        <USkeleton
-                            v-for="i in 3"
-                            :key="i"
-                            class="h-24 w-24 rounded-md"
-                        />
+                        <USkeleton v-for="i in 3" :key="i" class="h-24 w-24 rounded-md" />
                     </div>
-                    <div
-                        v-else-if="customImages.length === 0"
-                        class="text-center text-gray-500 py-8"
-                    >
-                        <UIcon
-                            name="i-heroicons-photo"
-                            class="mx-auto h-12 w-12 text-gray-400"
-                        />
+                    <div v-else-if="customImages.length === 0" class="text-center text-gray-500 py-8">
+                        <UIcon name="i-heroicons-photo" class="mx-auto h-12 w-12 text-gray-400" />
                         <p class="mt-2">
                             No custom images yet. Upload one to get started.
                         </p>
                     </div>
-                    <div
-                        v-else
-                        class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"
-                    >
-                        <div
-                            v-for="image in customImages"
-                            :key="image.$id"
-                            class="relative group"
-                        >
-                            <img
-                                :src="image.url"
-                                :alt="image.name"
-                                class="w-full aspect-square rounded-md object-cover border border-gray-200"
-                            />
+                    <div v-else class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                        <div v-for="image in customImages" :key="image.$id" class="relative group">
+                            <img :src="image.url" :alt="image.name"
+                                class="w-full aspect-square rounded-md object-cover border border-gray-200" />
                             <p class="text-xs text-gray-600 mt-1 truncate">
                                 {{ image.name }}
                             </p>
-                            <UButton
-                                @click="handleDeleteImage(image.$id)"
-                                icon="i-heroicons-trash-20-solid"
-                                color="error"
-                                variant="soft"
-                                size="xs"
-                                class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                            />
+                            <UButton @click="handleDeleteImage(image.$id)" icon="i-heroicons-trash-20-solid"
+                                color="error" variant="soft" size="xs"
+                                class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                     </div>
                 </div>
@@ -221,9 +132,7 @@
         </UContainer>
 
         <UContainer class="py-8">
-            <UCard
-                class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50"
-            >
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
                         About & Support
@@ -232,27 +141,17 @@
 
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
-                        <div
-                            class="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg"
-                        >
-                            <UIcon
-                                name="i-simple-icons-github"
-                                class="w-6 h-6 text-gray-900 dark:text-white"
-                            />
+                        <div class="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                            <UIcon name="i-simple-icons-github" class="w-6 h-6 text-gray-900 dark:text-white" />
                         </div>
                         <div>
                             <h3 class="font-medium text-coffee">Open Source</h3>
-                            <p
-                                class="text-sm text-gray-500 dark:text-gray-400 mb-2"
-                            >
-                                This project is open source.
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                This project is somewhat open source. The appwrite server configuration
+                                available on Github is probably outdated, reach out if you need anything.
                             </p>
-                            <UButton
-                                to="https://github.com/Karalix/micro-cafe"
-                                target="_blank"
-                                variant="link"
-                                class="p-0"
-                            >
+                            <UButton to="https://github.com/Karalix/micro-cafe" target="_blank" variant="link"
+                                class="p-0">
                                 View on GitHub
                             </UButton>
                         </div>
@@ -261,62 +160,37 @@
                     <UDivider />
 
                     <div class="flex items-start gap-4">
-                        <div
-                            class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg"
-                        >
-                            <UIcon
-                                name="i-heroicons-user-circle"
-                                class="w-6 h-6 text-blue-500"
-                            />
+                        <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                            <UIcon name="i-heroicons-user-circle" class="w-6 h-6 text-blue-500" />
                         </div>
                         <div>
                             <h3 class="font-medium text-coffee">
                                 Contact the Maker
                             </h3>
-                            <p
-                                class="text-sm text-gray-500 dark:text-gray-400 mb-2"
-                            >
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
                                 Built by Alix. Reach out if you need anything.
                             </p>
-                            <UButton
-                                to="https://krlx.fr"
-                                target="_blank"
-                                color="primary"
-                                variant="link"
-                                class="p-0"
-                            >
-                                Visit krlx.fr
+                            <UButton to="https://krlx.fr" target="_blank" color="primary" variant="link" class="p-0">
+                                What about hiring me for your next project ?
                             </UButton>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-4">
-                        <div
-                            class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg"
-                        >
-                            <UIcon
-                                name="i-heroicons-heart"
-                                class="w-6 h-6 text-red-500"
-                            />
+                        <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                            <UIcon name="i-heroicons-heart" class="w-6 h-6 text-red-500" />
                         </div>
                         <div>
                             <h3 class="font-medium text-coffee">
                                 Support My Tiny Café
                             </h3>
-                            <p
-                                class="text-sm text-gray-500 dark:text-gray-400 mb-2"
-                            >
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
                                 My Tiny Café is available free of charge, but if
                                 you enjoy using it, consider supporting its
                                 hosting costs.
                             </p>
-                            <UButton
-                                to="https://buymeacoffee.com/krlx"
-                                target="_blank"
-                                color="primary"
-                                variant="link"
-                                class="p-0"
-                            >
+                            <UButton to="https://buymeacoffee.com/krlx" target="_blank" color="primary" variant="link"
+                                class="p-0">
                                 Support on Buy Me a Coffee
                             </UButton>
                         </div>
@@ -324,26 +198,85 @@
                 </div>
             </UCard>
         </UContainer>
-        <p class="my-4 ml-4 sm:ml-6">
-            If you want to delete your account, please send me an email at
-            <a href="mailto:alix@krlx.fr">alix@krlx.fr</a> until I implement
-            this feature.
-        </p>
-        <UButton
-            @click="logout"
-            class="mb-10 ml-4 sm:ml-6"
-            color="neutral"
-            variant="outline"
-            >Logout</UButton
-        >
+        <UContainer class="py-8">
+            <UCard class="bg-white ring-1 ring-red-200 dark:ring-red-900/40 dark:bg-latte-50">
+                <template #header>
+                    <h1 class="text-xl font-semibold leading-tight text-red-600">
+                        Delete Account
+                    </h1>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Permanently delete your café, its menu, all orders,
+                        any custom images, and your account. This action
+                        cannot be undone.
+                    </p>
+                </template>
+
+                <UButton @click="openDeleteModal" icon="i-heroicons-trash-20-solid" color="error" variant="soft"
+                    size="lg" :disabled="!currentCafeId">
+                    Delete my account
+                </UButton>
+            </UCard>
+        </UContainer>
+
+        <UModal v-model:open="isDeleteModalOpen">
+            <template #content>
+                <div class="p-6 space-y-4">
+                    <h2 class="text-lg font-semibold text-red-600">
+                        Delete your account permanently?
+                    </h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        This will permanently delete:
+                    </p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>your café <strong>{{ currentCafeId }}</strong></li>
+                        <li>its menu items and all past orders</li>
+                        <li v-if="isPremium">your custom images</li>
+                        <li>your account (you will not be able to log in again)</li>
+                    </ul>
+                    <UFormGroup :label="`Type &quot;${currentCafeId}&quot; to confirm`" name="deleteConfirm">
+                        <UInput v-model="deleteConfirmInput" :placeholder="currentCafeId" size="lg"
+                            :disabled="isDeletingAccount" />
+                    </UFormGroup>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <UButton @click="isDeleteModalOpen = false" color="neutral" variant="ghost"
+                            :disabled="isDeletingAccount">
+                            Cancel
+                        </UButton>
+                        <UButton @click="handleDeleteAccount" color="error" variant="solid" :loading="isDeletingAccount"
+                            :disabled="deleteConfirmInput.trim() !== currentCafeId ||
+                                isDeletingAccount
+                                ">
+                            Delete permanently
+                        </UButton>
+                    </div>
+                </div>
+            </template>
+        </UModal>
+
+        <UContainer class="py-8 mb-10">
+            <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
+                <template #header>
+                    <h1 class="text-xl font-semibold leading-tight text-coffee">
+                        Session
+                    </h1>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Sign out of this device. You can sign back in anytime.
+                    </p>
+                </template>
+
+                <UButton @click="logout" icon="i-heroicons-arrow-right-on-rectangle-20-solid" color="neutral"
+                    variant="outline" size="lg">
+                    Logout
+                </UButton>
+            </UCard>
+        </UContainer>
         <UNavigationMenu
             class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md"
             :items="[
                 { label: 'Orders', to: `/${route.params.cafeId}/barista` },
                 { label: 'Menu', to: `/${route.params.cafeId}/barista/menu` },
                 { label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe` },
-            ]"
-        />
+            ]" />
     </div>
 </template>
 
@@ -653,6 +586,60 @@ const logout = async () => {
     });
 };
 
+const isDeleteModalOpen = ref(false);
+const deleteConfirmInput = ref("");
+const isDeletingAccount = ref(false);
+
+function openDeleteModal() {
+    deleteConfirmInput.value = "";
+    isDeleteModalOpen.value = true;
+}
+
+async function handleDeleteAccount() {
+    if (!currentCafeId.value) return;
+    if (deleteConfirmInput.value.trim() !== currentCafeId.value) return;
+
+    isDeletingAccount.value = true;
+    try {
+        if (isPremium.value && customImages.value.length > 0) {
+            const results = await Promise.allSettled(
+                customImages.value.map((image) =>
+                    storage.deleteFile("images", image.$id),
+                ),
+            );
+            results
+                .filter((r) => r.status === "rejected")
+                .forEach((r) =>
+                    console.error("Failed to delete image:", (r as PromiseRejectedResult).reason),
+                );
+        }
+
+        await databases.deleteDocument("cafe", "cafe", currentCafeId.value);
+
+        await account.updateStatus();
+
+        toast.add({
+            title: "Account deleted",
+            description: "Your account and café have been permanently deleted.",
+            color: "primary",
+            icon: "i-heroicons-check-circle-20-solid",
+        });
+        isDeleteModalOpen.value = false;
+        navigateTo("/");
+    } catch (error: any) {
+        console.error("Failed to delete account:", error);
+        toast.add({
+            title: "Deletion Failed",
+            description:
+                error.message ||
+                "Could not delete your account. Please try again.",
+            color: "error",
+            icon: "i-heroicons-x-circle-20-solid",
+        });
+        isDeletingAccount.value = false;
+    }
+}
+
 // Nuxt UI components like UPage, UCard, UInput, UButton, etc.,
 // and composables like useRoute, useToast are auto-imported by Nuxt.
 // Ensure 'qrcode.vue' and '@vueuse/core' are installed in your project:
@@ -663,6 +650,7 @@ const logout = async () => {
 /* Scoped styles for this page component */
 .dark .dark\:bg-gray-50 {
     /* Specific override if needed for QR code background in dark mode, qrcode.vue usually handles this well with SVG */
-    background-color: #f9fafb; /* Tailwind gray-50 */
+    background-color: #f9fafb;
+    /* Tailwind gray-50 */
 }
 </style>

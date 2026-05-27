@@ -4,7 +4,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2026-01-01",
   // https://nuxt.com/modules
-  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@vite-pwa/nuxt'],
+  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@vite-pwa/nuxt', '@nuxt/image'],
+  image: {
+    provider: process.env.NODE_ENV === 'production' ? 'ipxStatic' : 'ipx',
+    format: ['webp'],
+    quality: 80,
+  },
   css: ['~/assets/css/main.css'],
   // https://devtools.nuxt.com
   devtools: { enabled: true },
@@ -80,7 +85,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ['login', 'pwa'],
+      routes: ['/', 'login', 'pwa'],
     },
     preset: "cloudflare_module",
     cloudflare: {

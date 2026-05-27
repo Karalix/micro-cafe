@@ -91,7 +91,7 @@
                             <div class="grid grid-cols-2 gap-2">
                                 <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
                                     <div class="aspect-square w-full bg-latte-100">
-                                        <img src="/images-cafe/latte.png" alt="Latte" class="w-full h-full object-cover" />
+                                        <NuxtImg src="/images-cafe/latte.png" alt="Latte" width="140" height="140" densities="1x 2x" class="w-full h-full object-cover" />
                                     </div>
                                     <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
                                         <div class="font-medium text-coffee text-xs truncate">Latte</div>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
                                     <div class="aspect-square w-full bg-latte-100">
-                                        <img src="/images-cafe/gaiwan.png" alt="Matcha" class="w-full h-full object-cover" />
+                                        <NuxtImg src="/images-cafe/gaiwan.png" alt="Matcha" width="140" height="140" densities="1x 2x" class="w-full h-full object-cover" />
                                     </div>
                                     <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
                                         <div class="font-medium text-coffee text-xs truncate">Matcha</div>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
                                     <div class="aspect-square w-full bg-latte-100">
-                                        <img src="/images-cafe/the.png" alt="Tea" class="w-full h-full object-cover" />
+                                        <NuxtImg src="/images-cafe/the.png" alt="Tea" width="140" height="140" densities="1x 2x" class="w-full h-full object-cover" />
                                     </div>
                                     <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
                                         <div class="font-medium text-coffee text-xs truncate">Tea</div>
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 flex flex-col">
                                     <div class="aspect-square w-full bg-latte-100">
-                                        <img src="/images-cafe/cookie.png" alt="Cookie" class="w-full h-full object-cover" />
+                                        <NuxtImg src="/images-cafe/cookie.png" alt="Cookie" width="140" height="140" densities="1x 2x" class="w-full h-full object-cover" />
                                     </div>
                                     <div class="flex items-center justify-between gap-1 px-2 py-1 border-t-2 border-coffee-500">
                                         <div class="font-medium text-coffee text-xs truncate">Cookie</div>
