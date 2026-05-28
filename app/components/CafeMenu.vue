@@ -157,21 +157,22 @@ async function onSendCommand() {
 </script>
 
 <template>
-    <div class="bg-latte p-8 min-h-screen flex flex-col text-coffee">
-        <h1 class="font-bold text-3xl mb-4 ml-4 sm:ml-6 text-coffee">
-            {{ cafe.name }}
-        </h1>
-        <NuxtLink v-if="baristaLink" :to="baristaLink">
-            <UButton class="fixed top-4 right-4 z-10 bg-coffee-500 hover:bg-coffee-600 text-white">
-                Be the barista
-                <UIcon name="i-hugeicons:coffee-02" />
-            </UButton>
-        </NuxtLink>
-        <div class="flex flex-col justify-center grow">
-            <h2 class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">
-                Menu
-            </h2>
-            <div class="grid grid-cols-2 gap-3 mb-4">
+    <div class="bg-latte min-h-screen text-coffee">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex flex-col min-h-screen">
+            <h1 class="font-bold text-3xl sm:text-4xl mb-6 text-coffee">
+                {{ cafe.name }}
+            </h1>
+            <NuxtLink v-if="baristaLink" :to="baristaLink">
+                <UButton class="fixed top-4 right-4 z-10 bg-coffee-500 hover:bg-coffee-600 text-white">
+                    Be the barista
+                    <UIcon name="i-hugeicons:coffee-02" />
+                </UButton>
+            </NuxtLink>
+            <div class="flex flex-col grow">
+                <h2 class="font-bold text-2xl mb-4 text-coffee">
+                    Menu
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 mb-10">
                 <button v-for="item of items" :key="item.$id" type="button" @click="openItem(item)"
                     class="border-2 border-coffee-500 overflow-hidden bg-white dark:bg-latte-50 text-left flex flex-col hover:bg-latte-100 dark:hover:bg-latte-200 transition-colors"
                     :style="{
@@ -201,52 +202,55 @@ async function onSendCommand() {
                     </div>
                 </button>
             </div>
-            <h2 key="pastOrders" class="font-bold text-2xl mb-4 ml-4 sm:ml-6 text-coffee">
+            <h2 key="pastOrders" class="font-bold text-2xl mb-4 text-coffee">
                 Past Orders
             </h2>
-            <UCard v-for="order in orders" :key="order.$id" variant="soft"
-                class="mt-2 flex flex-col bg-white dark:bg-latte-50 drop-shadow-xl rounded-lg">
-                <div class="flex flex-col justify-between">
-                    <div class="font-bold text-2xl text-coffee">
-                        {{ order.item?.name || "Unknown item" }}
-                    </div>
-                    <div class="font-mono text-gray-500 dark:text-gray-400 text-sm">
-                        #{{ order.$id }}
-                    </div>
-                    <div class="mt-4 text-coffee">
-                        {{ order.options.join(", ") }}
-                    </div>
-                    <div class="flex flex-row justify-between items-center">
-                        <div :class="{
-                            'text-green-600': order.status === 'completed',
-                            'text-yellow-600': order.status === 'ordered',
-                            'text-red-600': order.status === 'canceled',
-                        }">
-                            {{ orderStatusText(order) }}
+            <div v-if="orders.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <UCard v-for="order in orders" :key="order.$id" variant="soft"
+                    class="flex flex-col bg-white dark:bg-latte-50 drop-shadow-xl rounded-lg">
+                    <div class="flex flex-col justify-between">
+                        <div class="font-bold text-2xl text-coffee">
+                            {{ order.item?.name || "Unknown item" }}
                         </div>
-                        <UButton v-if="order.status === 'ordered'" size="sm" variant="soft" color="error" loading-auto
-                            @click="() => cancelOrder(order.$id)">
-                            Cancel
-                        </UButton>
+                        <div class="font-mono text-gray-500 dark:text-gray-400 text-sm">
+                            #{{ order.$id }}
+                        </div>
+                        <div class="mt-4 text-coffee">
+                            {{ order.options.join(", ") }}
+                        </div>
+                        <div class="flex flex-row justify-between items-center mt-2">
+                            <div :class="{
+                                'text-green-600': order.status === 'completed',
+                                'text-yellow-600': order.status === 'ordered',
+                                'text-red-600': order.status === 'canceled',
+                            }">
+                                {{ orderStatusText(order) }}
+                            </div>
+                            <UButton v-if="order.status === 'ordered'" size="sm" variant="soft" color="error"
+                                loading-auto @click="() => cancelOrder(order.$id)">
+                                Cancel
+                            </UButton>
+                        </div>
                     </div>
-                </div>
-            </UCard>
+                </UCard>
+            </div>
+        </div>
         </div>
         <UModal :open="isOpenOptions" @update:open="(v: boolean) => { if (!v) closeItem(); }" fullscreen :close="false"
             :ui="{
-                content: 'bg-white dark:bg-latte-50',
+                content: 'bg-white dark:bg-latte-50 sm:bg-transparent sm:dark:bg-transparent sm:flex sm:items-center sm:justify-center sm:p-6',
                 overlay: 'bg-coffee/50',
                 body: 'p-0',
             }">
             <template #content>
-                <div class="flex flex-col h-dvh bg-white dark:bg-latte-50 border-2 border-coffee-500 overflow-hidden"
+                <div class="flex flex-col sm:flex-row h-dvh w-full sm:h-auto sm:max-h-[90vh] sm:max-w-5xl sm:rounded-lg sm:shadow-2xl bg-white dark:bg-latte-50 border-2 border-coffee-500 overflow-hidden"
                     :style="{
                         viewTransitionName: selectedItem
                             ? `card-${selectedItem.$id}`
                             : 'none',
                     }">
-                    <div class="relative shrink-0">
-                        <img :src="itemImage(selectedItem?.imageUrl, 'large')" :alt="selectedItem?.name" class="w-full h-72 sm:h-96 object-cover" decoding="async" :style="{
+                    <div class="relative shrink-0 sm:w-1/2">
+                        <img :src="itemImage(selectedItem?.imageUrl, 'large')" :alt="selectedItem?.name" class="w-full h-72 sm:h-full sm:min-h-[28rem] sm:max-h-[90vh] object-cover" decoding="async" :style="{
                                 viewTransitionName: selectedItem
                                     ? `item-${selectedItem.$id}`
                                     : 'none',
@@ -257,7 +261,7 @@ async function onSendCommand() {
                             :class="showModalExtras ? 'opacity-100' : 'opacity-0'
                                 " />
                     </div>
-                    <div class="flex-1 overflow-y-auto p-4 transition-opacity duration-300"
+                    <div class="flex-1 overflow-y-auto p-4 sm:p-6 sm:w-1/2 transition-opacity duration-300"
                         :class="showModalExtras ? 'opacity-100' : 'opacity-0'">
                         <div class="flex items-center justify-between mb-4">
                             <h2 class="font-bold text-2xl text-coffee">
