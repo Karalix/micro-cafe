@@ -3,25 +3,30 @@
         <UContainer class="py-8">
             <UCard class="bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
                 <template #header>
-                    <h1 class="text-xl font-semibold leading-tight text-coffee">
-                        Share Your Page
-                    </h1>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Share this page using the URL or QR code below.
-                    </p>
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <h1 class="text-xl font-semibold leading-tight text-coffee">
+                                {{ $t('cafeSettings.share.title') }}
+                            </h1>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ $t('cafeSettings.share.subtitle') }}
+                            </p>
+                        </div>
+                        <LanguageSwitcher class="shrink-0" />
+                    </div>
                 </template>
 
                 <div class="space-y-6">
-                    <UFormGroup label="Page URL" name="pageUrl" help="This is the direct link to your page.">
+                    <UFormGroup :label="$t('cafeSettings.share.pageUrlLabel')" name="pageUrl" :help="$t('cafeSettings.share.pageUrlHelp')">
                         <div class="flex items-center gap-2">
-                            <UInput :model-value="pageUrl" readonly class="flex-grow" placeholder="Generating URL..."
+                            <UInput :model-value="pageUrl" readonly class="flex-grow" :placeholder="$t('cafeSettings.share.generatingUrl')"
                                 icon="i-heroicons-link" size="lg" />
                             <UButton @click="handleCopyUrl" :icon="copied
                                     ? 'i-heroicons-check-circle-20-solid'
                                     : 'i-heroicons-clipboard-document-20-solid'
                                 " :color="copied ? 'success' : 'primary'" variant="solid" square size="lg"
                                 :disabled="!pageUrl">
-                                {{ copied ? "Copied!" : "Copy" }}
+                                {{ copied ? $t("common.copied") : $t("common.copy") }}
                             </UButton>
                         </div>
                     </UFormGroup>
@@ -30,11 +35,10 @@
 
                     <div>
                         <h2 class="text-lg font-medium text-coffee mb-2">
-                            QR Code
+                            {{ $t('cafeSettings.qr.title') }}
                         </h2>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                            Scan this QR code with a mobile device to open the
-                            page.
+                            {{ $t('cafeSettings.qr.subtitle') }}
                         </p>
                         <div v-if="pageUrl" ref="qrCodeContainerRef"
                             class="flex justify-center items-center p-4 bg-white rounded-lg shadow max-w-xs mx-auto border border-gray-100">
@@ -48,13 +52,12 @@
                         <div v-if="pageUrl" class="flex justify-center mt-4">
                             <UButton @click="handleDownloadQrCode"
                                 icon="i-heroicons-arrow-down-tray-20-solid" variant="solid" size="lg">
-                                Download PNG
+                                {{ $t('cafeSettings.qr.downloadPng') }}
                             </UButton>
                         </div>
                         <div v-else class="text-center text-gray-500 py-10">
                             <p class="mb-2">
-                                Page URL not available, QR code cannot be
-                                generated.
+                                {{ $t('cafeSettings.qr.unavailable') }}
                             </p>
                             <USkeleton class="h-[220px] w-[220px mx-auto" />
                         </div>
@@ -66,17 +69,17 @@
             <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
-                        Update Cafe Name
+                        {{ $t('cafeSettings.updateName.title') }}
                     </h1>
                     <p class="text-sm text-gray-500">
-                        Modify your cafe's name.
+                        {{ $t('cafeSettings.updateName.subtitle') }}
                     </p>
                 </template>
 
                 <div class="space-y-6">
-                    <UFormGroup label="Cafe Name" name="cafeNameUpdate" help="Enter the new name for your cafe.">
+                    <UFormGroup :label="$t('cafeSettings.updateName.label')" name="cafeNameUpdate" :help="$t('cafeSettings.updateName.help')">
                         <div class="flex items-center gap-2">
-                            <UInput v-model="cafeNameInput" placeholder="Enter new cafe name" class="flex-grow"
+                            <UInput v-model="cafeNameInput" :placeholder="$t('cafeSettings.updateName.placeholder')" class="flex-grow"
                                 icon="i-heroicons-identification-20-solid" size="lg" :disabled="!currentCafeId || isLoadingUpdateName
                                     " />
                             <UButton @click="handleUpdateCafeName" :loading="isLoadingUpdateName" :disabled="!cafeNameInput.trim() ||
@@ -85,8 +88,8 @@
                                 " icon="i-heroicons-arrow-path-20-solid" variant="solid" size="lg">
                                 {{
                                     isLoadingUpdateName
-                                        ? "Updating..."
-                                        : "Update"
+                                        ? $t("cafeSettings.updateName.updating")
+                                        : $t("cafeSettings.updateName.update")
                                 }}
                             </UButton>
                         </div>
@@ -100,16 +103,16 @@
             <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
-                        Custom Images
+                        {{ $t('cafeSettings.customImages.title') }}
                     </h1>
                     <p class="text-sm text-gray-500">
-                        Upload your own images to use in your menu items.
+                        {{ $t('cafeSettings.customImages.subtitle') }}
                     </p>
                 </template>
 
                 <div class="space-y-4">
                     <UButton @click="fileInputRef?.click()" icon="i-heroicons-arrow-up-tray-20-solid"
-                        label="Upload Image" variant="solid" size="lg" />
+                        :label="$t('cafeSettings.customImages.upload')" variant="solid" size="lg" />
                     <input ref="fileInputRef" type="file" accept="image/*" class="hidden" @change="handleUploadImage" />
 
                     <div v-if="isLoadingImages" class="flex gap-4">
@@ -118,7 +121,7 @@
                     <div v-else-if="customImages.length === 0" class="text-center text-gray-500 py-8">
                         <UIcon name="i-heroicons-photo" class="mx-auto h-12 w-12 text-gray-400" />
                         <p class="mt-2">
-                            No custom images yet. Upload one to get started.
+                            {{ $t('cafeSettings.customImages.empty') }}
                         </p>
                     </div>
                     <div v-else class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
@@ -141,7 +144,7 @@
             <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
-                        About & Support
+                        {{ $t('cafeSettings.about.title') }}
                     </h1>
                 </template>
 
@@ -151,14 +154,13 @@
                             <UIcon name="i-simple-icons-github" class="w-6 h-6 text-gray-900 dark:text-white" />
                         </div>
                         <div>
-                            <h3 class="font-medium text-coffee">Open Source</h3>
+                            <h3 class="font-medium text-coffee">{{ $t('cafeSettings.about.openSourceTitle') }}</h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                                This project is somewhat open source. The appwrite server configuration
-                                available on Github is probably outdated, reach out if you need anything.
+                                {{ $t('cafeSettings.about.openSourceText') }}
                             </p>
                             <UButton to="https://github.com/Karalix/micro-cafe" target="_blank" variant="link"
                                 class="p-0">
-                                View on GitHub
+                                {{ $t('cafeSettings.about.viewOnGithub') }}
                             </UButton>
                         </div>
                     </div>
@@ -171,13 +173,13 @@
                         </div>
                         <div>
                             <h3 class="font-medium text-coffee">
-                                Contact the Maker
+                                {{ $t('cafeSettings.about.contactTitle') }}
                             </h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                                Built by Alix. Reach out if you need anything.
+                                {{ $t('cafeSettings.about.contactText') }}
                             </p>
                             <UButton to="https://krlx.fr" target="_blank" color="primary" variant="link" class="p-0">
-                                What about hiring me for your next project ?
+                                {{ $t('cafeSettings.about.hireText') }}
                             </UButton>
                         </div>
                     </div>
@@ -188,16 +190,14 @@
                         </div>
                         <div>
                             <h3 class="font-medium text-coffee">
-                                Support My Tiny Café
+                                {{ $t('cafeSettings.about.supportTitle') }}
                             </h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                                My Tiny Café is available free of charge, but if
-                                you enjoy using it, consider supporting its
-                                hosting costs.
+                                {{ $t('cafeSettings.about.supportText') }}
                             </p>
                             <UButton to="https://buymeacoffee.com/krlx" target="_blank" color="primary" variant="link"
                                 class="p-0">
-                                Support on Buy Me a Coffee
+                                {{ $t('cafeSettings.about.supportButton') }}
                             </UButton>
                         </div>
                     </div>
@@ -208,18 +208,16 @@
             <UCard class="bg-white ring-1 ring-red-200 dark:ring-red-900/40 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-red-600">
-                        Delete Account
+                        {{ $t('cafeSettings.delete.title') }}
                     </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Permanently delete your café, its menu, all orders,
-                        any custom images, and your account. This action
-                        cannot be undone.
+                        {{ $t('cafeSettings.delete.subtitle') }}
                     </p>
                 </template>
 
                 <UButton @click="openDeleteModal" icon="i-heroicons-trash-20-solid" color="error" variant="soft"
                     size="lg" :disabled="!currentCafeId">
-                    Delete my account
+                    {{ $t('cafeSettings.delete.button') }}
                 </UButton>
             </UCard>
         </UContainer>
@@ -228,31 +226,33 @@
             <template #content>
                 <div class="p-6 space-y-4">
                     <h2 class="text-lg font-semibold text-red-600">
-                        Delete your account permanently?
+                        {{ $t('cafeSettings.delete.modalTitle') }}
                     </h2>
                     <p class="text-sm text-gray-600 dark:text-gray-300">
-                        This will permanently delete:
+                        {{ $t('cafeSettings.delete.modalIntro') }}
                     </p>
                     <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                        <li>your café <strong>{{ currentCafeId }}</strong></li>
-                        <li>its menu items and all past orders</li>
-                        <li v-if="isPremium">your custom images</li>
-                        <li>your account (you will not be able to log in again)</li>
+                        <i18n-t keypath="cafeSettings.delete.modalListCafe" tag="li">
+                            <template #id><strong>{{ currentCafeId }}</strong></template>
+                        </i18n-t>
+                        <li>{{ $t('cafeSettings.delete.modalListMenu') }}</li>
+                        <li v-if="isPremium">{{ $t('cafeSettings.delete.modalListImages') }}</li>
+                        <li>{{ $t('cafeSettings.delete.modalListAccount') }}</li>
                     </ul>
-                    <UFormGroup :label="`Type &quot;${currentCafeId}&quot; to confirm`" name="deleteConfirm">
+                    <UFormGroup :label="$t('cafeSettings.delete.confirmLabel', { cafeId: currentCafeId })" name="deleteConfirm">
                         <UInput v-model="deleteConfirmInput" :placeholder="currentCafeId" size="lg"
                             :disabled="isDeletingAccount" />
                     </UFormGroup>
                     <div class="flex justify-end gap-2 pt-2">
                         <UButton @click="isDeleteModalOpen = false" color="neutral" variant="ghost"
                             :disabled="isDeletingAccount">
-                            Cancel
+                            {{ $t('common.cancel') }}
                         </UButton>
                         <UButton @click="handleDeleteAccount" color="error" variant="solid" :loading="isDeletingAccount"
                             :disabled="deleteConfirmInput.trim() !== currentCafeId ||
                                 isDeletingAccount
                                 ">
-                            Delete permanently
+                            {{ $t('cafeSettings.delete.deletePermanently') }}
                         </UButton>
                     </div>
                 </div>
@@ -263,25 +263,25 @@
             <UCard class="bg-white ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-latte-50">
                 <template #header>
                     <h1 class="text-xl font-semibold leading-tight text-coffee">
-                        Session
+                        {{ $t('cafeSettings.session.title') }}
                     </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Sign out of this device. You can sign back in anytime.
+                        {{ $t('cafeSettings.session.subtitle') }}
                     </p>
                 </template>
 
                 <UButton @click="logout" icon="i-heroicons-arrow-right-on-rectangle-20-solid" color="neutral"
                     variant="outline" size="lg">
-                    Logout
+                    {{ $t('cafeSettings.session.logout') }}
                 </UButton>
             </UCard>
         </UContainer>
         <UNavigationMenu
             class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white drop-shadow-md"
             :items="[
-                { label: 'Orders', to: `/${route.params.cafeId}/barista` },
-                { label: 'Menu', to: `/${route.params.cafeId}/barista/menu` },
-                { label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe` },
+                { label: $t('nav.orders'), to: `/${route.params.cafeId}/barista` },
+                { label: $t('nav.menu'), to: `/${route.params.cafeId}/barista/menu` },
+                { label: $t('nav.cafe'), to: `/${route.params.cafeId}/barista/cafe` },
             ]" />
     </div>
 </template>
@@ -295,6 +295,7 @@ import QrCodeVue from "qrcode.vue"; // Import QR Code component
 import { useClipboard } from "@vueuse/core"; // For advanced clipboard functionality
 
 const { add: addToast } = useToast(); // Optional: For success/error notifications
+const { t } = useI18n();
 
 const { $appwrite } = useNuxtApp();
 const databases = $appwrite.databases;
@@ -352,8 +353,8 @@ const handleUploadImage = async (event: Event) => {
             Permission.delete(Role.user(userId.value)),
         ]);
         toast.add({
-            title: "Image Uploaded",
-            description: `"${file.name}" has been uploaded.`,
+            title: t("cafeSettings.toast.imageUploadedTitle"),
+            description: t("cafeSettings.toast.imageUploadedDesc", { name: file.name }),
             color: "primary",
             icon: "i-heroicons-check-circle",
         });
@@ -361,8 +362,8 @@ const handleUploadImage = async (event: Event) => {
     } catch (error: any) {
         console.error("Failed to upload image:", error);
         toast.add({
-            title: "Upload Failed",
-            description: error.message || "Could not upload the image.",
+            title: t("cafeSettings.toast.uploadFailedTitle"),
+            description: error.message || t("cafeSettings.toast.uploadFailedDesc"),
             color: "error",
             icon: "i-heroicons-x-circle",
         });
@@ -374,7 +375,7 @@ const handleUploadImage = async (event: Event) => {
 const handleDeleteImage = async (fileId: string) => {
     if (
         !window.confirm(
-            "Delete this image? Items using it will show a broken image.",
+            t("cafeSettings.toast.confirmDeleteImage"),
         )
     )
         return;
@@ -382,8 +383,8 @@ const handleDeleteImage = async (fileId: string) => {
     try {
         await storage.deleteFile("images", fileId);
         toast.add({
-            title: "Image Deleted",
-            description: "The image has been deleted.",
+            title: t("cafeSettings.toast.imageDeletedTitle"),
+            description: t("cafeSettings.toast.imageDeletedDesc"),
             color: "primary",
             icon: "i-heroicons-check-circle",
         });
@@ -391,8 +392,8 @@ const handleDeleteImage = async (fileId: string) => {
     } catch (error: any) {
         console.error("Failed to delete image:", error);
         toast.add({
-            title: "Delete Failed",
-            description: error.message || "Could not delete the image.",
+            title: t("cafeSettings.toast.deleteFailedTitle"),
+            description: error.message || t("cafeSettings.toast.deleteFailedDesc"),
             color: "error",
             icon: "i-heroicons-x-circle",
         });
@@ -423,8 +424,8 @@ const isLoadingUpdateName = ref<boolean>(false);
 async function handleUpdateCafeName(): Promise<void> {
     if (!currentCafeId.value) {
         toast.add({
-            title: "Error",
-            description: "Cafe ID is not available. Cannot update name.",
+            title: t("cafeSettings.toast.errorTitle"),
+            description: t("cafeSettings.toast.cafeIdUnavailable"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
@@ -433,8 +434,8 @@ async function handleUpdateCafeName(): Promise<void> {
 
     if (!cafeNameInput.value.trim()) {
         toast.add({
-            title: "Validation Error",
-            description: "Cafe name cannot be empty.",
+            title: t("cafeSettings.toast.validationErrorTitle"),
+            description: t("cafeSettings.toast.cafeNameEmpty"),
             color: "warning",
             icon: "i-heroicons-exclamation-circle-20-solid",
         });
@@ -448,16 +449,16 @@ async function handleUpdateCafeName(): Promise<void> {
         });
 
         toast.add({
-            title: "Success!",
-            description: `Cafe name updated to "${cafeNameInput.value}".`,
+            title: t("cafeSettings.toast.successTitle"),
+            description: t("cafeSettings.toast.cafeNameUpdated", { name: cafeNameInput.value }),
             color: "primary",
             icon: "i-heroicons-check-circle-20-solid",
         });
     } catch (error) {
         console.error("Failed to update cafe name:", error);
         toast.add({
-            title: "Update Failed",
-            description: "Could not update cafe name. Please try again.",
+            title: t("cafeSettings.toast.updateFailedTitle"),
+            description: t("cafeSettings.toast.updateNameFailedDesc"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
@@ -485,9 +486,9 @@ watch(
             if (process.client && route.fullPath !== "/" && route.name) {
                 // Ensure route is resolved
                 toast.add({
-                    title: "Missing Cafe ID",
+                    title: t("cafeSettings.toast.missingCafeIdTitle"),
                     description:
-                        "The unique identifier for the cafe is missing from the URL.",
+                        t("cafeSettings.toast.missingCafeIdDesc"),
                     color: "warning",
                     icon: "i-heroicons-exclamation-triangle-20-solid",
                 });
@@ -529,8 +530,8 @@ const {
 async function handleCopyUrl(): Promise<void> {
     if (!pageUrl.value) {
         toast.add({
-            title: "URL Not Available",
-            description: "The page URL is not ready to be copied.",
+            title: t("cafeSettings.toast.urlNotAvailableTitle"),
+            description: t("cafeSettings.toast.urlNotAvailableDesc"),
             color: "warning",
             icon: "i-heroicons-exclamation-circle-20-solid",
         });
@@ -539,9 +540,9 @@ async function handleCopyUrl(): Promise<void> {
 
     if (!clipboardIsSupported.value) {
         toast.add({
-            title: "Clipboard Access Denied",
+            title: t("cafeSettings.toast.clipboardDeniedTitle"),
             description:
-                "Your browser settings prevent clipboard access, or it's not supported.",
+                t("cafeSettings.toast.clipboardDeniedDesc"),
             color: "error",
             icon: "i-heroicons-no-symbol-20-solid",
         });
@@ -556,16 +557,16 @@ async function handleCopyUrl(): Promise<void> {
         if (copied.value) {
             // `copied` ref from useClipboard indicates success
             toast.add({
-                title: "URL Copied!",
-                description: "The page URL has been copied to your clipboard.",
+                title: t("cafeSettings.toast.urlCopiedTitle"),
+                description: t("cafeSettings.toast.urlCopiedDesc"),
                 color: "primary",
                 icon: "i-heroicons-check-circle-20-solid",
             });
         } else {
             // This might occur if copy() promise resolves but `copied` flag isn't set (e.g. legacy mode issues)
             toast.add({
-                title: "Copy Unconfirmed",
-                description: "Attempted to copy. Please verify your clipboard.",
+                title: t("cafeSettings.toast.copyUnconfirmedTitle"),
+                description: t("cafeSettings.toast.copyUnconfirmedDesc"),
                 color: "primary",
                 icon: "i-heroicons-information-circle-20-solid",
             });
@@ -573,9 +574,9 @@ async function handleCopyUrl(): Promise<void> {
     } catch (error) {
         console.error("Failed to copy URL:", error);
         toast.add({
-            title: "Copy Failed",
+            title: t("cafeSettings.toast.copyFailedTitle"),
             description:
-                "An error occurred while trying to copy the URL. Please copy it manually.",
+                t("cafeSettings.toast.copyFailedDesc"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
@@ -588,8 +589,8 @@ async function handleDownloadQrCode(): Promise<void> {
     const svgElement = qrCodeContainerRef.value?.querySelector("svg");
     if (!svgElement) {
         toast.add({
-            title: "Download Failed",
-            description: "QR code is not ready yet. Please try again.",
+            title: t("cafeSettings.toast.downloadFailedTitle"),
+            description: t("cafeSettings.toast.qrNotReady"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
@@ -647,16 +648,16 @@ async function handleDownloadQrCode(): Promise<void> {
         URL.revokeObjectURL(downloadUrl);
 
         toast.add({
-            title: "QR Code Downloaded",
-            description: "The QR code PNG has been saved.",
+            title: t("cafeSettings.toast.qrDownloadedTitle"),
+            description: t("cafeSettings.toast.qrDownloadedDesc"),
             color: "primary",
             icon: "i-heroicons-check-circle-20-solid",
         });
     } catch (error) {
         console.error("Failed to download QR code:", error);
         toast.add({
-            title: "Download Failed",
-            description: "Could not generate the PNG file. Please try again.",
+            title: t("cafeSettings.toast.downloadFailedTitle"),
+            description: t("cafeSettings.toast.qrGenerateFailed"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });
@@ -667,8 +668,8 @@ const logout = async () => {
     await account.deleteSession("current");
     navigateTo("/");
     addToast({
-        title: "Logged out",
-        description: "You have been logged out",
+        title: t("cafeSettings.toast.loggedOutTitle"),
+        description: t("cafeSettings.toast.loggedOutDesc"),
         color: "primary",
     });
 };
@@ -706,8 +707,8 @@ async function handleDeleteAccount() {
         await account.updateStatus();
 
         toast.add({
-            title: "Account deleted",
-            description: "Your account and café have been permanently deleted.",
+            title: t("cafeSettings.toast.accountDeletedTitle"),
+            description: t("cafeSettings.toast.accountDeletedDesc"),
             color: "primary",
             icon: "i-heroicons-check-circle-20-solid",
         });
@@ -716,10 +717,10 @@ async function handleDeleteAccount() {
     } catch (error: any) {
         console.error("Failed to delete account:", error);
         toast.add({
-            title: "Deletion Failed",
+            title: t("cafeSettings.toast.deletionFailedTitle"),
             description:
                 error.message ||
-                "Could not delete your account. Please try again.",
+                t("cafeSettings.toast.deletionFailedDesc"),
             color: "error",
             icon: "i-heroicons-x-circle-20-solid",
         });

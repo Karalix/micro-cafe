@@ -2,36 +2,39 @@
   <div class="bg-latte min-h-screen flex items-center justify-center p-4">
     <UCard class="w-full sm:max-w-sm bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
       <template #header>
-        <h2 class="text-xl font-bold text-center text-coffee">Create Account</h2>
+        <div class="flex items-center justify-between gap-2">
+          <h2 class="text-xl font-bold text-coffee">{{ $t('auth.signup.title') }}</h2>
+          <LanguageSwitcher />
+        </div>
       </template>
 
       <UForm :state="state" :schema="schema" @submit="handleSignup" @error="handleError" class="flex flex-col space-y-4">
-        <UFormGroup label="Name" name="name" class="mb-4">
-          <UInput v-model="state.name" placeholder="Your Name" class="w-full">
+        <UFormGroup :label="$t('auth.fields.nameLabel')" name="name" class="mb-4">
+          <UInput v-model="state.name" :placeholder="$t('auth.fields.namePlaceholder')" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Your name</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('auth.fields.nameFloating') }}</span>
             </label>
-          </UInput> 
+          </UInput>
         </UFormGroup>
 
-        <UFormGroup label="Email" name="email" class="mb-4">
-          <UInput v-model="state.email" type="email" placeholder="you@example.com" class="w-full">
+        <UFormGroup :label="$t('auth.fields.emailLabel')" name="email" class="mb-4">
+          <UInput v-model="state.email" type="email" :placeholder="$t('auth.fields.emailPlaceholder')" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Email</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('auth.fields.emailFloating') }}</span>
             </label>
-          </UInput> 
+          </UInput>
         </UFormGroup>
 
 
-        <UFormGroup label="Café ID" name="cafeId" class="mb-4">
-          <UInput v-model="state.cafeID" placeholder="Café ID" class="w-full">
+        <UFormGroup :label="$t('auth.fields.cafeIdLabel')" name="cafeId" class="mb-4">
+          <UInput v-model="state.cafeID" :placeholder="$t('auth.fields.cafeIdPlaceholder')" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Your café ID</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('auth.fields.cafeIdFloating') }}</span>
             </label>
-          </UInput> 
+          </UInput>
         </UFormGroup>
 
-        <UFormGroup label="Password" name="password" class="mb-6">
+        <UFormGroup :label="$t('auth.fields.passwordLabel')" name="password" class="mb-6">
           <UInput v-model="state.password" :type="showPassword ? 'text' : 'password'" placeholder="••••••••" :ui="{ trailing: 'pointer-events-auto' }" class="w-full">
             <template #trailing>
               <UButton
@@ -43,16 +46,16 @@
               />
             </template>
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Password</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('auth.fields.passwordFloating') }}</span>
             </label>
-          </UInput> 
+          </UInput>
         </UFormGroup>
         <div class="hidden" aria-hidden="true">
           <UCheckbox v-model="state.newsletter" label="Subscribe to newsletter" tabindex="-1" />
         </div>
 
         <UButton type="submit" block :loading="loading" class="bg-coffee-500 hover:bg-coffee-600 text-white">
-          Sign Up
+          {{ $t('auth.signup.submit') }}
         </UButton>
         <p v-if="hasErrors" class="text-red-500 text-sm text-center mt-2">
           {{ hasErrors.errors.map(err => err.message).join(', ') }}
@@ -62,10 +65,10 @@
       <template #footer>
         <div class="text-center">
           <span class="text-sm text-gray-500 dark:text-gray-400">
-            Already have an account?
+            {{ $t('auth.signup.haveAccount') }}
           </span>
           <NuxtLink to="/login" class="text-sm text-coffee-600 hover:underline ml-1 font-medium">
-            Log In
+            {{ $t('auth.signup.loginLink') }}
           </NuxtLink>
         </div>
       </template>
@@ -83,6 +86,7 @@ const account = $appwrite.account;
 const databases = $appwrite.databases;
 const toast = useToast();
 const router = useRouter();
+const { t } = useI18n();
 
 // Form state
 const state = reactive({
@@ -112,10 +116,10 @@ function sanitizeCafeID(input: string): string {
 
 // Validation schema using Zod
 const schema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  cafeID: z.string().min(3, 'Cafe ID must be at least 3 characters'),
+  name: z.string().min(2, t('auth.validation.nameMin')),
+  email: z.string().email(t('auth.validation.invalidEmail')),
+  password: z.string().min(8, t('auth.validation.passwordMin')),
+  cafeID: z.string().min(3, t('auth.validation.cafeIdMin')),
   newsletter: z.boolean().optional()
 });
 
@@ -138,7 +142,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
   if (state.newsletter) {
     setTimeout(() => {
       loading.value = false;
-      toast.add({ title: 'Account Created!', description: 'Please login to continue.', color: 'primary' });
+      toast.add({ title: t('auth.signup.accountCreatedTitle'), description: t('auth.signup.accountCreatedDesc'), color: 'primary' });
       router.push('/login');
     }, 1000);
     return;
@@ -146,7 +150,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
 
   state.cafeID = sanitizeCafeID(state.cafeID);
   if (state.cafeID === 'undefined') {
-    toast.add({ title: 'Invalid Cafe ID', description: 'Cafe ID cannot be "undefined". Please choose a different cafe ID.', color: 'error' });
+    toast.add({ title: t('auth.signup.invalidCafeIdTitle'), description: t('auth.signup.invalidCafeIdDesc'), color: 'error' });
     loading.value = false;
     return;
   }
@@ -154,7 +158,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
   // Before creating a new account, verify that the cafeID does not already exsist in the database
   const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);
   if (alreadyExists.total > 0) {
-    toast.add({ title: 'Cafe ID already exists', description: 'Please choose a different cafe ID.', color: 'error' });
+    toast.add({ title: t('auth.signup.cafeIdExistsTitle'), description: t('auth.signup.cafeIdExistsDesc'), color: 'error' });
     loading.value = false;
     return;
   }
@@ -171,7 +175,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
       name
     );
 
-    toast.add({ title: 'Account Created!', description: 'Please login to continue.', color: 'primary' });
+    toast.add({ title: t('auth.signup.accountCreatedTitle'), description: t('auth.signup.accountCreatedDesc'), color: 'primary' });
 
     // Create a new email session
     await account.createEmailPasswordSession(email, password);
@@ -204,7 +208,7 @@ async function handleSignup(event: FormSubmitEvent<Schema>) {
 
   } catch (error: any) {
     console.error('Signup failed:', error);
-    toast.add({ title: 'Signup Failed', description: error.message || 'An unexpected error occurred.', color: 'error' });
+    toast.add({ title: t('auth.signup.failTitle'), description: error.message || t('auth.signup.failDesc'), color: 'error' });
   } finally {
     loading.value = false;
   }

@@ -1,0 +1,475 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "orders": "Orders",
+    "menu": "Menu",
+    "cafe": "Cafe"
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  },
+  "app": {
+    "name": "My Tiny Café",
+    "description": "Order your favorite café"
+  },
+  "landing": {
+    "nav": {
+      "login": "Login",
+      "openCafe": "Open My Tiny Café"
+    },
+    "hero": {
+      "title": "Turn Your Home into the {highlight} in Town.",
+      "titleHighlight": "Best Coffee Shop",
+      "subtitle": "The digital menu for home baristas. Create your drink list, share your QR code with friends and family, and receive orders straight to your phone.",
+      "subtitleEmphasis": "100% Free. 100% Cozy.",
+      "ctaPrimary": "Open My Tiny Café",
+      "ctaDemo": "See a demo café ↗",
+      "noCreditCard": "No credit card required. No ads. Just love."
+    },
+    "mockup": {
+      "notifTitle": "New Order from Magali",
+      "notifOrder": "Latte (Oat Milk, No Sugar)",
+      "now": "now",
+      "menu": "Menu",
+      "latte": "Latte",
+      "lattePrice": "1 hug 🤗",
+      "matcha": "Matcha",
+      "tea": "Tea",
+      "teaPrice": "A story 📖",
+      "cookie": "Cookie",
+      "cookiePrice": "Free!"
+    },
+    "valueProp": {
+      "eyebrow": "Hospitality, Upgraded",
+      "heading": "Why shout from the kitchen?",
+      "problemTitle": "The Problem",
+      "problemText": "Shouting from the kitchen, \"Who wants tea?\" and forgetting who wanted sugar and who wanted almond milk by the time the kettle boils.",
+      "solutionTitle": "The Solution",
+      "solutionText": "My Tiny Café brings the delight of a boutique coffee shop experience to your living room. Make the moment special."
+    },
+    "howItWorks": {
+      "title": "How It Works (3 Simple Steps)",
+      "step1Title": "1. Build Your Menu",
+      "step1Text": "Give your café a name. Add your specialties—Latte, Tisane, or Tartine. Customize options for milk and sugar.",
+      "step2Title": "2. Share the Link",
+      "step2Text": "Print your QR code for the fridge or text the link. Guests browse and customize their beverage exactly how they like it.",
+      "step3Title": "3. Get Notified & Serve",
+      "step3Text": "Ding! You get a notification instantly. No money changes hands—just a perfect cup served with a smile."
+    },
+    "features": {
+      "title": "Features",
+      "feature1Title": "Fully Customizable Menu",
+      "feature1Text": "From \"Tisane d'allaitement\" to \"Iced Matcha\", you define what you serve.",
+      "feature2Title": "Instant Push Notifications",
+      "feature2Text": "Never miss an order. You'll know the second your \"customer\" submits their request.",
+      "feature3Title": "Zero App Download",
+      "feature3Text": "Guests just scan (or click) and order. No installation needed.",
+      "feature4Title": "Totally Free",
+      "feature4Text": "No payment gateways. The only currency here is gratitude."
+    },
+    "stories": {
+      "title": "Real Stories",
+      "quote1": "Can I use your app to order a tea, dad?",
+      "quote1Name": "Zola, Age 5",
+      "quote1Role": "Chief Taste Tester",
+      "quote2": "It's so much easier to order a coffee for when I get back home. And the barista is super cute too!",
+      "quote2Name": "Magali",
+      "quote2Role": "Wife & Loyal Customer"
+    },
+    "audience": {
+      "title": "Who is My Tiny Café For?",
+      "card1Title": "The Remote Work Power Couple",
+      "card1Text": "Send a silent order for a caffeine boost without interrupting the Zoom meeting.",
+      "card2Title": "The \"Host with the Most\"",
+      "card2Text": "Impress your guests by letting them order their post-meal digestif via a digital menu.",
+      "card3Title": "The Playful Parent",
+      "card3Text": "Kids love playing \"restaurant.\" Set up the menu for them and let them take your order."
+    },
+    "faq": {
+      "title": "FAQ",
+      "q1": "Is it really free?",
+      "a1": "Yes! My Tiny Café is currently completely free to use.",
+      "q2": "Can I charge money for the drinks?",
+      "a2": "No. This app is designed for friends and family. There is no payment processing involved—just the joy of serving a drink to someone you care about.",
+      "q3": "What can I put on the menu?",
+      "a3": "Anything! Coffee, tea, snacks, tartines, water... if you can make it in your kitchen, you can put it on your menu."
+    },
+    "openSource": {
+      "title": "Proudly Open Source",
+      "text": "I believe in transparency and community. My Tiny Café is open source, so you can see exactly how it's built, contribute features, or host it yourself.",
+      "button": "View on GitHub"
+    },
+    "footer": {
+      "title": "Ready to open shop?",
+      "subtitle": "Join the community of home baristas today.",
+      "cta": "Create Your Café Now",
+      "madeWith": "Made with ❤️ in France for Zola and Magali.",
+      "copyright": "© 2024 My Tiny Café",
+      "aboutMakerTitle": "About the Maker",
+      "aboutMakerText": "I am Alix, I built this to make my wife and daughter happy. I hope it brings a little joy to your home too. I am a freelance frontend developer (preferably in Vue.js / Nuxt.js) with a background in Human-Computer Interaction research. {link}.",
+      "aboutMakerLink": "Check out my work",
+      "guest": "Guest?",
+      "findCafe": "Find a Café"
+    }
+  },
+  "auth": {
+    "fields": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "you{'@'}example.com",
+      "emailFloating": "Email",
+      "passwordLabel": "Password",
+      "passwordFloating": "Password",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your Name",
+      "nameFloating": "Your name",
+      "cafeIdLabel": "Café ID",
+      "cafeIdPlaceholder": "Café ID",
+      "cafeIdFloating": "Your café ID"
+    },
+    "validation": {
+      "invalidEmail": "Invalid email address",
+      "passwordMin": "Password must be at least 8 characters",
+      "nameMin": "Name must be at least 2 characters",
+      "cafeIdMin": "Cafe ID must be at least 3 characters"
+    },
+    "login": {
+      "title": "Login",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up",
+      "successTitle": "Login Successful!",
+      "successDesc": "Redirecting...",
+      "failTitle": "Login Failed",
+      "errorUnexpected": "An unexpected error occurred. Please try again."
+    },
+    "signup": {
+      "title": "Create Account",
+      "submit": "Sign Up",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Log In",
+      "accountCreatedTitle": "Account Created!",
+      "accountCreatedDesc": "Please login to continue.",
+      "invalidCafeIdTitle": "Invalid Cafe ID",
+      "invalidCafeIdDesc": "Cafe ID cannot be \"undefined\". Please choose a different cafe ID.",
+      "cafeIdExistsTitle": "Cafe ID already exists",
+      "cafeIdExistsDesc": "Please choose a different cafe ID.",
+      "failTitle": "Signup Failed",
+      "failDesc": "An unexpected error occurred."
+    }
+  },
+  "setup": {
+    "title": "Complete Cafe Setup",
+    "intro": "It seems something went wrong during the setup of your cafe. Please provide your cafe details to continue.",
+    "cafeNameLabel": "Cafe Name",
+    "cafeNamePlaceholder": "My Awesome Cafe",
+    "cafeNameFloating": "Cafe Name",
+    "noSpecialChars": "Your café name cannot contain special characters or spaces.",
+    "cafeIdLabel": "Café ID",
+    "cafeIdPlaceholder": "cafe-id",
+    "cafeIdFloating": "Your café ID",
+    "submit": "Complete Setup",
+    "cafeFoundTitle": "Cafe Found",
+    "cafeFoundDesc": "Redirecting to your cafe...",
+    "authErrorTitle": "Authentication Error",
+    "authErrorDesc": "You need to be logged in to complete setup.",
+    "cafeIdExistsTitle": "Cafe ID already exists",
+    "cafeIdExistsDesc": "Please choose a different cafe ID.",
+    "invalidCafeIdTitle": "Invalid Cafe ID",
+    "invalidCafeIdDesc": "Cafe ID cannot be \"undefined\". Please choose a different cafe ID.",
+    "completeTitle": "Setup Complete!",
+    "completeDesc": "Your cafe is ready.",
+    "failTitle": "Setup Failed",
+    "failDesc": "An unexpected error occurred.",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "cafeIdMin": "Cafe ID must be at least 3 characters"
+    }
+  },
+  "menu": {
+    "beBarista": "Be the barista",
+    "heading": "Menu",
+    "pastOrders": "Past Orders",
+    "unknownItem": "Unknown item",
+    "yourName": "Your name",
+    "order": "Order",
+    "anonymous": "Anon",
+    "status": {
+      "ordered": "Your order is being prepared",
+      "completed": "Your order is ready !",
+      "canceled": "Your order has been canceled",
+      "unknown": "Unknown status"
+    },
+    "toast": {
+      "orderSentTitle": "Order sent",
+      "orderSentDesc": "Your order has been sent successfully.",
+      "errorTitle": "Error",
+      "orderFailDesc": "Failed to send your order. Please try again.",
+      "orderCanceledTitle": "Order canceled",
+      "orderCanceledDesc": "Your order has been canceled successfully.",
+      "cancelFailDesc": "Failed to cancel your order. Please try again."
+    },
+    "headDescription": "Order your favorite items from {cafeName}"
+  },
+  "baristaOrders": {
+    "title": "Order",
+    "enableNotifications": "Receive a notification when a new order is placed",
+    "emptyTitle": "No orders yet",
+    "emptyText": "Share your café page to start receiving orders!",
+    "shareCafe": "Share my Café",
+    "pastOrders": "Past Orders",
+    "cancel": "Cancel",
+    "complete": "Complete",
+    "unknownItem": "Unknown item",
+    "statusLabel": {
+      "ordered": "Ordered",
+      "completed": "Completed",
+      "canceled": "Canceled"
+    }
+  },
+  "baristaMenu": {
+    "manageMenuFor": "Manage Menu for {cafeName}",
+    "cafeId": "Cafe ID: {id}",
+    "addNewItem": "Add New Item",
+    "noItemsTitle": "No items yet",
+    "noItemsText": "Get started by adding a new menu item.",
+    "options": "Options:",
+    "yesNo": "Yes / No",
+    "noOptions": "No specific options defined.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "editItemTitle": "Edit {name}",
+    "addItemTitle": "Add New Item",
+    "itemNamePlaceholder": "e.g., Espresso, Croissant",
+    "itemNameFloating": "Item name",
+    "pricePlaceholder": "e.g., 3.50",
+    "priceFloating": "Price",
+    "imageLabel": "Image",
+    "noImage": "No image",
+    "descriptionPlaceholder": "Item description...",
+    "descriptionFloating": "Description",
+    "optionNamePlaceholder": "e.g., Size, Milk, Decaf",
+    "optionNameFloating": "Option name",
+    "multipleValues": "Multiple Values / Simple option",
+    "valuesFor": "Values for {name}:",
+    "thisOption": "this option",
+    "valuePlaceholder": "e.g., Small, Large, Oat Milk",
+    "valueFloating": "Value",
+    "addValue": "Add Value",
+    "addNewOptionType": "Add New Option Type",
+    "removeOption": "Remove option",
+    "removeValue": "Remove value",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "addItem": "Add Item",
+    "confirmDelete": "Are you sure you want to delete this item? This action cannot be undone.",
+    "images": {
+      "bobba": "Bubble tea",
+      "cafe": "Coffee",
+      "cookie": "Cookie",
+      "emporter": "Takeaway",
+      "gaiwan": "Gaiwan",
+      "jus": "Juice",
+      "latte": "Latte",
+      "muffin": "Muffin",
+      "mug": "Mug",
+      "tartine": "Tartine",
+      "the": "Tea",
+      "yaourt": "Yogurt"
+    },
+    "toast": {
+      "errorLoadingCafeTitle": "Error Loading Cafe",
+      "errorLoadingCafeDesc": "The requested cafe could not be found or loaded.",
+      "errorLoadingMenuTitle": "Error Loading Menu",
+      "errorLoadingMenuDesc": "Could not load menu items.",
+      "errorTitle": "Error",
+      "cafeIdMissing": "Cafe ID is missing.",
+      "itemDeletedTitle": "Item Deleted",
+      "itemDeletedDesc": "The item has been successfully deleted.",
+      "deletionFailedTitle": "Deletion Failed",
+      "deletionFailedDesc": "Could not delete the item.",
+      "validationErrorTitle": "Validation Error",
+      "itemNameRequired": "Item name is required.",
+      "itemUpdatedTitle": "Item Updated",
+      "itemUpdatedDesc": "Changes saved successfully.",
+      "itemAddedTitle": "Item Added",
+      "itemAddedDesc": "New item added to the menu.",
+      "saveFailedTitle": "Save Failed",
+      "saveFailedDesc": "Could not save the item."
+    }
+  },
+  "cafeSettings": {
+    "share": {
+      "title": "Share Your Page",
+      "subtitle": "Share this page using the URL or QR code below.",
+      "pageUrlLabel": "Page URL",
+      "pageUrlHelp": "This is the direct link to your page.",
+      "generatingUrl": "Generating URL..."
+    },
+    "qr": {
+      "title": "QR Code",
+      "subtitle": "Scan this QR code with a mobile device to open the page.",
+      "downloadPng": "Download PNG",
+      "unavailable": "Page URL not available, QR code cannot be generated."
+    },
+    "updateName": {
+      "title": "Update Cafe Name",
+      "subtitle": "Modify your cafe's name.",
+      "label": "Cafe Name",
+      "help": "Enter the new name for your cafe.",
+      "placeholder": "Enter new cafe name",
+      "update": "Update",
+      "updating": "Updating..."
+    },
+    "customImages": {
+      "title": "Custom Images",
+      "subtitle": "Upload your own images to use in your menu items.",
+      "upload": "Upload Image",
+      "empty": "No custom images yet. Upload one to get started."
+    },
+    "about": {
+      "title": "About & Support",
+      "openSourceTitle": "Open Source",
+      "openSourceText": "This project is somewhat open source. The appwrite server configuration available on Github is probably outdated, reach out if you need anything.",
+      "viewOnGithub": "View on GitHub",
+      "contactTitle": "Contact the Maker",
+      "contactText": "Built by Alix. Reach out if you need anything.",
+      "hireText": "What about hiring me for your next project ?",
+      "supportTitle": "Support My Tiny Café",
+      "supportText": "My Tiny Café is available free of charge, but if you enjoy using it, consider supporting its hosting costs.",
+      "supportButton": "Support on Buy Me a Coffee"
+    },
+    "delete": {
+      "title": "Delete Account",
+      "subtitle": "Permanently delete your café, its menu, all orders, any custom images, and your account. This action cannot be undone.",
+      "button": "Delete my account",
+      "modalTitle": "Delete your account permanently?",
+      "modalIntro": "This will permanently delete:",
+      "modalListCafe": "your café {id}",
+      "modalListMenu": "its menu items and all past orders",
+      "modalListImages": "your custom images",
+      "modalListAccount": "your account (you will not be able to log in again)",
+      "confirmLabel": "Type \"{cafeId}\" to confirm",
+      "deletePermanently": "Delete permanently"
+    },
+    "session": {
+      "title": "Session",
+      "subtitle": "Sign out of this device. You can sign back in anytime.",
+      "logout": "Logout"
+    },
+    "toast": {
+      "imageUploadedTitle": "Image Uploaded",
+      "imageUploadedDesc": "\"{name}\" has been uploaded.",
+      "uploadFailedTitle": "Upload Failed",
+      "uploadFailedDesc": "Could not upload the image.",
+      "confirmDeleteImage": "Delete this image? Items using it will show a broken image.",
+      "imageDeletedTitle": "Image Deleted",
+      "imageDeletedDesc": "The image has been deleted.",
+      "deleteFailedTitle": "Delete Failed",
+      "deleteFailedDesc": "Could not delete the image.",
+      "errorTitle": "Error",
+      "cafeIdUnavailable": "Cafe ID is not available. Cannot update name.",
+      "validationErrorTitle": "Validation Error",
+      "cafeNameEmpty": "Cafe name cannot be empty.",
+      "successTitle": "Success!",
+      "cafeNameUpdated": "Cafe name updated to \"{name}\".",
+      "updateFailedTitle": "Update Failed",
+      "updateNameFailedDesc": "Could not update cafe name. Please try again.",
+      "missingCafeIdTitle": "Missing Cafe ID",
+      "missingCafeIdDesc": "The unique identifier for the cafe is missing from the URL.",
+      "urlNotAvailableTitle": "URL Not Available",
+      "urlNotAvailableDesc": "The page URL is not ready to be copied.",
+      "clipboardDeniedTitle": "Clipboard Access Denied",
+      "clipboardDeniedDesc": "Your browser settings prevent clipboard access, or it's not supported.",
+      "urlCopiedTitle": "URL Copied!",
+      "urlCopiedDesc": "The page URL has been copied to your clipboard.",
+      "copyUnconfirmedTitle": "Copy Unconfirmed",
+      "copyUnconfirmedDesc": "Attempted to copy. Please verify your clipboard.",
+      "copyFailedTitle": "Copy Failed",
+      "copyFailedDesc": "An error occurred while trying to copy the URL. Please copy it manually.",
+      "downloadFailedTitle": "Download Failed",
+      "qrNotReady": "QR code is not ready yet. Please try again.",
+      "qrDownloadedTitle": "QR Code Downloaded",
+      "qrDownloadedDesc": "The QR code PNG has been saved.",
+      "qrGenerateFailed": "Could not generate the PNG file. Please try again.",
+      "loggedOutTitle": "Logged out",
+      "loggedOutDesc": "You have been logged out",
+      "accountDeletedTitle": "Account deleted",
+      "accountDeletedDesc": "Your account and café have been permanently deleted.",
+      "deletionFailedTitle": "Deletion Failed",
+      "deletionFailedDesc": "Could not delete your account. Please try again."
+    }
+  },
+  "invalidCafe": {
+    "title": "This café is closed.",
+    "text": "We couldn't find any café at this address. Maybe the link is wrong — or maybe it's time for {you} to open your own?",
+    "textHighlight": "you",
+    "openOwn": "Open my own café",
+    "backHome": "Back home",
+    "noCreditCard": "No credit card. No ads. Just love.",
+    "headTitle": "Café not found — My Tiny Café"
+  },
+  "pwa": {
+    "finding": "Finding your spot...",
+    "redirecting": "Redirecting you to your last visited café."
+  },
+  "demo": {
+    "cafeName": "Chez Zola",
+    "promptTitle": "Want your own home café?",
+    "promptText": "If you'd love to open your own tiny café for friends and family, sign up — it's totally free, ad-free, and takes about a minute.",
+    "openCafe": "Open my tiny café",
+    "keepBrowsing": "Keep browsing",
+    "items": {
+      "latte": {
+        "name": "Latte",
+        "description": "Silky espresso topped with steamed milk.",
+        "price": "1 hug 🤗"
+      },
+      "espresso": {
+        "name": "Espresso",
+        "description": "Short, dark, intense. The classic."
+      },
+      "matcha": {
+        "name": "Matcha",
+        "description": "Whisked ceremonial-grade green tea."
+      },
+      "tea": {
+        "name": "Tea",
+        "description": "Loose-leaf, steeped to order."
+      },
+      "juice": {
+        "name": "Fresh Juice",
+        "description": "Pressed this morning."
+      },
+      "bubble": {
+        "name": "Bubble Tea",
+        "description": "Chewy tapioca, your favorite flavor."
+      },
+      "muffin": {
+        "name": "Muffin",
+        "description": "Baked this morning."
+      },
+      "cookie": {
+        "name": "Cookie",
+        "description": "Warm and chewy."
+      },
+      "tartine": {
+        "name": "Tartine",
+        "description": "Sourdough, toasted, with toppings."
+      },
+      "yogurt": {
+        "name": "Yogurt",
+        "description": "Greek yogurt, fresh fruits, granola.",
+        "price": "Free!"
+      }
+    }
+  }
+}

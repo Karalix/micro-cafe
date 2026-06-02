@@ -18,27 +18,29 @@ interface ItemDocument extends Models.Document {
     cafeId: CafeDocument; // Based on example, cafeId is populated on read
 }
 
-const availableImages = [
-    { label: 'Bobba', value: '/images-cafe/bobba.png' },
-    { label: 'Café', value: '/images-cafe/cafe.png' },
-    { label: 'Cookie', value: '/images-cafe/cookie.png' },
-    { label: 'Emporter', value: '/images-cafe/emporter.png' },
-    { label: 'Gaiwan', value: '/images-cafe/gaiwan.png' },
-    { label: 'Jus', value: '/images-cafe/jus.png' },
-    { label: 'Latte', value: '/images-cafe/latte.png' },
-    { label: 'Muffin', value: '/images-cafe/muffin.png' },
-    { label: 'Mug', value: '/images-cafe/mug.png' },
-    { label: 'Tartine', value: '/images-cafe/tartine.png' },
-    { label: 'Thé', value: '/images-cafe/the.png' },
-    { label: 'Yaourt', value: '/images-cafe/yaourt.png' },
-]
-
 const route = useRoute()
 const toast = useToast()
+const { t } = useI18n()
 const items = ref<ItemDocument[]>([])
 const cafe = ref<CafeDocument | null>(null)
 const isLoadingCafe = ref(true)
 const isLoadingItems = ref(true)
+
+// Built-in image gallery. Labels are localized; the file paths stay constant.
+const availableImages = computed(() => [
+    { label: t('baristaMenu.images.bobba'), value: '/images-cafe/bobba.png' },
+    { label: t('baristaMenu.images.cafe'), value: '/images-cafe/cafe.png' },
+    { label: t('baristaMenu.images.cookie'), value: '/images-cafe/cookie.png' },
+    { label: t('baristaMenu.images.emporter'), value: '/images-cafe/emporter.png' },
+    { label: t('baristaMenu.images.gaiwan'), value: '/images-cafe/gaiwan.png' },
+    { label: t('baristaMenu.images.jus'), value: '/images-cafe/jus.png' },
+    { label: t('baristaMenu.images.latte'), value: '/images-cafe/latte.png' },
+    { label: t('baristaMenu.images.muffin'), value: '/images-cafe/muffin.png' },
+    { label: t('baristaMenu.images.mug'), value: '/images-cafe/mug.png' },
+    { label: t('baristaMenu.images.tartine'), value: '/images-cafe/tartine.png' },
+    { label: t('baristaMenu.images.the'), value: '/images-cafe/the.png' },
+    { label: t('baristaMenu.images.yaourt'), value: '/images-cafe/yaourt.png' },
+])
 
 const { $appwrite } = useNuxtApp()
 const databases = $appwrite.databases
@@ -51,9 +53,9 @@ const customImages = ref<{ label: string; value: string }[]>([])
 
 const allAvailableImages = computed(() => {
     if (customImages.value.length > 0) {
-        return [...availableImages, ...customImages.value]
+        return [...availableImages.value, ...customImages.value]
     }
-    return availableImages
+    return availableImages.value
 })
 
 const loadPremiumImages = async () => {
@@ -96,7 +98,7 @@ const fetchCafeDetails = async (cafeId: string): Promise<void> => {
         cafe.value = await databases.getDocument<CafeDocument>('cafe', 'cafe', cafeId);
     } catch (error) {
         console.error("Failed to fetch cafe:", error);
-        toast.add({ title: 'Error Loading Cafe', description: 'The requested cafe could not be found or loaded.', color: 'error', icon: 'i-heroicons-exclamation-triangle' });
+        toast.add({ title: t('baristaMenu.toast.errorLoadingCafeTitle'), description: t('baristaMenu.toast.errorLoadingCafeDesc'), color: 'error', icon: 'i-heroicons-exclamation-triangle' });
         navigateTo('/invalid-cafe');
     } finally {
         isLoadingCafe.value = false;
@@ -122,7 +124,7 @@ const fetchItems = async (): Promise<void> => {
         items.value = response.documents;
     } catch (error) {
         console.error("Failed to fetch items:", error);
-        toast.add({ title: 'Error Loading Menu', description: 'Could not load menu items.', color: 'error', icon: 'i-heroicons-exclamation-circle' });
+        toast.add({ title: t('baristaMenu.toast.errorLoadingMenuTitle'), description: t('baristaMenu.toast.errorLoadingMenuDesc'), color: 'error', icon: 'i-heroicons-exclamation-circle' });
         items.value = []; // Clear items on error
     } finally {
         isLoadingItems.value = false;
@@ -133,7 +135,7 @@ onMounted(async () => {
     const cafeIdParam = route.params.cafeId as string;
     if (!cafeIdParam) {
         console.error("Cafe ID is missing in route params.");
-        toast.add({ title: 'Error', description: 'Cafe ID is missing.', color: 'error' });
+        toast.add({ title: t('baristaMenu.toast.errorTitle'), description: t('baristaMenu.toast.cafeIdMissing'), color: 'error' });
         navigateTo('/invalid-cafe'); // Or some other error page
         return;
     }
@@ -188,7 +190,7 @@ const openEditItemModal = (item: ItemDocument): void => {
     });
     showModal.value = true;
 };
-            
+
 
 const addNewStructuredOption = (): void => {
     currentStructuredOptions.value.push({id: '', name: '', isBoolean: true, values: false });
@@ -232,16 +234,16 @@ const addValueToOptionList = (optionIndex: number): void => {
  */
 const handleDeleteItem = async (itemId: string): Promise<void> => {
     // Consider using a Nuxt UI modal for confirmation for better UX
-    if (!window.confirm('Are you sure you want to delete this item? This action cannot be undone.')) {
+    if (!window.confirm(t('baristaMenu.confirmDelete'))) {
         return;
     }
     try {
         await databases.deleteDocument('cafe', 'item', itemId);
-        toast.add({ title: 'Item Deleted', description: 'The item has been successfully deleted.', color: 'primary', icon: 'i-heroicons-check-circle' });
+        toast.add({ title: t('baristaMenu.toast.itemDeletedTitle'), description: t('baristaMenu.toast.itemDeletedDesc'), color: 'primary', icon: 'i-heroicons-check-circle' });
         await fetchItems(); // Refresh the list
     } catch (error: any) {
         console.error("Failed to delete item:", error);
-        toast.add({ title: 'Deletion Failed', description: error.message || 'Could not delete the item.', color: 'error', icon: 'i-heroicons-x-circle' });
+        toast.add({ title: t('baristaMenu.toast.deletionFailedTitle'), description: error.message || t('baristaMenu.toast.deletionFailedDesc'), color: 'error', icon: 'i-heroicons-x-circle' });
     }
 };
 
@@ -251,7 +253,7 @@ const handleDeleteItem = async (itemId: string): Promise<void> => {
  */
 const handleSaveItem = async (): Promise<void> => {
     if (!currentItemName.value.trim()) {
-        toast.add({ title: 'Validation Error', description: 'Item name is required.', color: 'warning', icon: 'i-heroicons-exclamation-circle' });
+        toast.add({ title: t('baristaMenu.toast.validationErrorTitle'), description: t('baristaMenu.toast.itemNameRequired'), color: 'warning', icon: 'i-heroicons-exclamation-circle' });
         return;
     }
 
@@ -274,16 +276,16 @@ const handleSaveItem = async (): Promise<void> => {
     try {
         if (isEditing.value && currentItemId.value) {
             await databases.updateDocument('cafe', 'item', currentItemId.value, itemData);
-            toast.add({ title: 'Item Updated', description: 'Changes saved successfully.', color: 'primary', icon: 'i-heroicons-check-circle' });
+            toast.add({ title: t('baristaMenu.toast.itemUpdatedTitle'), description: t('baristaMenu.toast.itemUpdatedDesc'), color: 'primary', icon: 'i-heroicons-check-circle' });
         } else {
             await databases.createDocument('cafe', 'item', ID.unique(), itemData);
-            toast.add({ title: 'Item Added', description: 'New item added to the menu.', color: 'primary', icon: 'i-heroicons-check-circle' });
+            toast.add({ title: t('baristaMenu.toast.itemAddedTitle'), description: t('baristaMenu.toast.itemAddedDesc'), color: 'primary', icon: 'i-heroicons-check-circle' });
         }
         await fetchItems();
         showModal.value = false; // Close modal
     } catch (error: any) {
         console.error("Failed to save item:", error);
-        toast.add({ title: 'Save Failed', description: error.message || 'Could not save the item.', color: 'error', icon: 'i-heroicons-x-circle' });
+        toast.add({ title: t('baristaMenu.toast.saveFailedTitle'), description: error.message || t('baristaMenu.toast.saveFailedDesc'), color: 'error', icon: 'i-heroicons-x-circle' });
     }
 };
 
@@ -304,13 +306,16 @@ const parseOption = (optionString: string) => {
             <USkeleton class="h-6 w-1/4" />
         </div>
         <div v-else-if="cafe" class="mb-8">
-            <h1 class="text-4xl font-bold text-coffee">
-                Manage Menu for {{ cafe.name }}
-            </h1>
-            <p class="text-md text-gray-600 dark:text-gray-400">Cafe ID: {{ cafe.$id }}</p>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+                <h1 class="text-4xl font-bold text-coffee">
+                    {{ $t('baristaMenu.manageMenuFor', { cafeName: cafe.name }) }}
+                </h1>
+                <LanguageSwitcher />
+            </div>
+            <p class="text-md text-gray-600 dark:text-gray-400">{{ $t('baristaMenu.cafeId', { id: cafe.$id }) }}</p>
         </div>
 
-        <UButton @click="openAddItemModal" icon="i-heroicons-plus-circle-20-solid" label="Add New Item" class="mb-8 bg-coffee-500 hover:bg-coffee-600 text-white"
+        <UButton @click="openAddItemModal" icon="i-heroicons-plus-circle-20-solid" :label="$t('baristaMenu.addNewItem')" class="mb-8 bg-coffee-500 hover:bg-coffee-600 text-white"
             size="lg" />
 
         <div v-if="isLoadingItems && items.length === 0" class="space-y-4">
@@ -319,8 +324,8 @@ const parseOption = (optionString: string) => {
         <div v-else-if="!items || items.length === 0" class="text-center text-gray-500 dark:text-gray-400 py-12">
             <UIcon name="i-heroicons-clipboard-document-list"
                 class="mx-auto h-16 w-16 text-gray-400 dark:text-gray-500" />
-            <h3 class="mt-4 text-xl font-semibold text-coffee">No items yet</h3>
-            <p class="mt-2 text-md">Get started by adding a new menu item.</p>
+            <h3 class="mt-4 text-xl font-semibold text-coffee">{{ $t('baristaMenu.noItemsTitle') }}</h3>
+            <p class="mt-2 text-md">{{ $t('baristaMenu.noItemsText') }}</p>
         </div>
 
         <ul v-else class="space-y-6">
@@ -340,18 +345,18 @@ const parseOption = (optionString: string) => {
                     <p v-if="item.description" class="text-sm text-gray-600 dark:text-gray-400 my-4">{{ item.description }}</p>
                     <div v-if="item.options && item.options.length > 0">
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                            Options:</p>
+                            {{ $t('baristaMenu.options') }}</p>
                         <div class="space-y-2">
                             <div v-for="(optionStr, index) in item.options" :key="index" class="text-sm text-gray-700 dark:text-gray-300">
                                 <div v-if="parseOption(optionStr).type === 'boolean'" class="flex items-center gap-2">
                                     <span class="font-medium">{{ parseOption(optionStr).name }}</span>
                                     <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full border border-gray-200 dark:border-gray-700">
-                                        Yes / No
+                                        {{ $t('baristaMenu.yesNo') }}
                                     </span>
                                 </div>
                                 <div v-else class="flex flex-wrap items-center gap-1.5">
                                     <span class="font-medium mr-1">{{ parseOption(optionStr).name }}:</span>
-                                    <span v-for="val in parseOption(optionStr).values" :key="val" 
+                                    <span v-for="val in parseOption(optionStr).values" :key="val"
                                         class="text-xs bg-latte-100 dark:bg-latte-200 text-coffee px-2 py-1 rounded-md border border-latte-200 dark:border-gray-600">
                                         {{ val }}
                                     </span>
@@ -359,13 +364,13 @@ const parseOption = (optionString: string) => {
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-gray-500 dark:text-gray-400 italic">No specific options defined.</p>
+                    <p v-else class="text-sm text-gray-500 dark:text-gray-400 italic">{{ $t('baristaMenu.noOptions') }}</p>
 
                     <template #footer>
                         <div class="flex justify-end space-x-3">
-                            <UButton @click="openEditItemModal(item)" label="Edit"
+                            <UButton @click="openEditItemModal(item)" :label="$t('baristaMenu.edit')"
                                 icon="i-heroicons-pencil-square-20-solid" variant="outline" class="text-coffee border-coffee hover:bg-latte-100" />
-                            <UButton @click="handleDeleteItem(item.$id)" label="Delete"
+                            <UButton @click="handleDeleteItem(item.$id)" :label="$t('baristaMenu.delete')"
                                 icon="i-heroicons-trash-20-solid" color="error" variant="ghost" />
                         </div>
                     </template>
@@ -379,34 +384,34 @@ const parseOption = (optionString: string) => {
             <div class="p-4 flex-1 overflow-y-auto">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-xl font-semibold leading-6 text-coffee">
-                            {{ isEditing ? `Edit ${currentItemName}` : 'Add New Item' }}
+                            {{ isEditing ? $t('baristaMenu.editItemTitle', { name: currentItemName }) : $t('baristaMenu.addItemTitle') }}
                         </h3>
                         <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid"
                             @click="showModal = false" />
                     </div>
                     <div>
                         <div class="flex flex-row">
-                            <UInput v-model="currentItemName" placeholder="e.g., Espresso, Croissant" class="mb-4 mr-4">
+                            <UInput v-model="currentItemName" :placeholder="$t('baristaMenu.itemNamePlaceholder')" class="mb-4 mr-4">
                                 <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">Item name</span>
+                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('baristaMenu.itemNameFloating') }}</span>
                                 </label>
                             </UInput>
-                            <UInput v-model="currentItemPrice" placeholder="e.g., 3.50" class="mb-4">
+                            <UInput v-model="currentItemPrice" :placeholder="$t('baristaMenu.pricePlaceholder')" class="mb-4">
                                 <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">Price</span>
+                                    <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('baristaMenu.priceFloating') }}</span>
                                 </label>
                             </UInput>
                         </div>
                         <div class="mb-4">
-                            <label class="text-coffee text-xs font-medium mb-1 block">Image</label>
+                            <label class="text-coffee text-xs font-medium mb-1 block">{{ $t('baristaMenu.imageLabel') }}</label>
                             <div class="flex items-center gap-3">
-                                <USelect v-model="currentItemImageUrl" :items="allAvailableImages" value-key="value" placeholder="Aucune image" class="flex-1" />
+                                <USelect v-model="currentItemImageUrl" :items="allAvailableImages" value-key="value" :placeholder="$t('baristaMenu.noImage')" class="flex-1" />
                                 <img v-if="currentItemImageUrl" :src="itemImage(currentItemImageUrl, 'thumb')" alt="Preview" loading="lazy" decoding="async" class="w-12 h-12 rounded-md object-cover" />
                             </div>
                         </div>
-                        <UTextarea v-model="currentItemDescription" placeholder="Item description..." class="mb-4" autoresize>
+                        <UTextarea v-model="currentItemDescription" :placeholder="$t('baristaMenu.descriptionPlaceholder')" class="mb-4" autoresize>
                             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                <span class="inline-flex bg-white dark:bg-latte-50 px-1">Description</span>
+                                <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('baristaMenu.descriptionFloating') }}</span>
                             </label>
                         </UTextarea>
                     </div>
@@ -414,45 +419,44 @@ const parseOption = (optionString: string) => {
                             <div v-for="(option, index) in currentStructuredOptions" :key="option.id"
                                 class="p-3 border border-gray-200 dark:border-latte-100 rounded-md space-y-3 bg-gray-50 dark:bg-latte-50">
                                 <div class="flex flex-col items-start space-y-2 space-x-2">
-                                        <UInput v-model="option.name" placeholder="e.g., Size, Milk, Decaf" class="w-1/3" required>
+                                        <UInput v-model="option.name" :placeholder="$t('baristaMenu.optionNamePlaceholder')" class="w-1/3" required>
                                             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                                <span class="inline-flex bg-gray-50 dark:bg-latte-100 px-1">Option name</span>
+                                                <span class="inline-flex bg-gray-50 dark:bg-latte-100 px-1">{{ $t('baristaMenu.optionNameFloating') }}</span>
                                             </label>
                                         </UInput>
-                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300"> Multiple Values / Simple option</p>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300"> {{ $t('baristaMenu.multipleValues') }}</p>
                                         <USwitch v-model="option.isBoolean" color="primary"/>
                                     <UButton icon="i-heroicons-x-mark-20-solid" color="error" variant="soft"
                                         @click="removeStructuredOption(index)" class="self-end mb-1.5"
-                                        aria-label="Remove option" />
+                                        :aria-label="$t('baristaMenu.removeOption')" />
                                 </div>
 
                                 <div v-if="Array.isArray(option.values) && !option.isBoolean" class="pl-2 space-y-2">
-                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Values for {{
-                                        option.name || 'this option' }}:</p>
+                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $t('baristaMenu.valuesFor', { name: option.name || $t('baristaMenu.thisOption') }) }}</p>
                                     <div v-for="(valueItem, valueIndex) in option.values" :key="valueItem.id"
                                         class="flex items-center space-x-2">
                                             <UInput v-model="valueItem.name"
-                                                placeholder="e.g., Small, Large, Oat Milk">
+                                                :placeholder="$t('baristaMenu.valuePlaceholder')">
                                                 <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-                                                    <span class="inline-flex bg-gray-50 dark:bg-latte-100 px-1">Value</span>
+                                                    <span class="inline-flex bg-gray-50 dark:bg-latte-100 px-1">{{ $t('baristaMenu.valueFloating') }}</span>
                                                 </label>
                                             </UInput>
                                         <UButton icon="i-heroicons-minus-circle-20-solid" color="error" variant="link"
                                             @click="removeValueFromOptionList(index, valueIndex)"
-                                            aria-label="Remove value" />
+                                            :aria-label="$t('baristaMenu.removeValue')" />
                                     </div>
                                 </div>
-                                <UButton v-if="!option.isBoolean" label="Add Value" icon="i-heroicons-plus-circle-16-solid" size="xs"
+                                <UButton v-if="!option.isBoolean" :label="$t('baristaMenu.addValue')" icon="i-heroicons-plus-circle-16-solid" size="xs"
                                     variant="outline" @click="addValueToOptionList(index)"
                                     :disabled="!option.name.trim()" />
                             </div>
-                            <UButton label="Add New Option Type" icon="i-heroicons-plus-20-solid" variant="outline"
+                            <UButton :label="$t('baristaMenu.addNewOptionType')" icon="i-heroicons-plus-20-solid" variant="outline"
                                 @click="addNewStructuredOption" />
                         </div>
             </div>
             <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-black flex justify-end space-x-3">
-                <UButton label="Cancel" color="neutral" variant="outline" @click="showModal = false" />
-                <UButton type="submit" :label="isEditing ? 'Save Changes' : 'Add Item'"
+                <UButton :label="$t('baristaMenu.cancel')" color="neutral" variant="outline" @click="showModal = false" />
+                <UButton type="submit" :label="isEditing ? $t('baristaMenu.saveChanges') : $t('baristaMenu.addItem')"
                     class="bg-coffee-500 hover:bg-coffee-600 text-white" @click="handleSaveItem" />
             </div>
             </template>
@@ -460,7 +464,7 @@ const parseOption = (optionString: string) => {
 
         <!-- Toaster for notifications -->
         <UNotifications />
-              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white dark:bg-latte-50 drop-shadow-md" :items="[{label: 'Orders', to: `/${route.params.cafeId}/barista`}, {label: 'Menu', to: `/${route.params.cafeId}/barista/menu`}, {label: 'Cafe', to: `/${route.params.cafeId}/barista/cafe`}]" />
+              <UNavigationMenu class="fixed bottom-4 my-4 left-1/2 -translate-x-1/2 flex flex-row justify-between px-2 rounded-lg bg-white dark:bg-latte-50 drop-shadow-md" :items="[{label: $t('nav.orders'), to: `/${route.params.cafeId}/barista`}, {label: $t('nav.menu'), to: `/${route.params.cafeId}/barista/menu`}, {label: $t('nav.cafe'), to: `/${route.params.cafeId}/barista/cafe`}]" />
 
     </UContainer>
     </div>

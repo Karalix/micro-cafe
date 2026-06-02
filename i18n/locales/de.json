@@ -1,0 +1,475 @@
+{
+  "common": {
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "loading": "Wird geladen ..."
+  },
+  "nav": {
+    "orders": "Bestellungen",
+    "menu": "Karte",
+    "cafe": "Café"
+  },
+  "languageSwitcher": {
+    "label": "Sprache"
+  },
+  "app": {
+    "name": "My Tiny Café",
+    "description": "Bestelle in deinem Lieblingscafé"
+  },
+  "landing": {
+    "nav": {
+      "login": "Anmelden",
+      "openCafe": "My Tiny Café eröffnen"
+    },
+    "hero": {
+      "title": "Mach dein Zuhause zum {highlight} der Stadt.",
+      "titleHighlight": "besten Café",
+      "subtitle": "Die digitale Karte für Heim-Baristas. Erstelle deine Getränkeliste, teile deinen QR-Code mit Freunden und Familie und empfange Bestellungen direkt auf deinem Handy.",
+      "subtitleEmphasis": "100 % kostenlos. 100 % gemütlich.",
+      "ctaPrimary": "My Tiny Café eröffnen",
+      "ctaDemo": "Demo-Café ansehen ↗",
+      "noCreditCard": "Keine Kreditkarte nötig. Keine Werbung. Einfach nur Liebe."
+    },
+    "mockup": {
+      "notifTitle": "Neue Bestellung von Magali",
+      "notifOrder": "Latte (Hafermilch, ohne Zucker)",
+      "now": "jetzt",
+      "menu": "Karte",
+      "latte": "Latte",
+      "lattePrice": "1 Umarmung 🤗",
+      "matcha": "Matcha",
+      "tea": "Tee",
+      "teaPrice": "Eine Geschichte 📖",
+      "cookie": "Cookie",
+      "cookiePrice": "Gratis!"
+    },
+    "valueProp": {
+      "eyebrow": "Gastfreundschaft, neu gedacht",
+      "heading": "Warum aus der Küche rufen?",
+      "problemTitle": "Das Problem",
+      "problemText": "Aus der Küche rufen: „Wer will Tee?“ – und bis das Wasser kocht, hast du längst vergessen, wer Zucker und wer Mandelmilch wollte.",
+      "solutionTitle": "Die Lösung",
+      "solutionText": "My Tiny Café bringt das Flair eines Boutique-Cafés in dein Wohnzimmer. Mach den Moment zu etwas Besonderem."
+    },
+    "howItWorks": {
+      "title": "So funktioniert's (in 3 einfachen Schritten)",
+      "step1Title": "1. Erstelle deine Karte",
+      "step1Text": "Gib deinem Café einen Namen. Füge deine Spezialitäten hinzu – Latte, Tee oder Tartine. Passe Optionen für Milch und Zucker an.",
+      "step2Title": "2. Teile den Link",
+      "step2Text": "Druck deinen QR-Code für den Kühlschrank aus oder verschick den Link. Deine Gäste stöbern und stellen sich ihr Getränk genau nach Geschmack zusammen.",
+      "step3Title": "3. Bestellung erhalten & servieren",
+      "step3Text": "Ding! Du bekommst sofort eine Benachrichtigung. Kein Geld wechselt den Besitzer – nur die perfekte Tasse, serviert mit einem Lächeln."
+    },
+    "features": {
+      "title": "Funktionen",
+      "feature1Title": "Voll anpassbare Karte",
+      "feature1Text": "Von „Stilltee“ bis „Iced Matcha“ – du bestimmst, was du servierst.",
+      "feature2Title": "Sofortige Push-Benachrichtigungen",
+      "feature2Text": "Verpasse keine Bestellung mehr. Du weißt in der Sekunde Bescheid, in der dein „Gast“ seine Bestellung abschickt.",
+      "feature3Title": "Kein App-Download",
+      "feature3Text": "Deine Gäste scannen (oder klicken) einfach und bestellen. Keine Installation nötig.",
+      "feature4Title": "Komplett kostenlos",
+      "feature4Text": "Keine Zahlungsdienste. Die einzige Währung hier ist Dankbarkeit."
+    },
+    "stories": {
+      "title": "Echte Geschichten",
+      "quote1": "Papa, darf ich mit deiner App einen Tee bestellen?",
+      "quote1Name": "Zola, 5 Jahre",
+      "quote1Role": "Chef-Geschmackstesterin",
+      "quote2": "Es ist so viel einfacher, mir einen Kaffee für die Heimkehr zu bestellen. Und der Barista ist auch noch superniedlich!",
+      "quote2Name": "Magali",
+      "quote2Role": "Ehefrau & treue Kundin"
+    },
+    "audience": {
+      "title": "Für wen ist My Tiny Café?",
+      "card1Title": "Das Homeoffice-Power-Paar",
+      "card1Text": "Schick eine stille Bestellung für den Koffeinschub, ohne das Zoom-Meeting zu unterbrechen.",
+      "card2Title": "Der Gastgeber mit dem gewissen Etwas",
+      "card2Text": "Beeindrucke deine Gäste, indem sie ihren Digestif nach dem Essen über eine digitale Karte bestellen.",
+      "card3Title": "Die verspielten Eltern",
+      "card3Text": "Kinder lieben es, „Restaurant“ zu spielen. Richte die Karte für sie ein und lass sie deine Bestellung aufnehmen."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "q1": "Ist es wirklich kostenlos?",
+      "a1": "Ja! My Tiny Café ist derzeit völlig kostenlos nutzbar.",
+      "q2": "Kann ich Geld für die Getränke verlangen?",
+      "a2": "Nein. Diese App ist für Freunde und Familie gedacht. Es gibt keine Zahlungsabwicklung – nur die Freude, jemandem, der dir am Herzen liegt, ein Getränk zu servieren.",
+      "q3": "Was kann ich auf die Karte setzen?",
+      "a3": "Alles! Kaffee, Tee, Snacks, Tartines, Wasser ... Wenn du es in deiner Küche zubereiten kannst, kannst du es auf deine Karte setzen."
+    },
+    "openSource": {
+      "title": "Mit Stolz Open Source",
+      "text": "Ich glaube an Transparenz und Gemeinschaft. My Tiny Café ist Open Source – du kannst also genau sehen, wie es gebaut ist, Funktionen beisteuern oder es selbst hosten.",
+      "button": "Auf GitHub ansehen"
+    },
+    "footer": {
+      "title": "Bereit, dein Café zu eröffnen?",
+      "subtitle": "Werde noch heute Teil der Community aus Heim-Baristas.",
+      "cta": "Jetzt dein Café erstellen",
+      "madeWith": "Mit ❤️ in Frankreich gemacht, für Zola und Magali.",
+      "copyright": "© 2024 My Tiny Café",
+      "aboutMakerTitle": "Über den Macher",
+      "aboutMakerText": "Ich bin Alix und habe das hier gebaut, um meine Frau und meine Tochter glücklich zu machen. Ich hoffe, es bringt auch ein bisschen Freude in dein Zuhause. Ich bin freiberuflicher Frontend-Entwickler (am liebsten mit Vue.js / Nuxt.js) mit einem Hintergrund in der Forschung zur Mensch-Computer-Interaktion. {link}.",
+      "aboutMakerLink": "Schau dir meine Arbeit an",
+      "guest": "Gast?",
+      "findCafe": "Café finden"
+    }
+  },
+  "auth": {
+    "fields": {
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du{'@'}beispiel.de",
+      "emailFloating": "E-Mail",
+      "passwordLabel": "Passwort",
+      "passwordFloating": "Passwort",
+      "nameLabel": "Name",
+      "namePlaceholder": "Dein Name",
+      "nameFloating": "Dein Name",
+      "cafeIdLabel": "Café-ID",
+      "cafeIdPlaceholder": "Café-ID",
+      "cafeIdFloating": "Deine Café-ID"
+    },
+    "validation": {
+      "invalidEmail": "Ungültige E-Mail-Adresse",
+      "passwordMin": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "cafeIdMin": "Die Café-ID muss mindestens 3 Zeichen lang sein"
+    },
+    "login": {
+      "title": "Anmelden",
+      "submit": "Anmelden",
+      "noAccount": "Noch kein Konto?",
+      "signupLink": "Registrieren",
+      "successTitle": "Anmeldung erfolgreich!",
+      "successDesc": "Du wirst weitergeleitet ...",
+      "failTitle": "Anmeldung fehlgeschlagen",
+      "errorUnexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut."
+    },
+    "signup": {
+      "title": "Konto erstellen",
+      "submit": "Registrieren",
+      "haveAccount": "Hast du bereits ein Konto?",
+      "loginLink": "Anmelden",
+      "accountCreatedTitle": "Konto erstellt!",
+      "accountCreatedDesc": "Bitte melde dich an, um fortzufahren.",
+      "invalidCafeIdTitle": "Ungültige Café-ID",
+      "invalidCafeIdDesc": "Die Café-ID darf nicht „undefined“ sein. Bitte wähle eine andere Café-ID.",
+      "cafeIdExistsTitle": "Café-ID existiert bereits",
+      "cafeIdExistsDesc": "Bitte wähle eine andere Café-ID.",
+      "failTitle": "Registrierung fehlgeschlagen",
+      "failDesc": "Ein unerwarteter Fehler ist aufgetreten."
+    }
+  },
+  "setup": {
+    "title": "Café-Einrichtung abschließen",
+    "intro": "Bei der Einrichtung deines Cafés scheint etwas schiefgelaufen zu sein. Bitte gib deine Café-Daten an, um fortzufahren.",
+    "cafeNameLabel": "Café-Name",
+    "cafeNamePlaceholder": "Mein tolles Café",
+    "cafeNameFloating": "Café-Name",
+    "noSpecialChars": "Dein Café-Name darf keine Sonderzeichen oder Leerzeichen enthalten.",
+    "cafeIdLabel": "Café-ID",
+    "cafeIdPlaceholder": "cafe-id",
+    "cafeIdFloating": "Deine Café-ID",
+    "submit": "Einrichtung abschließen",
+    "cafeFoundTitle": "Café gefunden",
+    "cafeFoundDesc": "Du wirst zu deinem Café weitergeleitet ...",
+    "authErrorTitle": "Authentifizierungsfehler",
+    "authErrorDesc": "Du musst angemeldet sein, um die Einrichtung abzuschließen.",
+    "cafeIdExistsTitle": "Café-ID existiert bereits",
+    "cafeIdExistsDesc": "Bitte wähle eine andere Café-ID.",
+    "invalidCafeIdTitle": "Ungültige Café-ID",
+    "invalidCafeIdDesc": "Die Café-ID darf nicht „undefined“ sein. Bitte wähle eine andere Café-ID.",
+    "completeTitle": "Einrichtung abgeschlossen!",
+    "completeDesc": "Dein Café ist bereit.",
+    "failTitle": "Einrichtung fehlgeschlagen",
+    "failDesc": "Ein unerwarteter Fehler ist aufgetreten.",
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "cafeIdMin": "Die Café-ID muss mindestens 3 Zeichen lang sein"
+    }
+  },
+  "menu": {
+    "beBarista": "Sei der Barista",
+    "heading": "Karte",
+    "pastOrders": "Frühere Bestellungen",
+    "unknownItem": "Unbekannter Artikel",
+    "yourName": "Dein Name",
+    "order": "Bestellen",
+    "anonymous": "Anonym",
+    "status": {
+      "ordered": "Deine Bestellung wird zubereitet",
+      "completed": "Deine Bestellung ist fertig!",
+      "canceled": "Deine Bestellung wurde storniert",
+      "unknown": "Unbekannter Status"
+    },
+    "toast": {
+      "orderSentTitle": "Bestellung gesendet",
+      "orderSentDesc": "Deine Bestellung wurde erfolgreich gesendet.",
+      "errorTitle": "Fehler",
+      "orderFailDesc": "Deine Bestellung konnte nicht gesendet werden. Bitte versuche es erneut.",
+      "orderCanceledTitle": "Bestellung storniert",
+      "orderCanceledDesc": "Deine Bestellung wurde erfolgreich storniert.",
+      "cancelFailDesc": "Deine Bestellung konnte nicht storniert werden. Bitte versuche es erneut."
+    },
+    "headDescription": "Bestelle deine Lieblingsartikel bei {cafeName}"
+  },
+  "baristaOrders": {
+    "title": "Bestellung",
+    "enableNotifications": "Erhalte eine Benachrichtigung, wenn eine neue Bestellung eingeht",
+    "emptyTitle": "Noch keine Bestellungen",
+    "emptyText": "Teile deine Café-Seite, um Bestellungen zu erhalten!",
+    "shareCafe": "Mein Café teilen",
+    "pastOrders": "Frühere Bestellungen",
+    "cancel": "Stornieren",
+    "complete": "Fertigstellen",
+    "unknownItem": "Unbekannter Artikel",
+    "statusLabel": {
+      "ordered": "Bestellt",
+      "completed": "Fertig",
+      "canceled": "Storniert"
+    }
+  },
+  "baristaMenu": {
+    "manageMenuFor": "Karte verwalten für {cafeName}",
+    "cafeId": "Café-ID: {id}",
+    "addNewItem": "Neuen Artikel hinzufügen",
+    "noItemsTitle": "Noch keine Artikel",
+    "noItemsText": "Leg los, indem du einen neuen Artikel hinzufügst.",
+    "options": "Optionen:",
+    "yesNo": "Ja / Nein",
+    "noOptions": "Keine spezifischen Optionen festgelegt.",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "editItemTitle": "{name} bearbeiten",
+    "addItemTitle": "Neuen Artikel hinzufügen",
+    "itemNamePlaceholder": "z. B. Espresso, Croissant",
+    "itemNameFloating": "Artikelname",
+    "pricePlaceholder": "z. B. 3,50",
+    "priceFloating": "Preis",
+    "imageLabel": "Bild",
+    "noImage": "Kein Bild",
+    "descriptionPlaceholder": "Artikelbeschreibung ...",
+    "descriptionFloating": "Beschreibung",
+    "optionNamePlaceholder": "z. B. Größe, Milch, Entkoffeiniert",
+    "optionNameFloating": "Optionsname",
+    "multipleValues": "Mehrere Werte / Einfache Option",
+    "valuesFor": "Werte für {name}:",
+    "thisOption": "diese Option",
+    "valuePlaceholder": "z. B. Klein, Groß, Hafermilch",
+    "valueFloating": "Wert",
+    "addValue": "Wert hinzufügen",
+    "addNewOptionType": "Neuen Optionstyp hinzufügen",
+    "removeOption": "Option entfernen",
+    "removeValue": "Wert entfernen",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "addItem": "Artikel hinzufügen",
+    "confirmDelete": "Möchtest du diesen Artikel wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "images": {
+      "bobba": "Bubble Tea",
+      "cafe": "Kaffee",
+      "cookie": "Cookie",
+      "emporter": "Zum Mitnehmen",
+      "gaiwan": "Gaiwan",
+      "jus": "Saft",
+      "latte": "Latte",
+      "muffin": "Muffin",
+      "mug": "Becher",
+      "tartine": "Tartine",
+      "the": "Tee",
+      "yaourt": "Joghurt"
+    },
+    "toast": {
+      "errorLoadingCafeTitle": "Fehler beim Laden des Cafés",
+      "errorLoadingCafeDesc": "Das angeforderte Café konnte nicht gefunden oder geladen werden.",
+      "errorLoadingMenuTitle": "Fehler beim Laden der Karte",
+      "errorLoadingMenuDesc": "Die Artikel der Karte konnten nicht geladen werden.",
+      "errorTitle": "Fehler",
+      "cafeIdMissing": "Café-ID fehlt.",
+      "itemDeletedTitle": "Artikel gelöscht",
+      "itemDeletedDesc": "Der Artikel wurde erfolgreich gelöscht.",
+      "deletionFailedTitle": "Löschen fehlgeschlagen",
+      "deletionFailedDesc": "Der Artikel konnte nicht gelöscht werden.",
+      "validationErrorTitle": "Validierungsfehler",
+      "itemNameRequired": "Artikelname ist erforderlich.",
+      "itemUpdatedTitle": "Artikel aktualisiert",
+      "itemUpdatedDesc": "Änderungen erfolgreich gespeichert.",
+      "itemAddedTitle": "Artikel hinzugefügt",
+      "itemAddedDesc": "Neuer Artikel zur Karte hinzugefügt.",
+      "saveFailedTitle": "Speichern fehlgeschlagen",
+      "saveFailedDesc": "Der Artikel konnte nicht gespeichert werden."
+    }
+  },
+  "cafeSettings": {
+    "share": {
+      "title": "Teile deine Seite",
+      "subtitle": "Teile diese Seite über die URL oder den QR-Code unten.",
+      "pageUrlLabel": "Seiten-URL",
+      "pageUrlHelp": "Das ist der direkte Link zu deiner Seite.",
+      "generatingUrl": "URL wird erstellt ..."
+    },
+    "qr": {
+      "title": "QR-Code",
+      "subtitle": "Scanne diesen QR-Code mit einem mobilen Gerät, um die Seite zu öffnen.",
+      "downloadPng": "PNG herunterladen",
+      "unavailable": "Seiten-URL nicht verfügbar, der QR-Code kann nicht generiert werden."
+    },
+    "updateName": {
+      "title": "Café-Namen ändern",
+      "subtitle": "Ändere den Namen deines Cafés.",
+      "label": "Café-Name",
+      "help": "Gib den neuen Namen für dein Café ein.",
+      "placeholder": "Neuen Café-Namen eingeben",
+      "update": "Aktualisieren",
+      "updating": "Wird aktualisiert ..."
+    },
+    "customImages": {
+      "title": "Eigene Bilder",
+      "subtitle": "Lade deine eigenen Bilder hoch, um sie in deinen Artikeln zu verwenden.",
+      "upload": "Bild hochladen",
+      "empty": "Noch keine eigenen Bilder. Lade eins hoch, um loszulegen."
+    },
+    "about": {
+      "title": "Über & Unterstützung",
+      "openSourceTitle": "Open Source",
+      "openSourceText": "Dieses Projekt ist teilweise Open Source. Die auf GitHub verfügbare Appwrite-Serverkonfiguration ist wahrscheinlich veraltet – melde dich, falls du etwas brauchst.",
+      "viewOnGithub": "Auf GitHub ansehen",
+      "contactTitle": "Den Macher kontaktieren",
+      "contactText": "Gebaut von Alix. Melde dich, falls du etwas brauchst.",
+      "hireText": "Wie wäre es, mich für dein nächstes Projekt zu engagieren?",
+      "supportTitle": "Unterstütze My Tiny Café",
+      "supportText": "My Tiny Café ist kostenlos verfügbar, aber wenn du es gerne nutzt, kannst du gerne zu den Hosting-Kosten beitragen.",
+      "supportButton": "Auf Buy Me a Coffee unterstützen"
+    },
+    "delete": {
+      "title": "Konto löschen",
+      "subtitle": "Lösche dein Café, seine Karte, alle Bestellungen, alle eigenen Bilder und dein Konto endgültig. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "button": "Mein Konto löschen",
+      "modalTitle": "Dein Konto endgültig löschen?",
+      "modalIntro": "Dadurch wird Folgendes endgültig gelöscht:",
+      "modalListCafe": "dein Café {id}",
+      "modalListMenu": "seine Artikel und alle früheren Bestellungen",
+      "modalListImages": "deine eigenen Bilder",
+      "modalListAccount": "dein Konto (du kannst dich nicht mehr anmelden)",
+      "confirmLabel": "Gib „{cafeId}“ ein, um zu bestätigen",
+      "deletePermanently": "Endgültig löschen"
+    },
+    "session": {
+      "title": "Sitzung",
+      "subtitle": "Melde dich auf diesem Gerät ab. Du kannst dich jederzeit wieder anmelden.",
+      "logout": "Abmelden"
+    },
+    "toast": {
+      "imageUploadedTitle": "Bild hochgeladen",
+      "imageUploadedDesc": "„{name}“ wurde hochgeladen.",
+      "uploadFailedTitle": "Hochladen fehlgeschlagen",
+      "uploadFailedDesc": "Das Bild konnte nicht hochgeladen werden.",
+      "confirmDeleteImage": "Dieses Bild löschen? Artikel, die es verwenden, zeigen ein defektes Bild an.",
+      "imageDeletedTitle": "Bild gelöscht",
+      "imageDeletedDesc": "Das Bild wurde gelöscht.",
+      "deleteFailedTitle": "Löschen fehlgeschlagen",
+      "deleteFailedDesc": "Das Bild konnte nicht gelöscht werden.",
+      "errorTitle": "Fehler",
+      "cafeIdUnavailable": "Café-ID ist nicht verfügbar. Name kann nicht aktualisiert werden.",
+      "validationErrorTitle": "Validierungsfehler",
+      "cafeNameEmpty": "Der Café-Name darf nicht leer sein.",
+      "successTitle": "Erfolg!",
+      "cafeNameUpdated": "Café-Name geändert zu „{name}“.",
+      "updateFailedTitle": "Aktualisierung fehlgeschlagen",
+      "updateNameFailedDesc": "Der Café-Name konnte nicht aktualisiert werden. Bitte versuche es erneut.",
+      "missingCafeIdTitle": "Café-ID fehlt",
+      "missingCafeIdDesc": "Der eindeutige Bezeichner für das Café fehlt in der URL.",
+      "urlNotAvailableTitle": "URL nicht verfügbar",
+      "urlNotAvailableDesc": "Die Seiten-URL ist noch nicht bereit zum Kopieren.",
+      "clipboardDeniedTitle": "Zugriff auf die Zwischenablage verweigert",
+      "clipboardDeniedDesc": "Deine Browsereinstellungen verhindern den Zugriff auf die Zwischenablage, oder er wird nicht unterstützt.",
+      "urlCopiedTitle": "URL kopiert!",
+      "urlCopiedDesc": "Die Seiten-URL wurde in deine Zwischenablage kopiert.",
+      "copyUnconfirmedTitle": "Kopieren nicht bestätigt",
+      "copyUnconfirmedDesc": "Kopieren wurde versucht. Bitte überprüfe deine Zwischenablage.",
+      "copyFailedTitle": "Kopieren fehlgeschlagen",
+      "copyFailedDesc": "Beim Kopieren der URL ist ein Fehler aufgetreten. Bitte kopiere sie manuell.",
+      "downloadFailedTitle": "Download fehlgeschlagen",
+      "qrNotReady": "Der QR-Code ist noch nicht bereit. Bitte versuche es erneut.",
+      "qrDownloadedTitle": "QR-Code heruntergeladen",
+      "qrDownloadedDesc": "Das QR-Code-PNG wurde gespeichert.",
+      "qrGenerateFailed": "Die PNG-Datei konnte nicht generiert werden. Bitte versuche es erneut.",
+      "loggedOutTitle": "Abgemeldet",
+      "loggedOutDesc": "Du wurdest abgemeldet",
+      "accountDeletedTitle": "Konto gelöscht",
+      "accountDeletedDesc": "Dein Konto und dein Café wurden endgültig gelöscht.",
+      "deletionFailedTitle": "Löschen fehlgeschlagen",
+      "deletionFailedDesc": "Dein Konto konnte nicht gelöscht werden. Bitte versuche es erneut."
+    }
+  },
+  "invalidCafe": {
+    "title": "Dieses Café ist geschlossen.",
+    "text": "Wir konnten unter dieser Adresse kein Café finden. Vielleicht stimmt der Link nicht – oder vielleicht ist es Zeit für {you}, ein eigenes zu eröffnen?",
+    "textHighlight": "dich",
+    "openOwn": "Mein eigenes Café eröffnen",
+    "backHome": "Zurück zur Startseite",
+    "noCreditCard": "Keine Kreditkarte. Keine Werbung. Einfach nur Liebe.",
+    "headTitle": "Café nicht gefunden – My Tiny Café"
+  },
+  "pwa": {
+    "finding": "Dein Plätzchen wird gesucht ...",
+    "redirecting": "Du wirst zu deinem zuletzt besuchten Café weitergeleitet."
+  },
+  "demo": {
+    "cafeName": "Chez Zola",
+    "promptTitle": "Möchtest du dein eigenes Heim-Café?",
+    "promptText": "Wenn du dein eigenes kleines Café für Freunde und Familie eröffnen möchtest, registriere dich – es ist völlig kostenlos, werbefrei und dauert nur etwa eine Minute.",
+    "openCafe": "Mein kleines Café eröffnen",
+    "keepBrowsing": "Weiterstöbern",
+    "items": {
+      "latte": {
+        "name": "Latte",
+        "description": "Seidiger Espresso, gekrönt von aufgeschäumter Milch.",
+        "price": "1 Umarmung 🤗"
+      },
+      "espresso": {
+        "name": "Espresso",
+        "description": "Kurz, dunkel, intensiv. Der Klassiker."
+      },
+      "matcha": {
+        "name": "Matcha",
+        "description": "Aufgeschlagener grüner Tee in Zeremonie-Qualität."
+      },
+      "tea": {
+        "name": "Tee",
+        "description": "Loser Blatttee, frisch aufgegossen."
+      },
+      "juice": {
+        "name": "Frischer Saft",
+        "description": "Heute Morgen frisch gepresst."
+      },
+      "bubble": {
+        "name": "Bubble Tea",
+        "description": "Zähe Tapioka-Perlen, in deiner Lieblingssorte."
+      },
+      "muffin": {
+        "name": "Muffin",
+        "description": "Heute Morgen frisch gebacken."
+      },
+      "cookie": {
+        "name": "Cookie",
+        "description": "Warm und zäh."
+      },
+      "tartine": {
+        "name": "Tartine",
+        "description": "Sauerteigbrot, getoastet, mit Belag."
+      },
+      "yogurt": {
+        "name": "Joghurt",
+        "description": "Griechischer Joghurt, frische Früchte, Granola.",
+        "price": "Gratis!"
+      }
+    }
+  }
+}
