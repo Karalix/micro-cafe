@@ -2,32 +2,35 @@
   <div class="bg-latte min-h-screen flex items-center justify-center p-4">
     <UCard class="w-full sm:max-w-sm bg-white dark:bg-latte-50 ring-1 ring-gray-200 dark:ring-gray-700">
       <template #header>
-        <h2 class="text-xl font-bold text-center text-coffee">Complete Cafe Setup</h2>
+        <div class="flex items-center justify-between gap-2">
+          <h2 class="text-xl font-bold text-coffee">{{ $t('setup.title') }}</h2>
+          <LanguageSwitcher />
+        </div>
       </template>
 
       <div class="mb-6 text-sm text-gray-600 dark:text-gray-400 text-center">
-        It seems something went wrong during the setup of your cafe. Please provide your cafe details to continue.
+        {{ $t('setup.intro') }}
       </div>
 
       <UForm :state="state" :schema="schema" @submit="handleSetup" @error="handleError" class="flex flex-col space-y-4">
-        <UFormGroup label="Cafe Name" name="name" class="mb-4">
-          <UInput v-model="state.name" placeholder="My Awesome Cafe" class="w-full">
+        <UFormGroup :label="$t('setup.cafeNameLabel')" name="name" class="mb-4">
+          <UInput v-model="state.name" :placeholder="$t('setup.cafeNamePlaceholder')" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Cafe Name</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('setup.cafeNameFloating') }}</span>
             </label>
           </UInput>
         </UFormGroup>
-        <p>Your café name cannot contain special characters or spaces.</p>
-        <UFormGroup label="Café ID" name="cafeId" class="mb-4">
-          <UInput v-model="state.cafeID" placeholder="cafe-id" class="w-full">
+        <p>{{ $t('setup.noSpecialChars') }}</p>
+        <UFormGroup :label="$t('setup.cafeIdLabel')" name="cafeId" class="mb-4">
+          <UInput v-model="state.cafeID" :placeholder="$t('setup.cafeIdPlaceholder')" class="w-full">
             <label class="pointer-events-none absolute left-0 -top-2.5 text-coffee text-xs font-medium px-1.5 transition-all peer-focus:-top-2.5 peer-focus:text-coffee peer-focus:text-xs peer-focus:font-medium peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-1.5 peer-placeholder-shown:font-normal">
-              <span class="inline-flex bg-white dark:bg-latte-50 px-1">Your café ID</span>
+              <span class="inline-flex bg-white dark:bg-latte-50 px-1">{{ $t('setup.cafeIdFloating') }}</span>
             </label>
           </UInput>
         </UFormGroup>
 
         <UButton type="submit" block :loading="loading" class="bg-coffee-500 hover:bg-coffee-600 text-white">
-          Complete Setup
+          {{ $t('setup.submit') }}
         </UButton>
         <p v-if="hasErrors" class="text-red-500 text-sm text-center mt-2">
           {{ hasErrors.errors.map(err => err.message).join(', ') }}
@@ -47,6 +50,7 @@ const account = $appwrite.account;
 const databases = $appwrite.databases;
 const toast = useToast();
 const router = useRouter();
+const { t } = useI18n();
 
 onMounted(async () => {
   try {
@@ -54,7 +58,7 @@ onMounted(async () => {
     if (user.prefs && user.prefs.cafeID) {
       try {
         await databases.getDocument('cafe', 'cafe', user.prefs.cafeID);
-        toast.add({ title: 'Cafe Found', description: 'Redirecting to your cafe...', color: 'primary' });
+        toast.add({ title: t('setup.cafeFoundTitle'), description: t('setup.cafeFoundDesc'), color: 'primary' });
         router.push(`/${user.prefs.cafeID}/barista/menu`);
       } catch (e) {
         // Cafe not found, stay on page to create it
@@ -89,8 +93,8 @@ function sanitizeCafeID(input: string): string {
 
 // Validation schema using Zod
 const schema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  cafeID: z.string().min(3, 'Cafe ID must be at least 3 characters')
+  name: z.string().min(2, t('setup.validation.nameMin')),
+  cafeID: z.string().min(3, t('setup.validation.cafeIdMin'))
 });
 
 type Schema = z.output<typeof schema>;
@@ -111,7 +115,7 @@ async function handleSetup(event: FormSubmitEvent<Schema>) {
     try {
         await account.get();
     } catch (e) {
-        toast.add({ title: 'Authentication Error', description: 'You need to be logged in to complete setup.', color: 'error' });
+        toast.add({ title: t('setup.authErrorTitle'), description: t('setup.authErrorDesc'), color: 'error' });
         router.push('/login');
         return;
     }
@@ -119,14 +123,14 @@ async function handleSetup(event: FormSubmitEvent<Schema>) {
     // Check if cafeID already exists
     const alreadyExists = await databases.listDocuments('cafe', 'cafe', [Query.equal('$id', state.cafeID)]);
     if (alreadyExists.total > 0) {
-      toast.add({ title: 'Cafe ID already exists', description: 'Please choose a different cafe ID.', color: 'error' });
+      toast.add({ title: t('setup.cafeIdExistsTitle'), description: t('setup.cafeIdExistsDesc'), color: 'error' });
       loading.value = false;
       return;
     }
 
 
   if (state.cafeID === 'undefined') {
-    toast.add({ title: 'Invalid Cafe ID', description: 'Cafe ID cannot be "undefined". Please choose a different cafe ID.', color: 'error' });
+    toast.add({ title: t('setup.invalidCafeIdTitle'), description: t('setup.invalidCafeIdDesc'), color: 'error' });
     loading.value = false;
     return;
   }
@@ -155,14 +159,14 @@ async function handleSetup(event: FormSubmitEvent<Schema>) {
         cafeID: state.cafeID,
     });
 
-    toast.add({ title: 'Setup Complete!', description: 'Your cafe is ready.', color: 'primary' });
+    toast.add({ title: t('setup.completeTitle'), description: t('setup.completeDesc'), color: 'primary' });
 
     // Redirect to barista menu
     router.push(`/${state.cafeID}/barista/menu`);
 
   } catch (error: any) {
     console.error('Setup failed:', error);
-    toast.add({ title: 'Setup Failed', description: error.message || 'An unexpected error occurred.', color: 'error' });
+    toast.add({ title: t('setup.failTitle'), description: error.message || t('setup.failDesc'), color: 'error' });
   } finally {
     loading.value = false;
   }

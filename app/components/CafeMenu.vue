@@ -22,6 +22,8 @@ const props = defineProps<{
     baristaLink?: string;
 }>();
 
+const { t } = useI18n();
+
 const selectedItem = ref<MenuItem | null>(null);
 const selectedOptions = ref([] as any[]);
 const isOpenOptions = ref(false);
@@ -121,13 +123,13 @@ onBeforeUnmount(() => {
 function orderStatusText(order: any) {
     switch (order.status) {
         case "ordered":
-            return "Your order is being prepared";
+            return t("menu.status.ordered");
         case "completed":
-            return "Your order is ready !";
+            return t("menu.status.completed");
         case "canceled":
-            return "Your order has been canceled";
+            return t("menu.status.canceled");
         default:
-            return "Unknown status";
+            return t("menu.status.unknown");
     }
 }
 
@@ -144,7 +146,7 @@ async function onSendCommand() {
         await props.submitOrder({
             item: selectedItem.value,
             options: optionsPayload,
-            clientName: clientName.value || "Anon",
+            clientName: clientName.value || t("menu.anonymous"),
         });
         selectedOptions.value = [];
         closeItem();
@@ -159,18 +161,21 @@ async function onSendCommand() {
 <template>
     <div class="bg-latte min-h-screen text-coffee">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex flex-col min-h-screen">
-            <h1 class="font-bold text-3xl sm:text-4xl mb-6 text-coffee">
-                {{ cafe.name }}
-            </h1>
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <h1 class="font-bold text-3xl sm:text-4xl text-coffee">
+                    {{ cafe.name }}
+                </h1>
+                <LanguageSwitcher />
+            </div>
             <NuxtLink v-if="baristaLink" :to="baristaLink">
                 <UButton class="fixed top-4 right-4 z-10 bg-coffee-500 hover:bg-coffee-600 text-white">
-                    Be the barista
+                    {{ $t('menu.beBarista') }}
                     <UIcon name="i-hugeicons:coffee-02" />
                 </UButton>
             </NuxtLink>
             <div class="flex flex-col grow">
                 <h2 class="font-bold text-2xl mb-4 text-coffee">
-                    Menu
+                    {{ $t('menu.heading') }}
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 mb-10">
                 <button v-for="item of items" :key="item.$id" type="button" @click="openItem(item)"
@@ -203,14 +208,14 @@ async function onSendCommand() {
                 </button>
             </div>
             <h2 key="pastOrders" class="font-bold text-2xl mb-4 text-coffee">
-                Past Orders
+                {{ $t('menu.pastOrders') }}
             </h2>
             <div v-if="orders.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <UCard v-for="order in orders" :key="order.$id" variant="soft"
                     class="flex flex-col bg-white dark:bg-latte-50 drop-shadow-xl rounded-lg">
                     <div class="flex flex-col justify-between">
                         <div class="font-bold text-2xl text-coffee">
-                            {{ order.item?.name || "Unknown item" }}
+                            {{ order.item?.name || $t('menu.unknownItem') }}
                         </div>
                         <div class="font-mono text-gray-500 dark:text-gray-400 text-sm">
                             #{{ order.$id }}
@@ -228,7 +233,7 @@ async function onSendCommand() {
                             </div>
                             <UButton v-if="order.status === 'ordered'" size="sm" variant="soft" color="error"
                                 loading-auto @click="() => cancelOrder(order.$id)">
-                                Cancel
+                                {{ $t('common.cancel') }}
                             </UButton>
                         </div>
                     </div>
@@ -256,7 +261,7 @@ async function onSendCommand() {
                                     : 'none',
                             }" />
                         <UButton icon="i-lucide-x" color="neutral" variant="solid" size="md" @click="closeItem"
-                            aria-label="Close"
+                            :aria-label="$t('common.close')"
                             class="absolute top-3 right-3 rounded-full bg-white/90 hover:bg-white text-coffee shadow transition-opacity duration-300"
                             :class="showModalExtras ? 'opacity-100' : 'opacity-0'
                                 " />
@@ -299,14 +304,14 @@ async function onSendCommand() {
                                     }"></UTabs>
                             </div>
                         </div>
-                        <UFormField label="Your name" class="mt-4">
-                            <UInput v-model="clientName" placeholder="Your name"
+                        <UFormField :label="$t('menu.yourName')" class="mt-4">
+                            <UInput v-model="clientName" :placeholder="$t('menu.yourName')"
                                 class="bg-white text-coffee focus:ring-coffee-500"></UInput>
                         </UFormField>
                         <div class="flex flex-row justify-end mt-4">
                             <UButton :loading="isOrderSending" size="xl"
                                 class="rounded-full bg-coffee-500 hover:bg-coffee-600 text-white" @click="onSendCommand">
-                                Order</UButton>
+                                {{ $t('menu.order') }}</UButton>
                         </div>
                     </div>
                 </div>

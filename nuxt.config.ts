@@ -4,12 +4,39 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2026-01-01",
   // https://nuxt.com/modules
-  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@vite-pwa/nuxt', '@nuxt/image'],
+  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@vite-pwa/nuxt', '@nuxt/image', '@nuxtjs/i18n'],
   css: ['~/assets/css/main.css'],
+  // https://i18n.nuxtjs.org — multilingual (en, fr, de, es, it, zh)
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', name: 'English', language: 'en-US', file: 'en.json' },
+      { code: 'fr', name: 'Français', language: 'fr-FR', file: 'fr.json' },
+      { code: 'de', name: 'Deutsch', language: 'de-DE', file: 'de.json' },
+      { code: 'es', name: 'Español', language: 'es-ES', file: 'es.json' },
+      { code: 'it', name: 'Italiano', language: 'it-IT', file: 'it.json' },
+      { code: 'zh', name: '中文', language: 'zh-CN', file: 'zh.json' },
+    ],
+    lazy: true,
+    langDir: 'locales',
+    vueI18n: './i18n.config.ts',
+    bundle: {
+      // Recommended by the module; avoids the deprecated translation-directive optimizer.
+      optimizeTranslationDirective: false,
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+      redirectOn: 'root',
+      fallbackLocale: 'en',
+    },
+  },
   // https://devtools.nuxt.com
   devtools: { enabled: true },
   vite: {
-    plugins: [tailwindcss()]
+    // `as any` works around duplicate vite type identities after adding @nuxtjs/i18n
+    plugins: [tailwindcss() as any]
   },
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
   runtimeConfig: {

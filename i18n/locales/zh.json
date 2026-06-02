@@ -1,0 +1,475 @@
+{
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "copy": "复制",
+    "copied": "已复制！",
+    "loading": "加载中……"
+  },
+  "nav": {
+    "orders": "订单",
+    "menu": "菜单",
+    "cafe": "咖啡馆"
+  },
+  "languageSwitcher": {
+    "label": "语言"
+  },
+  "app": {
+    "name": "My Tiny Café",
+    "description": "点一杯你最爱的咖啡馆"
+  },
+  "landing": {
+    "nav": {
+      "login": "登录",
+      "openCafe": "开一家 My Tiny Café"
+    },
+    "hero": {
+      "title": "把你的家变成全城{highlight}。",
+      "titleHighlight": "最棒的咖啡馆",
+      "subtitle": "为居家咖啡师打造的电子菜单。列出你的饮品清单，把二维码分享给亲朋好友，订单直接送到你的手机上。",
+      "subtitleEmphasis": "100% 免费。100% 温馨。",
+      "ctaPrimary": "开一家 My Tiny Café",
+      "ctaDemo": "看看示例咖啡馆 ↗",
+      "noCreditCard": "无需信用卡，没有广告，只有满满的爱。"
+    },
+    "mockup": {
+      "notifTitle": "来自 Magali 的新订单",
+      "notifOrder": "拿铁（燕麦奶，无糖）",
+      "now": "刚刚",
+      "menu": "菜单",
+      "latte": "拿铁",
+      "lattePrice": "一个拥抱 🤗",
+      "matcha": "抹茶",
+      "tea": "茶",
+      "teaPrice": "一个故事 📖",
+      "cookie": "曲奇",
+      "cookiePrice": "免费！"
+    },
+    "valueProp": {
+      "eyebrow": "升级你的待客之道",
+      "heading": "何必从厨房里扯着嗓子喊？",
+      "problemTitle": "烦恼所在",
+      "problemText": "从厨房里喊一声「谁要喝茶？」，可水还没烧开，你就已经忘了谁要加糖、谁要杏仁奶。",
+      "solutionTitle": "解决之道",
+      "solutionText": "My Tiny Café 把精品咖啡馆的那份惊喜带进你的客厅，让这一刻变得特别起来。"
+    },
+    "howItWorks": {
+      "title": "如何使用（三个简单步骤）",
+      "step1Title": "1. 搭建你的菜单",
+      "step1Text": "给你的咖啡馆起个名字。加上你的招牌——拿铁、花草茶或法式吐司。自定义牛奶和糖的选项。",
+      "step2Title": "2. 分享链接",
+      "step2Text": "把二维码打印出来贴在冰箱上，或者直接发链接。客人随意浏览，按自己的喜好定制饮品。",
+      "step3Title": "3. 收到通知，开始上菜",
+      "step3Text": "叮！你会立刻收到通知。无需金钱往来——只有一杯完美的饮品，配上一个微笑。"
+    },
+    "features": {
+      "title": "功能特色",
+      "feature1Title": "完全自定义的菜单",
+      "feature1Text": "从「哺乳花草茶」到「冰抹茶」，由你决定端上什么。",
+      "feature2Title": "即时推送通知",
+      "feature2Text": "绝不漏掉任何一单。你的「顾客」一提交请求，你就立刻知道。",
+      "feature3Title": "无需下载任何应用",
+      "feature3Text": "客人扫一扫（或点一点）就能下单，无需安装。",
+      "feature4Title": "完全免费",
+      "feature4Text": "没有支付通道，这里唯一的货币是感激之情。"
+    },
+    "stories": {
+      "title": "真实故事",
+      "quote1": "爸爸，我能用你的应用点一杯茶吗？",
+      "quote1Name": "Zola，5 岁",
+      "quote1Role": "首席品鉴官",
+      "quote2": "回家前先点一杯咖啡真是太方便了。而且这位咖啡师还超级可爱！",
+      "quote2Name": "Magali",
+      "quote2Role": "妻子兼忠实顾客"
+    },
+    "audience": {
+      "title": "My Tiny Café 适合谁？",
+      "card1Title": "远程办公的神仙眷侣",
+      "card1Text": "无需打断 Zoom 会议，悄悄下单来一剂咖啡因。",
+      "card2Title": "「最会待客的主人」",
+      "card2Text": "让客人通过电子菜单点上一杯餐后助消化饮品，惊艳全场。",
+      "card3Title": "爱玩的爸妈",
+      "card3Text": "孩子们都爱玩「开餐厅」。把菜单设置好交给他们，让他们来为你点单。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": "真的免费吗？",
+      "a1": "是的！My Tiny Café 目前完全免费使用。",
+      "q2": "我可以卖饮品收钱吗？",
+      "a2": "不行。这个应用是为亲朋好友设计的，不涉及任何支付处理——只有为你在乎的人端上一杯饮品的那份喜悦。",
+      "q3": "菜单上能放什么？",
+      "a3": "什么都行！咖啡、茶、点心、法式吐司、白开水……只要你能在厨房里做出来，就能放进你的菜单。"
+    },
+    "openSource": {
+      "title": "自豪地开源",
+      "text": "我相信透明与社区的力量。My Tiny Café 是开源的，你可以清楚地看到它是如何构建的，贡献新功能，或者自行部署。",
+      "button": "在 GitHub 上查看"
+    },
+    "footer": {
+      "title": "准备好开张了吗？",
+      "subtitle": "今天就加入居家咖啡师的社区吧。",
+      "cta": "立即创建你的咖啡馆",
+      "madeWith": "在法国用 ❤️ 为 Zola 和 Magali 倾心打造。",
+      "copyright": "© 2024 My Tiny Café",
+      "aboutMakerTitle": "关于作者",
+      "aboutMakerText": "我是 Alix，做这个是为了让我的妻子和女儿开心。希望它也能为你的家带来一点欢乐。我是一名前端自由开发者（尤其擅长 Vue.js / Nuxt.js），有人机交互研究的背景。{link}。",
+      "aboutMakerLink": "看看我的作品",
+      "guest": "是访客？",
+      "findCafe": "找一家咖啡馆"
+    }
+  },
+  "auth": {
+    "fields": {
+      "emailLabel": "邮箱",
+      "emailPlaceholder": "you{'@'}example.com",
+      "emailFloating": "邮箱",
+      "passwordLabel": "密码",
+      "passwordFloating": "密码",
+      "nameLabel": "姓名",
+      "namePlaceholder": "你的名字",
+      "nameFloating": "你的名字",
+      "cafeIdLabel": "咖啡馆 ID",
+      "cafeIdPlaceholder": "咖啡馆 ID",
+      "cafeIdFloating": "你的咖啡馆 ID"
+    },
+    "validation": {
+      "invalidEmail": "邮箱地址无效",
+      "passwordMin": "密码至少需要 8 个字符",
+      "nameMin": "姓名至少需要 2 个字符",
+      "cafeIdMin": "咖啡馆 ID 至少需要 3 个字符"
+    },
+    "login": {
+      "title": "登录",
+      "submit": "登录",
+      "noAccount": "还没有账号？",
+      "signupLink": "注册",
+      "successTitle": "登录成功！",
+      "successDesc": "正在跳转……",
+      "failTitle": "登录失败",
+      "errorUnexpected": "发生了意外错误，请重试。"
+    },
+    "signup": {
+      "title": "创建账号",
+      "submit": "注册",
+      "haveAccount": "已经有账号了？",
+      "loginLink": "登录",
+      "accountCreatedTitle": "账号已创建！",
+      "accountCreatedDesc": "请登录以继续。",
+      "invalidCafeIdTitle": "无效的咖啡馆 ID",
+      "invalidCafeIdDesc": "咖啡馆 ID 不能为「undefined」。请换一个咖啡馆 ID。",
+      "cafeIdExistsTitle": "咖啡馆 ID 已存在",
+      "cafeIdExistsDesc": "请换一个咖啡馆 ID。",
+      "failTitle": "注册失败",
+      "failDesc": "发生了意外错误。"
+    }
+  },
+  "setup": {
+    "title": "完成咖啡馆设置",
+    "intro": "看起来在设置咖啡馆时出了点问题。请提供你的咖啡馆信息以继续。",
+    "cafeNameLabel": "咖啡馆名称",
+    "cafeNamePlaceholder": "我的超棒咖啡馆",
+    "cafeNameFloating": "咖啡馆名称",
+    "noSpecialChars": "你的咖啡馆名称不能包含特殊字符或空格。",
+    "cafeIdLabel": "咖啡馆 ID",
+    "cafeIdPlaceholder": "cafe-id",
+    "cafeIdFloating": "你的咖啡馆 ID",
+    "submit": "完成设置",
+    "cafeFoundTitle": "已找到咖啡馆",
+    "cafeFoundDesc": "正在跳转到你的咖啡馆……",
+    "authErrorTitle": "认证错误",
+    "authErrorDesc": "你需要登录后才能完成设置。",
+    "cafeIdExistsTitle": "咖啡馆 ID 已存在",
+    "cafeIdExistsDesc": "请换一个咖啡馆 ID。",
+    "invalidCafeIdTitle": "无效的咖啡馆 ID",
+    "invalidCafeIdDesc": "咖啡馆 ID 不能为「undefined」。请换一个咖啡馆 ID。",
+    "completeTitle": "设置完成！",
+    "completeDesc": "你的咖啡馆已就绪。",
+    "failTitle": "设置失败",
+    "failDesc": "发生了意外错误。",
+    "validation": {
+      "nameMin": "姓名至少需要 2 个字符",
+      "cafeIdMin": "咖啡馆 ID 至少需要 3 个字符"
+    }
+  },
+  "menu": {
+    "beBarista": "成为咖啡师",
+    "heading": "菜单",
+    "pastOrders": "历史订单",
+    "unknownItem": "未知商品",
+    "yourName": "你的名字",
+    "order": "下单",
+    "anonymous": "匿名",
+    "status": {
+      "ordered": "你的订单正在准备中",
+      "completed": "你的订单已就绪！",
+      "canceled": "你的订单已取消",
+      "unknown": "状态未知"
+    },
+    "toast": {
+      "orderSentTitle": "订单已发送",
+      "orderSentDesc": "你的订单已成功发送。",
+      "errorTitle": "错误",
+      "orderFailDesc": "订单发送失败，请重试。",
+      "orderCanceledTitle": "订单已取消",
+      "orderCanceledDesc": "你的订单已成功取消。",
+      "cancelFailDesc": "取消订单失败，请重试。"
+    },
+    "headDescription": "在 {cafeName} 点上你最爱的美食"
+  },
+  "baristaOrders": {
+    "title": "订单",
+    "enableNotifications": "有新订单时收到通知",
+    "emptyTitle": "暂无订单",
+    "emptyText": "分享你的咖啡馆页面，开始接单吧！",
+    "shareCafe": "分享我的咖啡馆",
+    "pastOrders": "历史订单",
+    "cancel": "取消",
+    "complete": "完成",
+    "unknownItem": "未知商品",
+    "statusLabel": {
+      "ordered": "已下单",
+      "completed": "已完成",
+      "canceled": "已取消"
+    }
+  },
+  "baristaMenu": {
+    "manageMenuFor": "管理 {cafeName} 的菜单",
+    "cafeId": "咖啡馆 ID：{id}",
+    "addNewItem": "添加新商品",
+    "noItemsTitle": "暂无商品",
+    "noItemsText": "添加一个新菜单商品来开始吧。",
+    "options": "选项：",
+    "yesNo": "是 / 否",
+    "noOptions": "未定义具体选项。",
+    "edit": "编辑",
+    "delete": "删除",
+    "editItemTitle": "编辑 {name}",
+    "addItemTitle": "添加新商品",
+    "itemNamePlaceholder": "例如：浓缩咖啡、可颂",
+    "itemNameFloating": "商品名称",
+    "pricePlaceholder": "例如：3.50",
+    "priceFloating": "价格",
+    "imageLabel": "图片",
+    "noImage": "无图片",
+    "descriptionPlaceholder": "商品描述……",
+    "descriptionFloating": "描述",
+    "optionNamePlaceholder": "例如：杯型、牛奶、低咖啡因",
+    "optionNameFloating": "选项名称",
+    "multipleValues": "多个取值 / 简单选项",
+    "valuesFor": "{name} 的取值：",
+    "thisOption": "此选项",
+    "valuePlaceholder": "例如：小杯、大杯、燕麦奶",
+    "valueFloating": "取值",
+    "addValue": "添加取值",
+    "addNewOptionType": "添加新的选项类型",
+    "removeOption": "移除选项",
+    "removeValue": "移除取值",
+    "cancel": "取消",
+    "saveChanges": "保存更改",
+    "addItem": "添加商品",
+    "confirmDelete": "确定要删除这个商品吗？此操作无法撤销。",
+    "images": {
+      "bobba": "珍珠奶茶",
+      "cafe": "咖啡",
+      "cookie": "曲奇",
+      "emporter": "外带",
+      "gaiwan": "盖碗",
+      "jus": "果汁",
+      "latte": "拿铁",
+      "muffin": "玛芬",
+      "mug": "马克杯",
+      "tartine": "法式吐司",
+      "the": "茶",
+      "yaourt": "酸奶"
+    },
+    "toast": {
+      "errorLoadingCafeTitle": "加载咖啡馆失败",
+      "errorLoadingCafeDesc": "找不到或无法加载所请求的咖啡馆。",
+      "errorLoadingMenuTitle": "加载菜单失败",
+      "errorLoadingMenuDesc": "无法加载菜单商品。",
+      "errorTitle": "错误",
+      "cafeIdMissing": "缺少咖啡馆 ID。",
+      "itemDeletedTitle": "商品已删除",
+      "itemDeletedDesc": "该商品已成功删除。",
+      "deletionFailedTitle": "删除失败",
+      "deletionFailedDesc": "无法删除该商品。",
+      "validationErrorTitle": "校验错误",
+      "itemNameRequired": "商品名称为必填项。",
+      "itemUpdatedTitle": "商品已更新",
+      "itemUpdatedDesc": "更改已成功保存。",
+      "itemAddedTitle": "商品已添加",
+      "itemAddedDesc": "新商品已添加到菜单。",
+      "saveFailedTitle": "保存失败",
+      "saveFailedDesc": "无法保存该商品。"
+    }
+  },
+  "cafeSettings": {
+    "share": {
+      "title": "分享你的页面",
+      "subtitle": "使用下方的网址或二维码分享此页面。",
+      "pageUrlLabel": "页面网址",
+      "pageUrlHelp": "这是通往你页面的直达链接。",
+      "generatingUrl": "正在生成网址……"
+    },
+    "qr": {
+      "title": "二维码",
+      "subtitle": "用移动设备扫描此二维码即可打开页面。",
+      "downloadPng": "下载 PNG",
+      "unavailable": "页面网址不可用，无法生成二维码。"
+    },
+    "updateName": {
+      "title": "更新咖啡馆名称",
+      "subtitle": "修改你咖啡馆的名称。",
+      "label": "咖啡馆名称",
+      "help": "为你的咖啡馆输入新名称。",
+      "placeholder": "输入新的咖啡馆名称",
+      "update": "更新",
+      "updating": "更新中……"
+    },
+    "customImages": {
+      "title": "自定义图片",
+      "subtitle": "上传你自己的图片，用于菜单商品。",
+      "upload": "上传图片",
+      "empty": "还没有自定义图片。上传一张来开始吧。"
+    },
+    "about": {
+      "title": "关于与支持",
+      "openSourceTitle": "开源",
+      "openSourceText": "本项目算是开源的。GitHub 上提供的 Appwrite 服务器配置可能已经过时，如有需要请随时联系我。",
+      "viewOnGithub": "在 GitHub 上查看",
+      "contactTitle": "联系作者",
+      "contactText": "由 Alix 打造。如有需要请随时联系。",
+      "hireText": "要不要请我为你的下一个项目效力？",
+      "supportTitle": "支持 My Tiny Café",
+      "supportText": "My Tiny Café 免费提供，但如果你喜欢使用它，欢迎赞助一点托管费用。",
+      "supportButton": "在 Buy Me a Coffee 上支持"
+    },
+    "delete": {
+      "title": "删除账号",
+      "subtitle": "永久删除你的咖啡馆、菜单、所有订单、所有自定义图片以及你的账号。此操作无法撤销。",
+      "button": "删除我的账号",
+      "modalTitle": "永久删除你的账号？",
+      "modalIntro": "这将永久删除：",
+      "modalListCafe": "你的咖啡馆 {id}",
+      "modalListMenu": "其菜单商品和所有历史订单",
+      "modalListImages": "你的自定义图片",
+      "modalListAccount": "你的账号（你将无法再次登录）",
+      "confirmLabel": "输入「{cafeId}」以确认",
+      "deletePermanently": "永久删除"
+    },
+    "session": {
+      "title": "会话",
+      "subtitle": "退出此设备的登录。你随时可以重新登录。",
+      "logout": "退出登录"
+    },
+    "toast": {
+      "imageUploadedTitle": "图片已上传",
+      "imageUploadedDesc": "「{name}」已上传。",
+      "uploadFailedTitle": "上传失败",
+      "uploadFailedDesc": "无法上传图片。",
+      "confirmDeleteImage": "删除这张图片吗？使用它的商品将显示一张破损的图片。",
+      "imageDeletedTitle": "图片已删除",
+      "imageDeletedDesc": "图片已删除。",
+      "deleteFailedTitle": "删除失败",
+      "deleteFailedDesc": "无法删除图片。",
+      "errorTitle": "错误",
+      "cafeIdUnavailable": "咖啡馆 ID 不可用，无法更新名称。",
+      "validationErrorTitle": "校验错误",
+      "cafeNameEmpty": "咖啡馆名称不能为空。",
+      "successTitle": "成功！",
+      "cafeNameUpdated": "咖啡馆名称已更新为「{name}」。",
+      "updateFailedTitle": "更新失败",
+      "updateNameFailedDesc": "无法更新咖啡馆名称，请重试。",
+      "missingCafeIdTitle": "缺少咖啡馆 ID",
+      "missingCafeIdDesc": "网址中缺少咖啡馆的唯一标识符。",
+      "urlNotAvailableTitle": "网址不可用",
+      "urlNotAvailableDesc": "页面网址尚未准备好，无法复制。",
+      "clipboardDeniedTitle": "剪贴板访问被拒绝",
+      "clipboardDeniedDesc": "你的浏览器设置阻止了剪贴板访问，或不支持该功能。",
+      "urlCopiedTitle": "网址已复制！",
+      "urlCopiedDesc": "页面网址已复制到你的剪贴板。",
+      "copyUnconfirmedTitle": "复制未确认",
+      "copyUnconfirmedDesc": "已尝试复制。请检查你的剪贴板。",
+      "copyFailedTitle": "复制失败",
+      "copyFailedDesc": "复制网址时出错，请手动复制。",
+      "downloadFailedTitle": "下载失败",
+      "qrNotReady": "二维码尚未准备好，请重试。",
+      "qrDownloadedTitle": "二维码已下载",
+      "qrDownloadedDesc": "二维码 PNG 已保存。",
+      "qrGenerateFailed": "无法生成 PNG 文件，请重试。",
+      "loggedOutTitle": "已退出登录",
+      "loggedOutDesc": "你已退出登录",
+      "accountDeletedTitle": "账号已删除",
+      "accountDeletedDesc": "你的账号和咖啡馆已被永久删除。",
+      "deletionFailedTitle": "删除失败",
+      "deletionFailedDesc": "无法删除你的账号，请重试。"
+    }
+  },
+  "invalidCafe": {
+    "title": "这家咖啡馆打烊了。",
+    "text": "我们在这个地址找不到任何咖啡馆。也许是链接错了——又或者，是时候轮到{you}开一家自己的了？",
+    "textHighlight": "你",
+    "openOwn": "开一家我自己的咖啡馆",
+    "backHome": "返回首页",
+    "noCreditCard": "无需信用卡，没有广告，只有满满的爱。",
+    "headTitle": "找不到咖啡馆 — My Tiny Café"
+  },
+  "pwa": {
+    "finding": "正在寻找你的角落……",
+    "redirecting": "正在带你前往上次访问的咖啡馆。"
+  },
+  "demo": {
+    "cafeName": "Chez Zola",
+    "promptTitle": "想拥有属于自己的家庭咖啡馆吗？",
+    "promptText": "如果你也想为亲朋好友开一家自己的小咖啡馆，那就注册吧——完全免费，没有广告，大约一分钟就能搞定。",
+    "openCafe": "开一家我的小咖啡馆",
+    "keepBrowsing": "继续浏览",
+    "items": {
+      "latte": {
+        "name": "拿铁",
+        "description": "丝滑浓缩咖啡，覆上绵密蒸奶。",
+        "price": "一个拥抱 🤗"
+      },
+      "espresso": {
+        "name": "浓缩咖啡",
+        "description": "短小、深沉、浓烈。经典之选。"
+      },
+      "matcha": {
+        "name": "抹茶",
+        "description": "现点现打的仪式级绿茶。"
+      },
+      "tea": {
+        "name": "茶",
+        "description": "散叶茶，现点现泡。"
+      },
+      "juice": {
+        "name": "鲜榨果汁",
+        "description": "今早现榨。"
+      },
+      "bubble": {
+        "name": "珍珠奶茶",
+        "description": "Q弹珍珠，你最爱的口味。"
+      },
+      "muffin": {
+        "name": "玛芬",
+        "description": "今早现烤。"
+      },
+      "cookie": {
+        "name": "曲奇",
+        "description": "温热又有嚼劲。"
+      },
+      "tartine": {
+        "name": "法式吐司",
+        "description": "酸种面包，烤得香脆，配上各式佐料。"
+      },
+      "yogurt": {
+        "name": "酸奶",
+        "description": "希腊酸奶，新鲜水果，格兰诺拉麦片。",
+        "price": "免费！"
+      }
+    }
+  }
+}

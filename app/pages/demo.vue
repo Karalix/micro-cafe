@@ -1,84 +1,88 @@
 <script setup lang="ts">
+const { t } = useI18n();
+
 const showSignupPrompt = ref(false);
 
-const demoCafe = { name: "Chez Zola" };
+const demoCafe = computed(() => ({ name: t("demo.cafeName") }));
 
-const demoItems = [
+// Option strings keep the structural "Name:value;value" / "Name:boolean" format the
+// menu component parses; they are sample content rather than translatable UI copy.
+const demoItems = computed(() => [
     {
         $id: "demo-latte",
-        name: "Latte",
-        price: "1 hug 🤗",
-        description: "Silky espresso topped with steamed milk.",
+        name: t("demo.items.latte.name"),
+        price: t("demo.items.latte.price"),
+        description: t("demo.items.latte.description"),
         options: ["Size:small;medium;large", "Milk:cow;oat;almond", "Sugar:boolean"],
         imageUrl: "/images-cafe/latte.png",
     },
     {
         $id: "demo-espresso",
-        name: "Espresso",
-        description: "Short, dark, intense. The classic.",
+        name: t("demo.items.espresso.name"),
+        description: t("demo.items.espresso.description"),
         options: ["Shots:single;double", "Sugar:boolean"],
         imageUrl: "/images-cafe/cafe.png",
     },
     {
         $id: "demo-matcha",
-        name: "Matcha",
+        name: t("demo.items.matcha.name"),
         price: "5€",
-        description: "Whisked ceremonial-grade green tea.",
+        description: t("demo.items.matcha.description"),
         options: ["Size:small;medium", "Milk:none;oat;almond", "Sugar:boolean"],
         imageUrl: "/images-cafe/gaiwan.png",
     },
     {
         $id: "demo-tea",
-        name: "Tea",
-        description: "Loose-leaf, steeped to order.",
+        name: t("demo.items.tea.name"),
+        description: t("demo.items.tea.description"),
         options: ["Blend:earl grey;chamomile;mint;rooibos", "Honey:boolean"],
         imageUrl: "/images-cafe/the.png",
     },
     {
         $id: "demo-juice",
-        name: "Fresh Juice",
-        description: "Pressed this morning.",
+        name: t("demo.items.juice.name"),
+        description: t("demo.items.juice.description"),
         options: ["Flavor:orange;apple;carrot-ginger"],
         imageUrl: "/images-cafe/jus.png",
     },
     {
         $id: "demo-bubble",
-        name: "Bubble Tea",
-        description: "Chewy tapioca, your favorite flavor.",
+        name: t("demo.items.bubble.name"),
+        description: t("demo.items.bubble.description"),
         options: ["Flavor:taro;mango;classic milk", "Ice:boolean"],
         imageUrl: "/images-cafe/bobba.png",
     },
     {
         $id: "demo-muffin",
-        name: "Muffin",
-        description: "Baked this morning.",
+        name: t("demo.items.muffin.name"),
+        description: t("demo.items.muffin.description"),
         options: ["Flavor:chocolate;blueberry;banana"],
         imageUrl: "/images-cafe/muffin.png",
     },
     {
         $id: "demo-cookie",
-        name: "Cookie",
+        name: t("demo.items.cookie.name"),
         price: "📖",
-        description: "Warm and chewy.",
+        description: t("demo.items.cookie.description"),
         options: ["Type:chocolate chip;oatmeal raisin", "Warmed:boolean"],
         imageUrl: "/images-cafe/cookie.png",
     },
     {
         $id: "demo-tartine",
-        name: "Tartine",
-        description: "Sourdough, toasted, with toppings.",
+        name: t("demo.items.tartine.name"),
+        description: t("demo.items.tartine.description"),
         options: ["Topping:butter & jam;avocado;honey & ricotta"],
         imageUrl: "/images-cafe/tartine.png",
     },
     {
         $id: "demo-yogurt",
-        name: "Yogurt",
-        price: "Free!",
-        description: "Greek yogurt, fresh fruits, granola.",
+        name: t("demo.items.yogurt.name"),
+        price: t("demo.items.yogurt.price"),
+        description: t("demo.items.yogurt.description"),
         options: ["Granola:boolean", "Honey:boolean"],
         imageUrl: "/images-cafe/yaourt.png",
     },
-];
+]);
 
 const demoOrders = ref([] as any[]);
 
@@ -95,17 +99,17 @@ function goToSignup() {
     navigateTo("/signup");
 }
 
-useHead({
-    title: demoCafe.name,
+useHead(() => ({
+    title: demoCafe.value.name,
     meta: [
         { name: "viewport", content: "width=device-width,initial-scale=1" },
         {
             name: "description",
-            content: `Order your favorite items from ${demoCafe.name}`,
+            content: t("menu.headDescription", { cafeName: demoCafe.value.name }),
         },
         { name: "theme-color", content: "#f0e4d2" },
     ],
-});
+}));
 </script>
 
 <template>
@@ -120,20 +124,19 @@ useHead({
             <div class="p-6 sm:p-8 text-center">
                 <div class="text-5xl mb-4">☕</div>
                 <h2 class="font-serif font-bold text-2xl text-coffee mb-3">
-                    Want your own home café?
+                    {{ $t('demo.promptTitle') }}
                 </h2>
                 <p class="text-coffee-600 mb-6 leading-relaxed">
-                    If you'd love to open your own tiny café for friends and family,
-                    sign up — it's totally free, ad-free, and takes about a minute.
+                    {{ $t('demo.promptText') }}
                 </p>
                 <div class="flex flex-col sm:flex-row-reverse gap-3 sm:justify-center">
                     <UButton size="lg" block @click="goToSignup"
                         class="bg-coffee-500 hover:bg-coffee-600 text-white rounded-full justify-center">
-                        Open my tiny café
+                        {{ $t('demo.openCafe') }}
                     </UButton>
                     <UButton size="lg" block color="neutral" variant="ghost" @click="showSignupPrompt = false"
                         class="text-coffee hover:bg-latte-100 justify-center">
-                        Keep browsing
+                        {{ $t('demo.keepBrowsing') }}
                     </UButton>
                 </div>
             </div>

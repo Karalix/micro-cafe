@@ -17,7 +17,7 @@ if (lastVisitedCafe) {
         <div class="animate-bounce mb-6">
             <UIcon name="i-lucide-coffee" class="w-20 h-20 text-coffee-500" />
         </div>
-        <h2 class="text-2xl font-bold text-coffee mb-2">Finding your spot...</h2>
-        <p class="text-coffee-600 animate-pulse">Redirecting you to your last visited café.</p>
+        <h2 class="text-2xl font-bold text-coffee mb-2">{{ $t('pwa.finding') }}</h2>
+        <p class="text-coffee-600 animate-pulse">{{ $t('pwa.redirecting') }}</p>
     </div>
 </template>

@@ -1,0 +1,475 @@
+{
+  "common": {
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "close": "Chiudi",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "loading": "Caricamento..."
+  },
+  "nav": {
+    "orders": "Ordini",
+    "menu": "Menu",
+    "cafe": "Caffetteria"
+  },
+  "languageSwitcher": {
+    "label": "Lingua"
+  },
+  "app": {
+    "name": "My Tiny Café",
+    "description": "Ordina dalla tua caffetteria preferita"
+  },
+  "landing": {
+    "nav": {
+      "login": "Accedi",
+      "openCafe": "Apri il mio My Tiny Café"
+    },
+    "hero": {
+      "title": "Trasforma casa tua nel {highlight} del quartiere.",
+      "titleHighlight": "Miglior Coffee Shop",
+      "subtitle": "Il menu digitale per i barista di casa. Crea la tua lista di bevande, condividi il QR code con amici e parenti e ricevi gli ordini direttamente sul telefono.",
+      "subtitleEmphasis": "100% Gratis. 100% Accogliente.",
+      "ctaPrimary": "Apri il mio My Tiny Café",
+      "ctaDemo": "Guarda una caffetteria demo ↗",
+      "noCreditCard": "Nessuna carta di credito richiesta. Niente pubblicità. Solo amore."
+    },
+    "mockup": {
+      "notifTitle": "Nuovo ordine da Magali",
+      "notifOrder": "Latte (Latte d'avena, Senza zucchero)",
+      "now": "adesso",
+      "menu": "Menu",
+      "latte": "Latte",
+      "lattePrice": "1 abbraccio 🤗",
+      "matcha": "Matcha",
+      "tea": "Tè",
+      "teaPrice": "Una storia 📖",
+      "cookie": "Biscotto",
+      "cookiePrice": "Gratis!"
+    },
+    "valueProp": {
+      "eyebrow": "L'ospitalità, migliorata",
+      "heading": "Perché urlare dalla cucina?",
+      "problemTitle": "Il problema",
+      "problemText": "Urlare dalla cucina «Chi vuole il tè?» e, quando l'acqua bolle, aver già dimenticato chi voleva lo zucchero e chi il latte di mandorla.",
+      "solutionTitle": "La soluzione",
+      "solutionText": "My Tiny Café porta nel tuo salotto la magia di una boutique del caffè. Rendi il momento speciale."
+    },
+    "howItWorks": {
+      "title": "Come funziona (3 semplici passi)",
+      "step1Title": "1. Crea il tuo menu",
+      "step1Text": "Dai un nome alla tua caffetteria. Aggiungi le tue specialità—Latte, Tisana o Bruschetta. Personalizza le opzioni per latte e zucchero.",
+      "step2Title": "2. Condividi il link",
+      "step2Text": "Stampa il QR code per il frigorifero o invia il link via messaggio. Gli ospiti sfogliano il menu e personalizzano la loro bevanda esattamente come la desiderano.",
+      "step3Title": "3. Ricevi la notifica e servi",
+      "step3Text": "Ding! Ricevi una notifica all'istante. Nessuno scambio di denaro—solo una tazza perfetta servita con un sorriso."
+    },
+    "features": {
+      "title": "Funzionalità",
+      "feature1Title": "Menu completamente personalizzabile",
+      "feature1Text": "Dalla «Tisana per l'allattamento» al «Matcha freddo», decidi tu cosa servire.",
+      "feature2Title": "Notifiche push istantanee",
+      "feature2Text": "Non perdere mai un ordine. Saprai nell'istante esatto in cui il tuo «cliente» invia la richiesta.",
+      "feature3Title": "Nessuna app da scaricare",
+      "feature3Text": "Gli ospiti scansionano (o cliccano) e ordinano. Nessuna installazione necessaria.",
+      "feature4Title": "Completamente gratis",
+      "feature4Text": "Nessun sistema di pagamento. L'unica moneta qui è la gratitudine."
+    },
+    "stories": {
+      "title": "Storie vere",
+      "quote1": "Papà, posso usare la tua app per ordinare un tè?",
+      "quote1Name": "Zola, 5 anni",
+      "quote1Role": "Capo Assaggiatrice",
+      "quote2": "È così comodo ordinare un caffè per quando torno a casa. E il barista è anche super carino!",
+      "quote2Name": "Magali",
+      "quote2Role": "Moglie e cliente affezionata"
+    },
+    "audience": {
+      "title": "Per chi è My Tiny Café?",
+      "card1Title": "La coppia in smart working",
+      "card1Text": "Invia in silenzio un ordine per una carica di caffeina senza interrompere la riunione su Zoom.",
+      "card2Title": "Il padrone di casa perfetto",
+      "card2Text": "Stupisci i tuoi ospiti lasciando che ordinino il digestivo di fine pasto da un menu digitale.",
+      "card3Title": "Il genitore giocherellone",
+      "card3Text": "I bambini adorano giocare al «ristorante». Prepara il menu per loro e lascia che prendano la tua ordinazione."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "q1": "È davvero gratis?",
+      "a1": "Sì! Al momento My Tiny Café è completamente gratuito.",
+      "q2": "Posso far pagare le bevande?",
+      "a2": "No. Questa app è pensata per amici e parenti. Non c'è alcun sistema di pagamento—solo la gioia di servire una bevanda a una persona a cui tieni.",
+      "q3": "Cosa posso mettere nel menu?",
+      "a3": "Qualsiasi cosa! Caffè, tè, snack, bruschette, acqua... se riesci a prepararlo in cucina, puoi metterlo nel tuo menu."
+    },
+    "openSource": {
+      "title": "Orgogliosamente open source",
+      "text": "Credo nella trasparenza e nella comunità. My Tiny Café è open source, così puoi vedere esattamente com'è costruito, contribuire con nuove funzionalità o ospitarlo tu stesso.",
+      "button": "Guarda su GitHub"
+    },
+    "footer": {
+      "title": "Pronto ad aprire bottega?",
+      "subtitle": "Unisciti oggi alla comunità dei barista di casa.",
+      "cta": "Crea ora la tua caffetteria",
+      "madeWith": "Fatto con ❤️ in Francia per Zola e Magali.",
+      "copyright": "© 2024 My Tiny Café",
+      "aboutMakerTitle": "Chi l'ha creato",
+      "aboutMakerText": "Sono Alix, ho creato questa app per rendere felici mia moglie e mia figlia. Spero che porti un po' di gioia anche a casa tua. Sono uno sviluppatore frontend freelance (preferibilmente in Vue.js / Nuxt.js) con un background nella ricerca sull'interazione uomo-macchina. {link}.",
+      "aboutMakerLink": "Dai un'occhiata ai miei lavori",
+      "guest": "Ospite?",
+      "findCafe": "Trova una caffetteria"
+    }
+  },
+  "auth": {
+    "fields": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu{'@'}esempio.com",
+      "emailFloating": "Email",
+      "passwordLabel": "Password",
+      "passwordFloating": "Password",
+      "nameLabel": "Nome",
+      "namePlaceholder": "Il tuo nome",
+      "nameFloating": "Il tuo nome",
+      "cafeIdLabel": "ID caffetteria",
+      "cafeIdPlaceholder": "ID caffetteria",
+      "cafeIdFloating": "L'ID della tua caffetteria"
+    },
+    "validation": {
+      "invalidEmail": "Indirizzo email non valido",
+      "passwordMin": "La password deve contenere almeno 8 caratteri",
+      "nameMin": "Il nome deve contenere almeno 2 caratteri",
+      "cafeIdMin": "L'ID della caffetteria deve contenere almeno 3 caratteri"
+    },
+    "login": {
+      "title": "Accedi",
+      "submit": "Accedi",
+      "noAccount": "Non hai un account?",
+      "signupLink": "Registrati",
+      "successTitle": "Accesso riuscito!",
+      "successDesc": "Reindirizzamento in corso...",
+      "failTitle": "Accesso non riuscito",
+      "errorUnexpected": "Si è verificato un errore imprevisto. Riprova."
+    },
+    "signup": {
+      "title": "Crea un account",
+      "submit": "Registrati",
+      "haveAccount": "Hai già un account?",
+      "loginLink": "Accedi",
+      "accountCreatedTitle": "Account creato!",
+      "accountCreatedDesc": "Accedi per continuare.",
+      "invalidCafeIdTitle": "ID caffetteria non valido",
+      "invalidCafeIdDesc": "L'ID della caffetteria non può essere «undefined». Scegli un ID diverso.",
+      "cafeIdExistsTitle": "ID caffetteria già esistente",
+      "cafeIdExistsDesc": "Scegli un ID caffetteria diverso.",
+      "failTitle": "Registrazione non riuscita",
+      "failDesc": "Si è verificato un errore imprevisto."
+    }
+  },
+  "setup": {
+    "title": "Completa la configurazione della caffetteria",
+    "intro": "Sembra che qualcosa sia andato storto durante la configurazione della tua caffetteria. Inserisci i dettagli della caffetteria per continuare.",
+    "cafeNameLabel": "Nome della caffetteria",
+    "cafeNamePlaceholder": "La mia fantastica caffetteria",
+    "cafeNameFloating": "Nome della caffetteria",
+    "noSpecialChars": "Il nome della tua caffetteria non può contenere caratteri speciali o spazi.",
+    "cafeIdLabel": "ID caffetteria",
+    "cafeIdPlaceholder": "id-caffetteria",
+    "cafeIdFloating": "L'ID della tua caffetteria",
+    "submit": "Completa la configurazione",
+    "cafeFoundTitle": "Caffetteria trovata",
+    "cafeFoundDesc": "Reindirizzamento alla tua caffetteria...",
+    "authErrorTitle": "Errore di autenticazione",
+    "authErrorDesc": "Devi aver effettuato l'accesso per completare la configurazione.",
+    "cafeIdExistsTitle": "ID caffetteria già esistente",
+    "cafeIdExistsDesc": "Scegli un ID caffetteria diverso.",
+    "invalidCafeIdTitle": "ID caffetteria non valido",
+    "invalidCafeIdDesc": "L'ID della caffetteria non può essere «undefined». Scegli un ID diverso.",
+    "completeTitle": "Configurazione completata!",
+    "completeDesc": "La tua caffetteria è pronta.",
+    "failTitle": "Configurazione non riuscita",
+    "failDesc": "Si è verificato un errore imprevisto.",
+    "validation": {
+      "nameMin": "Il nome deve contenere almeno 2 caratteri",
+      "cafeIdMin": "L'ID della caffetteria deve contenere almeno 3 caratteri"
+    }
+  },
+  "menu": {
+    "beBarista": "Diventa il barista",
+    "heading": "Menu",
+    "pastOrders": "Ordini passati",
+    "unknownItem": "Articolo sconosciuto",
+    "yourName": "Il tuo nome",
+    "order": "Ordina",
+    "anonymous": "Anonimo",
+    "status": {
+      "ordered": "Il tuo ordine è in preparazione",
+      "completed": "Il tuo ordine è pronto!",
+      "canceled": "Il tuo ordine è stato annullato",
+      "unknown": "Stato sconosciuto"
+    },
+    "toast": {
+      "orderSentTitle": "Ordine inviato",
+      "orderSentDesc": "Il tuo ordine è stato inviato con successo.",
+      "errorTitle": "Errore",
+      "orderFailDesc": "Invio dell'ordine non riuscito. Riprova.",
+      "orderCanceledTitle": "Ordine annullato",
+      "orderCanceledDesc": "Il tuo ordine è stato annullato con successo.",
+      "cancelFailDesc": "Annullamento dell'ordine non riuscito. Riprova."
+    },
+    "headDescription": "Ordina i tuoi articoli preferiti da {cafeName}"
+  },
+  "baristaOrders": {
+    "title": "Ordine",
+    "enableNotifications": "Ricevi una notifica quando viene inviato un nuovo ordine",
+    "emptyTitle": "Ancora nessun ordine",
+    "emptyText": "Condividi la pagina della tua caffetteria per iniziare a ricevere ordini!",
+    "shareCafe": "Condividi la mia caffetteria",
+    "pastOrders": "Ordini passati",
+    "cancel": "Annulla",
+    "complete": "Completa",
+    "unknownItem": "Articolo sconosciuto",
+    "statusLabel": {
+      "ordered": "Ordinato",
+      "completed": "Completato",
+      "canceled": "Annullato"
+    }
+  },
+  "baristaMenu": {
+    "manageMenuFor": "Gestisci il menu di {cafeName}",
+    "cafeId": "ID caffetteria: {id}",
+    "addNewItem": "Aggiungi nuovo articolo",
+    "noItemsTitle": "Ancora nessun articolo",
+    "noItemsText": "Inizia aggiungendo un nuovo articolo al menu.",
+    "options": "Opzioni:",
+    "yesNo": "Sì / No",
+    "noOptions": "Nessuna opzione specifica definita.",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "editItemTitle": "Modifica {name}",
+    "addItemTitle": "Aggiungi nuovo articolo",
+    "itemNamePlaceholder": "es. Espresso, Croissant",
+    "itemNameFloating": "Nome dell'articolo",
+    "pricePlaceholder": "es. 3,50",
+    "priceFloating": "Prezzo",
+    "imageLabel": "Immagine",
+    "noImage": "Nessuna immagine",
+    "descriptionPlaceholder": "Descrizione dell'articolo...",
+    "descriptionFloating": "Descrizione",
+    "optionNamePlaceholder": "es. Dimensione, Latte, Decaffeinato",
+    "optionNameFloating": "Nome dell'opzione",
+    "multipleValues": "Valori multipli / Opzione semplice",
+    "valuesFor": "Valori per {name}:",
+    "thisOption": "questa opzione",
+    "valuePlaceholder": "es. Piccolo, Grande, Latte d'avena",
+    "valueFloating": "Valore",
+    "addValue": "Aggiungi valore",
+    "addNewOptionType": "Aggiungi nuovo tipo di opzione",
+    "removeOption": "Rimuovi opzione",
+    "removeValue": "Rimuovi valore",
+    "cancel": "Annulla",
+    "saveChanges": "Salva modifiche",
+    "addItem": "Aggiungi articolo",
+    "confirmDelete": "Sei sicuro di voler eliminare questo articolo? Questa azione non può essere annullata.",
+    "images": {
+      "bobba": "Bubble tea",
+      "cafe": "Caffè",
+      "cookie": "Biscotto",
+      "emporter": "Da asporto",
+      "gaiwan": "Gaiwan",
+      "jus": "Succo",
+      "latte": "Latte",
+      "muffin": "Muffin",
+      "mug": "Tazza",
+      "tartine": "Bruschetta",
+      "the": "Tè",
+      "yaourt": "Yogurt"
+    },
+    "toast": {
+      "errorLoadingCafeTitle": "Errore nel caricamento della caffetteria",
+      "errorLoadingCafeDesc": "La caffetteria richiesta non è stata trovata o non è stato possibile caricarla.",
+      "errorLoadingMenuTitle": "Errore nel caricamento del menu",
+      "errorLoadingMenuDesc": "Impossibile caricare gli articoli del menu.",
+      "errorTitle": "Errore",
+      "cafeIdMissing": "L'ID della caffetteria è mancante.",
+      "itemDeletedTitle": "Articolo eliminato",
+      "itemDeletedDesc": "L'articolo è stato eliminato con successo.",
+      "deletionFailedTitle": "Eliminazione non riuscita",
+      "deletionFailedDesc": "Impossibile eliminare l'articolo.",
+      "validationErrorTitle": "Errore di convalida",
+      "itemNameRequired": "Il nome dell'articolo è obbligatorio.",
+      "itemUpdatedTitle": "Articolo aggiornato",
+      "itemUpdatedDesc": "Modifiche salvate con successo.",
+      "itemAddedTitle": "Articolo aggiunto",
+      "itemAddedDesc": "Nuovo articolo aggiunto al menu.",
+      "saveFailedTitle": "Salvataggio non riuscito",
+      "saveFailedDesc": "Impossibile salvare l'articolo."
+    }
+  },
+  "cafeSettings": {
+    "share": {
+      "title": "Condividi la tua pagina",
+      "subtitle": "Condividi questa pagina usando l'URL o il QR code qui sotto.",
+      "pageUrlLabel": "URL della pagina",
+      "pageUrlHelp": "Questo è il link diretto alla tua pagina.",
+      "generatingUrl": "Generazione dell'URL..."
+    },
+    "qr": {
+      "title": "QR code",
+      "subtitle": "Scansiona questo QR code con un dispositivo mobile per aprire la pagina.",
+      "downloadPng": "Scarica PNG",
+      "unavailable": "URL della pagina non disponibile, impossibile generare il QR code."
+    },
+    "updateName": {
+      "title": "Aggiorna il nome della caffetteria",
+      "subtitle": "Modifica il nome della tua caffetteria.",
+      "label": "Nome della caffetteria",
+      "help": "Inserisci il nuovo nome per la tua caffetteria.",
+      "placeholder": "Inserisci il nuovo nome della caffetteria",
+      "update": "Aggiorna",
+      "updating": "Aggiornamento..."
+    },
+    "customImages": {
+      "title": "Immagini personalizzate",
+      "subtitle": "Carica le tue immagini da usare negli articoli del menu.",
+      "upload": "Carica immagine",
+      "empty": "Ancora nessuna immagine personalizzata. Caricane una per iniziare."
+    },
+    "about": {
+      "title": "Informazioni e supporto",
+      "openSourceTitle": "Open source",
+      "openSourceText": "Questo progetto è in parte open source. La configurazione del server Appwrite disponibile su GitHub è probabilmente obsoleta, contattami se ti serve qualcosa.",
+      "viewOnGithub": "Guarda su GitHub",
+      "contactTitle": "Contatta il creatore",
+      "contactText": "Creato da Alix. Contattami se ti serve qualcosa.",
+      "hireText": "Che ne dici di ingaggiarmi per il tuo prossimo progetto?",
+      "supportTitle": "Sostieni My Tiny Café",
+      "supportText": "My Tiny Café è disponibile gratuitamente, ma se ti piace usarlo, valuta di contribuire ai costi di hosting.",
+      "supportButton": "Sostieni su Buy Me a Coffee"
+    },
+    "delete": {
+      "title": "Elimina account",
+      "subtitle": "Elimina definitivamente la tua caffetteria, il suo menu, tutti gli ordini, le immagini personalizzate e il tuo account. Questa azione non può essere annullata.",
+      "button": "Elimina il mio account",
+      "modalTitle": "Eliminare definitivamente il tuo account?",
+      "modalIntro": "Questo eliminerà definitivamente:",
+      "modalListCafe": "la tua caffetteria {id}",
+      "modalListMenu": "i suoi articoli del menu e tutti gli ordini passati",
+      "modalListImages": "le tue immagini personalizzate",
+      "modalListAccount": "il tuo account (non potrai più accedere)",
+      "confirmLabel": "Digita «{cafeId}» per confermare",
+      "deletePermanently": "Elimina definitivamente"
+    },
+    "session": {
+      "title": "Sessione",
+      "subtitle": "Esci da questo dispositivo. Puoi accedere di nuovo quando vuoi.",
+      "logout": "Esci"
+    },
+    "toast": {
+      "imageUploadedTitle": "Immagine caricata",
+      "imageUploadedDesc": "«{name}» è stata caricata.",
+      "uploadFailedTitle": "Caricamento non riuscito",
+      "uploadFailedDesc": "Impossibile caricare l'immagine.",
+      "confirmDeleteImage": "Eliminare questa immagine? Gli articoli che la usano mostreranno un'immagine non disponibile.",
+      "imageDeletedTitle": "Immagine eliminata",
+      "imageDeletedDesc": "L'immagine è stata eliminata.",
+      "deleteFailedTitle": "Eliminazione non riuscita",
+      "deleteFailedDesc": "Impossibile eliminare l'immagine.",
+      "errorTitle": "Errore",
+      "cafeIdUnavailable": "L'ID della caffetteria non è disponibile. Impossibile aggiornare il nome.",
+      "validationErrorTitle": "Errore di convalida",
+      "cafeNameEmpty": "Il nome della caffetteria non può essere vuoto.",
+      "successTitle": "Fatto!",
+      "cafeNameUpdated": "Nome della caffetteria aggiornato in «{name}».",
+      "updateFailedTitle": "Aggiornamento non riuscito",
+      "updateNameFailedDesc": "Impossibile aggiornare il nome della caffetteria. Riprova.",
+      "missingCafeIdTitle": "ID caffetteria mancante",
+      "missingCafeIdDesc": "L'identificatore univoco della caffetteria è mancante nell'URL.",
+      "urlNotAvailableTitle": "URL non disponibile",
+      "urlNotAvailableDesc": "L'URL della pagina non è pronto per essere copiato.",
+      "clipboardDeniedTitle": "Accesso agli appunti negato",
+      "clipboardDeniedDesc": "Le impostazioni del tuo browser impediscono l'accesso agli appunti, oppure non è supportato.",
+      "urlCopiedTitle": "URL copiato!",
+      "urlCopiedDesc": "L'URL della pagina è stato copiato negli appunti.",
+      "copyUnconfirmedTitle": "Copia non confermata",
+      "copyUnconfirmedDesc": "Tentativo di copia eseguito. Verifica i tuoi appunti.",
+      "copyFailedTitle": "Copia non riuscita",
+      "copyFailedDesc": "Si è verificato un errore durante il tentativo di copia dell'URL. Copialo manualmente.",
+      "downloadFailedTitle": "Download non riuscito",
+      "qrNotReady": "Il QR code non è ancora pronto. Riprova.",
+      "qrDownloadedTitle": "QR code scaricato",
+      "qrDownloadedDesc": "Il PNG del QR code è stato salvato.",
+      "qrGenerateFailed": "Impossibile generare il file PNG. Riprova.",
+      "loggedOutTitle": "Disconnesso",
+      "loggedOutDesc": "Hai effettuato la disconnessione",
+      "accountDeletedTitle": "Account eliminato",
+      "accountDeletedDesc": "Il tuo account e la tua caffetteria sono stati eliminati definitivamente.",
+      "deletionFailedTitle": "Eliminazione non riuscita",
+      "deletionFailedDesc": "Impossibile eliminare il tuo account. Riprova."
+    }
+  },
+  "invalidCafe": {
+    "title": "Questa caffetteria è chiusa.",
+    "text": "Non abbiamo trovato nessuna caffetteria a questo indirizzo. Forse il link è sbagliato — o forse è arrivato il momento per {you} di aprire la tua?",
+    "textHighlight": "te",
+    "openOwn": "Apri la mia caffetteria",
+    "backHome": "Torna alla home",
+    "noCreditCard": "Nessuna carta di credito. Niente pubblicità. Solo amore.",
+    "headTitle": "Caffetteria non trovata — My Tiny Café"
+  },
+  "pwa": {
+    "finding": "Stiamo cercando il tuo posto...",
+    "redirecting": "Ti stiamo reindirizzando all'ultima caffetteria visitata."
+  },
+  "demo": {
+    "cafeName": "Chez Zola",
+    "promptTitle": "Vuoi la tua caffetteria di casa?",
+    "promptText": "Se ti piacerebbe aprire la tua piccola caffetteria per amici e parenti, registrati — è completamente gratis, senza pubblicità e ci vuole circa un minuto.",
+    "openCafe": "Apri la mia piccola caffetteria",
+    "keepBrowsing": "Continua a sfogliare",
+    "items": {
+      "latte": {
+        "name": "Latte",
+        "description": "Espresso vellutato sormontato da latte montato.",
+        "price": "1 abbraccio 🤗"
+      },
+      "espresso": {
+        "name": "Espresso",
+        "description": "Corto, scuro, intenso. Il classico."
+      },
+      "matcha": {
+        "name": "Matcha",
+        "description": "Tè verde di grado cerimoniale, montato a frusta."
+      },
+      "tea": {
+        "name": "Tè",
+        "description": "Foglie sfuse, in infusione al momento."
+      },
+      "juice": {
+        "name": "Succo fresco",
+        "description": "Spremuto stamattina."
+      },
+      "bubble": {
+        "name": "Bubble tea",
+        "description": "Perle di tapioca, il tuo gusto preferito."
+      },
+      "muffin": {
+        "name": "Muffin",
+        "description": "Sfornato stamattina."
+      },
+      "cookie": {
+        "name": "Biscotto",
+        "description": "Caldo e morbido."
+      },
+      "tartine": {
+        "name": "Bruschetta",
+        "description": "Pasta madre, tostata, con condimenti."
+      },
+      "yogurt": {
+        "name": "Yogurt",
+        "description": "Yogurt greco, frutta fresca, granola.",
+        "price": "Gratis!"
+      }
+    }
+  }
+}

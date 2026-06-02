@@ -10,6 +10,7 @@ const { $appwrite } = useNuxtApp();
 const databases = $appwrite.databases;
 const client = $appwrite.client;
 const toast = useToast();
+const { t } = useI18n();
 
 let itemsPromise = databases.listDocuments("cafe", "item", [
     Query.equal("cafeId", route.params.cafeId as string),
@@ -33,7 +34,7 @@ useHead({
         { name: "viewport", content: "width=device-width,initial-scale=1" },
         {
             name: "description",
-            content: `Order your favorite items from ${cafePromise.name}`,
+            content: t("menu.headDescription", { cafeName: cafePromise.name }),
         },
         { name: "theme-color", content: "#f0e4d2" },
     ],
@@ -130,16 +131,16 @@ async function submitOrder(payload: {
         }
         orders.value.unshift(response);
         toast.add({
-            title: "Order sent",
-            description: "Your order has been sent successfully.",
+            title: t("menu.toast.orderSentTitle"),
+            description: t("menu.toast.orderSentDesc"),
             icon: "i-lucide-check",
             color: "success",
         });
     } catch (error) {
         console.error(error);
         toast.add({
-            title: "Error",
-            description: "Failed to send your order. Please try again.",
+            title: t("menu.toast.errorTitle"),
+            description: t("menu.toast.orderFailDesc"),
             icon: "i-lucide-alert-circle",
             color: "error",
         });
@@ -157,16 +158,16 @@ async function cancelOrder(orderId: string) {
             order.status = "canceled";
         }
         toast.add({
-            title: "Order canceled",
-            description: "Your order has been canceled successfully.",
+            title: t("menu.toast.orderCanceledTitle"),
+            description: t("menu.toast.orderCanceledDesc"),
             icon: "i-lucide-check",
             color: "success",
         });
     } catch (error) {
         console.error(error);
         toast.add({
-            title: "Error",
-            description: "Failed to cancel your order. Please try again.",
+            title: t("menu.toast.errorTitle"),
+            description: t("menu.toast.cancelFailDesc"),
             icon: "i-lucide-alert-circle",
             color: "error",
         });
